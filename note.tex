@@ -1,0 +1,39 @@
+%\documentclass[10pt,oneside,longbibliography]{report} 
+\documentclass[a4paper,11pt,openany]{book} 
+%\documentclass[a4paper]{article} 
+\input{preamble.tex}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+
+\definecolor{light-gray}{gray}{0.95}
+
+\begin{document}
+\title{\textbf{Note}}
+\author{Zanqiu Shen}
+%\author{University of Toronto}
+\maketitle
+%\input{./TitlePage.tex}
+\tableofcontents
+%\newpage
+
+\setcounter{chapter}{0}
+\part{Mathematical Fundamentals}
+\subfile{chapters/math_fundamentals/advent_math_symbols}
+\subfile{chapters/math_fundamentals/measure_theory}
+
+\part{Quantum Fundamentals}
+\subfile{chapters/quantum_fundamentals/prerequisites}
+\subfile{chapters/quantum_fundamentals/prerequisites}
+\subfile{chapters/quantum_fundamentals/quantum_channels}
+
+\part{Quantum Information}
+\subfile{chapters/quantum_information/estimation}
+\subfile{chapters/quantum_information/sensing}
+\subfile{chapters/quantum_information/imaging}
+
+\end{document}

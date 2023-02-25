@@ -1,0 +1,84 @@
+\documentclass[../../note.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Prerequisites}
+\section{Hilbert Spaces and Linear Operators}
+Throughout this course, $\mathcal{H}$ denotes a finite-dimensional Hilbert space (complex vector space with an associated inner product). Using Dirac's ``bra-ket'' notation we denote elements of the Hilbert space (called kets) as
+\begin{align}
+    \ket{\psi}\in \mathcal{H}.
+\end{align}
+The elements of the dual Hilbert space are called bras and are denoted
+\begin{align}
+    \bra{\psi}\in \mathcal{H}^*,
+\end{align}
+where $\bra{\psi}=(\ket{\psi})^{\dagger}$. Here, $X^{\dagger}:=\bar{X}^{T}$ denotes the Hermitian adjoint (also called the conjugate transpose). We denote
+\begin{align}
+    B(\mathcal{H}_1,\mathcal{H}_2) := \{\text{linear maps from $\mathcal{H}_1$ to $\mathcal{H}_2$}\}
+\end{align} 
+and the set of all linear maps to and from the same space will be denoted $B(\mathcal{H})=B(\mathcal{H},\mathcal{H})$. An operator $X \in B(\mathcal{H})$ is \textit{normal} if $XX^{T}=X^{T}X$. Every normal operator has a \textit{spectral decomposition}. That is, there exists a unitary $U$ and a diagonal matrix $D$ whose entries are the eigenvalues $\lambda_1,\dots,\lambda_d \in \mathbb{C}$ of $X$ such that 
+\begin{align}
+    X=UDU^{\dagger}.
+\end{align}
+In other words, 
+\begin{align}
+    X=\sum_{i=1}^d\lambda_i \ket{\psi_i} \bra{\psi_i}
+\end{align}
+where $X\ket{\psi_i}=\lambda_i \ket{\psi_i}$ and $U=(\ket{\psi_i},\dots,\ket{\psi_d})$. If $X$ is Hermitian, $X=X^{\dagger}$, then $\lambda_i \in \mathbb{R}$. An operator $X$ is positive semi-definite (PSD) if \begin{align}
+    \bra{\varphi} X \ket{\varphi} \geq 0 \quad \quad \forall \ket{\varphi} \in \mathcal{H}.
+\end{align}
+As a consequence, $X \geq 0$ and $\lambda_i \geq 0$.
+It holds that $\text{PSD} \implies \text{ Hermitian} \implies \text{ normal}$. Unless otherwise stated, we will always assume we are working in an orthonormal basis.
+\section{Quantum States}
+A quantum state $\rho$ in a Hilbert space $\mathcal{H}$ is a PSD linear operator with
+\begin{align}
+    \rho \in B(\mathcal{H}), \quad \rho \geq 0, \quad \text{tr}\rho =1.
+\end{align}
+This means that the state has eigenvalues $\{\lambda_i\}_{i=1}^d$ satisfying $\lambda_i\geq 0$ and $\sum_{i=1}^d \lambda_i =1$. Thus, $\{\lambda_i\}_{i=1}^d$ forms a probability distribution. 
+
+A \textit{pure quantum state} $\psi$ is a quantum state with rank 1. We can find $\ket{\psi}\in \mathcal{H}$ such that $\psi =\ket{\psi}\bra{\psi}$. In this case, $\psi$ is called a \textit{projector}. A \textit{mixed state} is a quantum state with rank $>1$. Mixed states are convex combinations of pure states. That is, for every quantum state $\rho$ with $r=\rank(\rho)$ there are pure states $\ket{\psi_i}_{i=1}^k \quad (k\geq r)$ and a probability distribution $\{p_i\}_{i=1}^k$ such that 
+\begin{align}
+    \rho=\sum_{i=1}^k p_i \ket{\psi_i}\bra{\psi_i}.
+\end{align}
+The spectral decomposition of $\rho$ is a special case of this property. 
+\section{Composite systems, partial trace, entanglement}
+Let $A$ and $B$ be two quantum systems with Hilbert spaces $\mathcal{H}_A$ and $\mathcal{H}_B$. The \textit{joint system} $AB$ is described by the Hilbert space $\mathcal{H}_{AB}:=\mathcal{H}_A \otimes \mathcal{H}_B$. We denote quantum states of the joint system as $\rho_{AB}\in \mathcal{H}_{AB}$. The marginal of the bipartite state, denoted $\rho_A$, is uniquely defined as the operator satisfying
+\begin{align}
+    \rho_{A}:=\text{tr}_B\rho_{AB}, 
+\end{align}
+which is defined via $\text{tr}(\rho_{AB}(X_{A}\otimes \mathbb{I}_B))=\text{tr}\rho_A X_A \quad \forall X_A \in B(\mathcal{H}_A)$. For a Hilbert space with $|B|:=\dim\mathcal{H}_B$, the explicit form of the partial trace is
+\begin{align}
+    \text{tr}_B \rho_{AB}=\sum_{i=1}^{|B|}(\mathbb{I}_A \otimes \bra{i}_B)\rho_{AB} (\mathbb{I}_A\otimes \ket{i}_B),
+\end{align}
+for some basis $\{\ket{i}_B\}_{i=1}^{|B|}$ of $\mathcal{H}_B$. 
+
+A \textit{product state} on $AB$ is a state of the form $\rho_A \otimes \sigma_B$. The state is called \textit{separable} if it lies in the convex hull of product states: 
+\begin{align}
+    \rho_{AB} = \sum_{i} p_i \rho_A^i \otimes \sigma_B^i
+\end{align}
+for some states $\{\rho_A^i\}_i$ and $\{\sigma_B^i\}_i$ and  probability distribution $\{p_i\}_i$. A state is called \textit{entangled}, if it is not separable. An entangled state of particular interest is the \textit{maximally entangled state}. Let $d=\dim\mathcal{H}$, $\{\ket{i}\}_{i=1}^d$ be a basis for $\mathcal{H}$. A maximally entangled state is expressed as
+\begin{align}
+    \ket{\phi^+} = \frac{1}{\sqrt{d}} \sum_{i=1}^d \ket{i}\otimes \ket{i} \quad \in \mathcal{H}\otimes \mathcal{H}
+\end{align}
+\section{Measurements}
+The most general measurement is given by a \textit{positive operator-valued measure} (POVM) $E=\{E_i\}_i$ where $E_i \geq 0 \quad \forall i$ and $\sum_i E_i = \mathbb{I}$. Then, for a quantum system $\mathcal{H}$ in state $\rho$, the probability of obtaining measurement outcome $i$ is given by $p_i = \text{tr}[\rho E_i]$. So, we have 
+\begin{align}
+    \sum_i p_i = \sum_i \text{tr}[\rho E_i] = \text{tr}\left[\rho \sum_i E_ i\right] = \text{tr}[\rho \mathbb{I}] = \text{tr}\rho = 1,
+\end{align}
+for all normalized quantum states. A \textit{projective measurement} $\Pi =\{\Pi_i \}$ is a POVM with the added property of orthogonality, which for projectors means
+\begin{align}
+    \Pi_i \Pi_j =\delta_{ij} \Pi_i.
+\end{align}
+Any basis $\{\ket{e_i}\}^{\dim\mathcal{H}}_{i=1}$ gives rise to a projective measurement $\Pi=\{\ket{e_i}\bra{e_i}\}_{i=1}^{\dim\mathcal{H}}$.
+\section{Entropies}
+The \textit{Shannon entropy} $H(p)$ of a probability distribution $p=\{p_i, \dots, p_d\}$ is defined as $H(p)=-\sum_{i=1}^{d}p_i \log{p_i}$, where the logarithm is base 2 unless otherwise specified. Note that when the logarithm is base 2, the entropy has units of \textit{bits}. The \textit{von Neumann entropy} $S(\rho)$ of a quantum state $\rho$ is defined as 
+\begin{align}
+    S(\rho) = -\text{tr}\left[\rho \log \rho\right] = H(\{\lambda_i, \dots, \lambda_d\}),
+\end{align}
+where $\rho=\sum_i \lambda_i \ket{\psi_i}\bra{\psi_i}$ is a spectral decomposition of $\rho$ and where the logarithm of an operator is obtained by first diagonalizing the matrix representing the operator and then taking the logarithm of the diagonal elements. That is,
+\begin{align}
+    \log{\rho} = \sum_{i:\lambda_i >0} \log{(\lambda_i)} \ket{\psi_i}\bra{\psi_i}.
+\end{align}
+
+\end{document}
+

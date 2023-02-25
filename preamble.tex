@@ -1,0 +1,92 @@
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, bm}
+\usepackage[margin=1.25in]{geometry} 
+\usepackage{units}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\usepackage{braket}
+\usepackage{cite}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\graphicspath{ {Images/} }
+\usepackage[font={small,it}]{caption}
+\setlength{\parindent}{4em}
+\setlength{\parskip}{.5em}
+\usepackage[usenames, dvipsnames, svgnames, table]{xcolor}
+\usepackage[colorlinks=true, citecolor=ForestGreen,
+            linkcolor=ForestGreen, urlcolor=ForestGreen]{hyperref}
+\usepackage{booktabs} 
+\usepackage{colortbl} 
+\usepackage{xcolor} 
+\usepackage{xfrac}
+\usepackage{multicol}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\DeclareMathOperator{\rank}{rank}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+%Defining fancy solution boxes
+%\newcounter{sol}[section]\setcounter{sol}{0}
+%\renewcommand{\thesol}{\arabic{section}.\arabic{sol}}
+\newenvironment{sol}[2][]{%
+%\refstepcounter{sol}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Gray!35]
+{\strut Theorem~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Gray!35]
+{\strut ~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=Gray!35,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%---------------------------------------------------------%
+
+%For proofs
+\newcounter{prf}[section]\setcounter{prf}{0}
+\renewcommand{\theprf}{\arabic{section}.\arabic{prf}}
+\newenvironment{prf}[2][]{%
+\refstepcounter{prf}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Goldenrod!40]
+{\strut Proof~\theprf};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Goldenrod!40]
+{\strut Proof~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=Goldenrod!40,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\qed\end{mdframed}}
+%----------------------------------------------------------
+
+\usepackage{subfiles}
