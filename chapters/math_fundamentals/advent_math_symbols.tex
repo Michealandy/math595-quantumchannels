@@ -2,12 +2,12 @@
 
 \begin{document}
 
-\chapter{Advent Mathematical Symbols}
+\chapter{Advent of Mathematical Symbols}
 \begin{itemize}
     \item Kronecker delta:
     \begin{align}
         \delta_{ij} 
-        &= 
+        &:= 
         \left\{ 
             \begin{array}{lc}
                 1, & i=j      \\
@@ -15,7 +15,215 @@
             \end{array}
         \right.
     \end{align}
-    \item 
+    \item Levi-Civita symbol: 
+    \begin{align}
+        \varepsilon_{ijk}
+        &:= 
+        \left\{
+            \begin{array}{lc}
+                1,  & (i,j,k)=(1,2,3)~{\rm or}~(2,3,1)~{\rm or}~(3,1,2)   \\
+                -1, & (i,j,k)=(3,2,1)~{\rm or}~(2,1,3)~{\rm or}~(1,3,2) \\
+                0,  & {\rm else}.
+            \end{array}
+        \right.
+    \end{align}
+    \begin{example}
+        \begin{align}
+            (a \times b)_i
+            &= \sum_{j,k=1}^3 \varepsilon_{ijk} a_j b_k,
+        \end{align}
+        where $a,b$ are three dimensional vectors and $"\times"$ denotes cross product.
+    \end{example}
+    \item Nabla symbol:
+    \begin{align}
+        \nabla
+        &:= 
+        \left(
+            \begin{array}{lc}
+                \frac{\partial}{\partial x_1} \\
+                \frac{\partial}{\partial x_2} \\
+                \frac{\partial}{\partial x_3}
+            \end{array}  
+        \right).
+    \end{align}
+    \item Factorial: $n!:= n \cdot (n-1) \cdot (n-2) \cdots 2 \cdot 1$.
+    
+    Recursive definition: $0!:= 1$, $n!:= n \cdot (n-1)!,~ n \in \mathbb{N}$.
+    \item  Gamma function:
+    \begin{align}
+        \Gamma(z)
+        &:= \int_{0}^{\infty} x^{z-1} \cdot {\rm e}^{-x} {\rm d} x,~ {{\rm Re}(z)\geq 0}. 
+    \end{align}
+    \begin{property}
+        \begin{align}
+            \Gamma(n) = (n-1)!,~ n \in \mathbb{N}; ~ \Gamma(z+1) = z \cdot \Gamma(z).
+        \end{align}
+    \end{property}
+    \item Composition: $(g \circ f)(x):= g(f(x))$.
+    \item Sum symbol: $\sum_{k=1}^n a_k:= a_1 + a_2+ \cdots + a_n$.
+    
+    Recursive defintion: $\sum_{k=1}^0 a_k:= 0$, $\sum_{k=1}^n a_k := \left(\sum_{k=1}^{n-1} a_k \right) + a_n $.
+    \item Product: $\Pi_{k=1}{n} a_k:= a_1 \cdot a_2 \cdot \cdots \cdot a_n$.
+    
+    Recursive defintion: $\Pi_{k=1}^0 a_k:= 1$, $\Pi_{k=1}^n a_k := \left( \Pi_{k=1}^{n-1} a_k \right) \cdot a_n $
+    \item Restriction: $f \vert_{A}: A \rightarrow Y$. For $f: X \rightarrow Y$ and $A \subseteq X$, we define $f \vert_{A}(x) = f(x)$ for all $x \in A$.
+    \item Pauli matrices:
+    \begin{align}
+        \sigma_1 = \left[
+        \begin{matrix}
+            0 & 1 \\
+            1 & 0
+        \end{matrix}
+        \right].
+        \sigma_2 = \left[
+            \begin{matrix}
+                0 & -i \\
+                i & 0
+            \end{matrix}
+        \right].
+        \sigma_1 = \left[
+            \begin{matrix}
+                1 & 0 \\
+                0 & -1
+            \end{matrix}
+        \right].
+    \end{align}
+    \begin{property}
+        We have $\sigma_k^2 = I$ and $\sigma_j \sigma_k - \sigma_k \sigma_j = 2 i \varepsilon_{jkl} \sigma_l$.
+    \end{property}
+    \item Set brackets: $\left\{f(x) \vert x \in A \right\}$.
+    \begin{example}
+        \begin{align}
+            \left\{ 2x+1 \vert x \in \left\{0,1,2,3\right\} \right\} = \left\{1,3,5,7\right\}.
+        \end{align}
+    \end{example}
+    \item Big $O$: $f(x) = O(g(x))$, $(x \rightarrow a)$, which means that $\vert f(x) \vert \leq M \cdot \vert g(x) \vert$, i.e., $\limsup_{x\rightarrow a}{\frac{f(x)}{g(x)}} < \infty$.
+    \begin{align}
+        x^2+x+2 = O(x^2),~ (x \rightarrow \infty) \\
+        x^2+x+2 = O(x^3),~ (x \rightarrow \infty).
+    \end{align}
+    \item Binomial coefficient: 
+    \begin{align}
+        \binom{n}{k} 
+        &= \frac{n \cdot (n-1) \cdots (n-k-1)}{k !} \\
+        &= \frac{n!}{k! (n-k)!}.
+    \end{align}
+    \item Modulo: $x~{\rm mod}~n:= r \in [0,n)$ with $x = n \cdot q + r$ where $q$ is the integer.
+    \begin{example}
+        \begin{align}
+            5~{\rm mod}~3 = 2 \\
+            6~{\rm mod}~3 = 0 \\
+            7.1~{\rm mod}~3 = 1.1 \\
+            9.7~{\rm mod}~2.1 = 1.3.
+        \end{align}
+    \end{example}
+    \item Beta function: 
+    \begin{align}
+        \beta(x, y)
+        &:= \int_{0}^{1} t^{x-1} (1-t)~{\rm d}t,
+    \end{align}
+    where $x, y \in \mathbb{C}$, ${\rm Re}(x)>0$ and ${\rm Re}(y)>0$.
+    \begin{lemma}[Identity between $\beta$ func. and $\Gamma$ func.]
+        \label{lemma: identity between beta func. and Gamma func.}
+        \begin{align}
+            \beta(x,y)
+            &= \frac{\Gamma(x)\cdot \Gamma(y)}{\Gamma(x+y)},
+        \end{align}
+        where $\Gamma(\cdot)$ is related to factorial and $\beta(x,y)$ is related to binomial coefficient.
+    \end{lemma}
+    \item Map arrows: $f:~ X \rightarrow Y$ where $X$ is the domain and $Y$ is the codomain. This map can also be denoted as elementwise-mapping as $x \longmapsto f(x)$.
+    \begin{example}
+        \begin{align}
+            f
+            &:= \mathbb{R} \rightarrow \mathbb{R} \\
+            &x \longmapsto x^2.
+        \end{align}
+    \end{example}
+    \item Little $o$: $f(x) = o(g(x))$, $(x \rightarrow a)$, which means $\lim_{x\rightarrow a} \vert \frac{f(x)}{g(x)} \vert = 0$.
+    \begin{example}
+        \begin{align}
+            8 \cdot x^2 \neq o(x^2), ~(x\rightarrow \infty) \\
+            8 \cdot x^2 \neq o(x^3), ~(x\rightarrow \infty).
+        \end{align}
+    \end{example}
+    \item Outer product (Kronecker product for vectors):
+    \begin{align}
+        \left(
+            \begin{matrix}
+                v_1  \\
+                v_2
+            \end{matrix}
+        \right)
+        \otimes
+        \left(
+            \begin{matrix}
+                w_1 & w_2 & w_3
+            \end{matrix}
+        \right)
+        =
+        \left(
+            \begin{matrix}
+                v_1 w_1 & v_1 w_2 & v_1 w_3  \\
+                v_2 w_1 & v_2 w_2 & v_2 w_3
+            \end{matrix}
+        \right),
+    \end{align} 
+    i.e. matrix entries $(V \otimes W)_{ij} = v_i \cdot w_j$.
+    \item Euler's phi function: $\phi: \mathbb{N} \rightarrow \mathbb{N}$ defined as
+    \begin{align}
+        \phi(n)
+        &= {\rm count~numbers}~a \in \mathbb{N}~{\rm with}\\
+        &{\rm (1)}~a \leq n \\
+        &{\rm (2)}~{\rm gcd}(a,n) = 1 (\rm mutually~prime).
+    \end{align}
+    \begin{example}
+        \begin{align}
+            \phi(4)
+            &= 2 \\
+            \phi(5) 
+            &= 4 \\
+            \phi(p)
+            &= p-1~for~p~prime.
+        \end{align}
+    \end{example}
+    \item Laplace operator (Laplacian): 
+    \begin{align}
+        \Delta f(x)
+        &= \frac{\partial^2 f}{\partial x_1^2}(x)+\frac{\partial^2 f}{\partial x_2^2}(x)+\frac{\partial^2 f}{\partial x_3^2}(x),
+    \end{align}
+    where $f: \mathbb{R}^3 \rightarrow \mathbb{R}$.
+    \item Convolution: $(f \ast g)(x):= \int_{-\infty}^{\infty} f(\tau) \cdot g(x- \tau){\rm d}\tau$, where $f: \mathbb{R}\rightarrow \mathbb{R}$, $g: \mathbb{R}\rightarrow \mathbb{R}$ and $f \ast g: \mathbb{R}\rightarrow \mathbb{R}$.
+    \item Heaviside function: 
+    \begin{align}
+        H(x)
+        &:= 
+        \left\{
+            \begin{array}{lc}
+                1, &~x\geq 0 \\
+                0, &~x < 0
+            \end{array}
+        \right.
+    \end{align}
+    \begin{property}
+        \begin{align}
+            H'
+            &= \delta.
+        \end{align}
+    \end{property}
+    \item Quaternions: 
+    \begin{align}
+        \mathbb{H} \supseteq \mathbb{C},
+    \end{align}
+    where $a,b,c,d \in \mathbb{R}$, the element in $\mathbb{H}$ is $a+i\cdot b+j\cdot c+k\cdot d$ with $i^2=-1, j^2=-1,k^2=-1, ijk = -1$. $\mathbb{H}$ is not commutative in multiplication, i.e., $i\cdot j = - j \cdot i$.
+    \item Infinity: $\infty$.
+    \begin{example}
+        In measure theory: $[0,\infty]$. We have
+        \begin{align}
+            a+\infty = \infty+a=\infty~for~a\in [a,\infty] \\      
+        \end{align}
+    \end{example}
+    \item $~$ means equivalence reltation. For example, $x ~ y$ means $x$ is equivalent to $y$ for some conditions.
+
 \end{itemize}
 
 \end{document}
