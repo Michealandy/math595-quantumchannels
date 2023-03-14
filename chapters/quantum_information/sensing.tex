@@ -4,19 +4,166 @@
 
 \chapter{Sensing}
 \section{Joint measurement of TFE via SFG}
+\section{Mathematical preliminaries}
+
+\section{Physics preminaries}
+\subsection{SFE}
+The SFG process in a $\chi^{(2)}$ nonlinear medium could be modeled as the following evolution operator:
+\begin{align}
+    \label{evolution operator of sfg process}
+    V
+    &= I + \varepsilon\left(\int {\rm d}\omega_p {\rm d}\omega_s{\rm d}\omega_i a_p^\dagger(\omega_p)a_s(\omega_s)a_i(\omega_i)\delta(\omega_p - \omega_s - \omega_i) - H.C. \right),
+\end{align}
+where photons in the signal mode $a_s(\omega_s)$ and ideler mode $a_i(\omega_i)$ are annihilated to generate photons in the pump mode $a_p(\omega_p)$ and $\varepsilon$ characterizes the interaction strength. The SPDC process is the time-reversal process of SFG, which can also be described by the same revolution operator.
+
+\subsection{SPDC}
+
 \section{Introduction}
 
 \section{Terminology}
 
 \section{Problem formulation}
+The frequency sum and time difference of two photons could be simultaneously measured through the sum-frequency generation process.
 
 \section{Protocol}
+Given the close connection between the spontaneous parametric down-conversion (SPDC) process and time-frequency entanglement (TFE), it's natural to utilize the time-reversal of the SPDC process, i.e., sum frequency generation (SFG) to obtain a TFE joint measurement based protocol.
+
+\begin{definition}[Frequency sum (FS) operator]
+    The frequency sum operator  $P_{\delta_{\omega}}(\omega)$ that selects states with the frequency sum $\omega_s + \omega_i$ of the signal and idler photon being around $\omega$ within uncertatinty $\delta_{\omega}$  is defined as:
+    \begin{align}
+        P_{\delta_{\omega}}(\omega)
+        &= \int \int {\rm d}\omega_s{\rm d}\omega_i a_s^\dagger(\omega_s) a_i^\dagger(\omega_i) a_s(\omega_s) a_i(\omega_i) {\rm Gate}\left(\frac{\omega -\omega_s-\omega_i}{\delta_{\omega}}\right),
+    \end{align}
+    where ${\rm Gate}(x) = 1$ for $\vert x \vert \leq 1/2$ and ${\rm Gate}(x) = 0$ otherwise.
+\end{definition}
+
+\begin{lemma}[Frequency sum operator is a projection operator]
+    The frequency sum operator  $P_{\delta_{\omega}}(\omega)$ is a projection operator satisfying
+    \begin{align}
+        P_{\delta_{\omega}}(\omega)^2
+        &= P_{\delta_{\omega}}(\omega).
+    \end{align}
+\end{lemma}
+
+\begin{definition}[Time difference (TD) operator]
+    The time difference operator $P_{\delta_{t}}(t)$ that selects states with the time difference $t_s - t_i$ of the signal and idler photon being around $t$ within uncertatinty $\delta_{t}$  is defined as:
+    \begin{align}
+        P_{\delta_{t}}(t)
+        &= \int \int {\rm d}t_s{\rm d}t_i \tilde{a_s}^\dagger(t_s) \tilde{a_i}^\dagger(t_i) \tilde{a_s}(t_s) \tilde{a_i}(t_i) {\rm Gate}\left(\frac{t_s -t_i-t}{\delta_{t}}\right),
+    \end{align}
+    where ${\rm Gate}(x) = 1$ for $\vert x \vert \leq 1/2$ and ${\rm Gate}(x) = 0$ otherwise and 
+    \begin{align}
+        \tilde{a}_x
+        &= \frac{1}{\sqrt{2 \pi}} \int {\rm d}\omega \exp\left(-i\omega t\right)a_x(\omega)
+    \end{align}
+\end{definition}
+
+\begin{lemma}[Time difference operator is a projection operator]
+    The time difference operator  $P_{\delta_{t}}(t)$ is a projection operator satisfying
+    \begin{align}
+        P_{\delta_{t}}(t)^2
+        &= P_{\delta_{t}}(t).
+    \end{align}
+\end{lemma}
+
+\begin{definition}[Joint projection operator]
+    The joint projection operator of the time difference and frequency sum is defined as
+    \begin{align}
+        P_{\delta_{\omega}, \delta_t}(\omega, t)
+        &= P_{\delta_{\omega}}(\omega) P_{\delta_t}(t),
+    \end{align}
+    which means selecting states of which the time difference between the signal and idler photon $t_s -t_i$ is around $t$ within uncertainty $\delta_t$ and frequency sum of the signal and idler photon being around $\omega$ within unicertainty $\delta_{\omega}$, simultaneously.
+\end{definition}
+
+\begin{lemma}[Commutation relationship between frequency-time operators]
+    We have the commutation relationship
+    \begin{align}
+        [P_{\delta_{\omega}}(\omega), P_{\delta_t}(t)] = 0.
+    \end{align}
+\end{lemma}
+
+\begin{definition}[TD an FS probability density operator (PDF)]
+    We define
+    \begin{align}
+        P(\omega, t)
+        &= \lim_{\delta_t \rightarrow 0, \delta_{\omega} \rightarrow 0} \frac{1}{\delta_{\omega} \delta_{t}} P_{\delta_{\omega}}(\omega) P_{\delta_{t}}(t).
+    \end{align}
+\end{definition}
+
+\begin{lemma}
+    We have
+    \begin{align}
+        P(\omega, t)
+        &= \frac{1}{2 \pi} B_p^\dagger B_p,
+    \end{align}
+    where
+    \begin{align}
+        B_p
+        &= \int \int {\rm d}\omega_s{\rm d}\omega_i \delta(\omega_s+\omega_i-\omega) \exp\left[i \omega_i t\right] a_s(\omega_s) a_i(\omega_i).
+    \end{align}
+\end{lemma}
+
+\begin{lemma}[Connection between TD and FS PDF and SFG Process]
+    We have
+    \begin{align}
+        B^\dagger B
+        &= 2 \pi P(\omega, 0).
+    \end{align}
+\end{lemma}
+\textcolor{red}{This lemma did not show the SFG process}
+
+\begin{lemma}[Discrete sum of evolution operator of SFG process]
+    The discrete sum of the evolution operator of SFG process can be obtained by a \textbf{two-step Schmidt decomposition} as:
+    \begin{align}
+        v
+        &= I + \varepsilon \sum_{m}\left(\sqrt{\lambda_m^{(1)}} A_m^\dagger B_m - H.C. \right),
+    \end{align}
+    where 
+    \begin{align}
+        B_m
+        &= \sum_n \sqrt{\lambda_{m,n}^{(2)}} F_{m,n} G_{m,n}, \\
+        A_m
+        &= \int {\rm d}\omega \psi_{A,m}(\omega)a_p(\omega), \\
+        B_m
+        &= \int {\rm d}\omega_s{\rm d}\omega_i \psi_{B,m}(\omega_s, \omega_i) a_s(\omega_s)a_i(\omega_i), \\
+        F_{m,n}
+        &= \int{\rm d}\psi_{F,m,n}(\omega) a_s(\omega), \\
+        G_{m,n}
+        &= \int {\rm d}\psi_{G,m,n}(\omega)a_i(\omega).
+    \end{align} 
+\end{lemma}
+
+\begin{lemma}
+    If the function $f_0$ can be written in the following form:
+    \begin{align}
+        \delta(\omega_p - \omega_s -\omega_i) f_0(\omega_p -\omega_s -\omega_i)
+        &= \delta(\omega_p - \omega_s - \Omega_i) f(\frac{\omega_s-\Omega_i}{\sqrt{2}}),
+    \end{align}
+    then the first step Schmidt decomposition in the main text is not unique.
+\end{lemma}
+
+\begin{lemma}[An useful communtation relationship]
+    \label{lemma: an useful communtation relationship}
+    An useful communtation relationship:
+    \begin{align}
+        [B_{m'},B^\dagger_{m''}]
+        &= \delta_{m'm''} + \int {\rm d}\omega_s'{\rm d}\omega_i{\rm d}\omega_s''\psi^{\ast}_{B,m''}(\omega_s',\omega_i)a^\dagger_{s}(\omega_s'')a_s(\omega_s') \\
+        &+\int {\rm d}\omega_s{\rm d}\omega_i'{\rm d}\omega_i''\psi^{\ast}_{B,m''}(\omega_s,\omega_i'')\psi_{B,m'}a^\dagger_{i}(\omega_i'')a_i(\omega_i').
+    \end{align}
+\end{lemma}
+
+\begin{corollary}
+    By (\ref{lemma: an useful communtation relationship}), we have
+    \begin{align}
+        [B_{m'},B_{m''}^\dagger]
+        &= \delta_{m'm''} \vert 0 \rangle.
+    \end{align}
+\end{corollary}
 
 \section{Performance evaluation}
 
 \begin{lemma}
     \begin{align}
-        a=b
     \end{align}
 \end{lemma}
 
