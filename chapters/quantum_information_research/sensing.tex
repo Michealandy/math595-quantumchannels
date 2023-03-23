@@ -133,7 +133,7 @@ Given the close connection between the spontaneous parametric down-conversion (S
     \end{align} 
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma}[Non-uniqueness of the first step Schmidt Decomposition]
     If the function $f_0$ can be written in the following form:
     \begin{align}
         \delta(\omega_p - \omega_s -\omega_i) f_0(\omega_p -\omega_s -\omega_i)
@@ -160,6 +160,117 @@ Given the close connection between the spontaneous parametric down-conversion (S
     \end{align}
 \end{corollary}
 
+\begin{lemma}
+    We have the commutation relation between time difference projection operator and frequency sum projection operator:
+    \begin{align}
+        [P_{\delta_{\omega}}(\omega), P_{\delta_t}(t)]
+        &= 0.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}
+    The frequency spectrum $S(\omega)$ of the generated pump photon is given by the expectation value of the spectral density operator $a_p^\dagger(\omega_p)a_{p}(\omega_p)$ 
+    \begin{align}
+        S(\omega_p)
+        &= \frac{\epsilon^2 \exp\left[\frac{1}{8}\left(-4 \Delta t^2 \sigma_-^2 - \frac{\Delta \omega^2}{\sigma_-^2} - \frac{4(\Delta \omega + \omega_0 - \Omega_p)^2}{\sigma_+^2} \right)\right]}{2 \sqrt{\pi} \sigma_+}.
+    \end{align}
+\end{lemma}
+
+\begin{definition}
+    The discrete mode operator $F_{m,n}^(b)$ for the noise photons is defined as
+    \begin{align}
+        F_{m,n}^{(b)}
+        &= \int {\rm d}\omega \psi_{F_{m,n}}(\omega)a_s^{(b)}(\omega). 
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    The virtual beam-splitter is modeledd as the following unitary transform:
+    \begin{align}
+        U_{loss}
+        &= \Pi_{n} \exp\left[i {\rm arccos}(\eta)(F_{0,n}^\dagger F_{0,n}^{(b)} + H.C.)\right].
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    We use a density matrix $\rho_b$ that satisfies the following conditions to describe the noise photons:
+    \begin{align}
+        \tr[F_{0,n''}^{(b) \dagger} F_{0,n'}^{(b)} \rho_b] 
+        &= \delta_{n',n''} \mu_b, \\
+        \tr[F_{0,n'}^{(b)} \rho_b]
+        &= 0
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    The signal and idler photon pair source is described by the biphoton state  $\vert pair \rangle$:
+    \begin{align}
+        \vert pair \rangle
+        &= B_0^\dagger \vert 0 \rangle \\
+        &= \sum_{n} \sqrt{\lambda_{0,n}^{(2)}} F_{0,n}^\dagger G_{0,n} \vert 0 \rangle.
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    The unitary trasform of the SFG process is given by:
+    \begin{align}
+        V
+        &= I + \epsilon \sum_{m} \left[\sqrt{\lambda_m^{(1)}} A_m^\dagger B_m - H.C. \right].
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    In the Heisenberg picture, the photon number operator of the generated pump photon in each pump mode $A_m$ after the beam-splitter transform and the SFG process is given by:
+    \begin{align}
+        U^\dagger_{loss} V^\dagger A_{m}^\dagger V U_{loss}.
+    \end{align}
+\end{definition}
+
+\begin{proposition}
+    When the transmission of the signal photon is perfect ($\eta = 1$), the pump photon can only generate in mode $A_0 (m = 0)$.
+\end{proposition}
+
+\begin{lemma}
+    We have
+    \begin{align}
+        \langle U^\dagger_{loss} V^\dagger A_0^\dagger A_0 V \vert U_{loss} \rangle
+        &= \epsilon^2 \lambda_{0}^{(1)}(\eta + \mu_b \sum_n \lambda_{0,n}^2).
+    \end{align}
+\end{lemma}
+
+\begin{definition}
+    The generated SPDC state is given by:
+    \begin{align}
+        V
+        &= \vert 0 \rangle - \epsilon \sqrt{\lambda_{0}^{(1)}} \alpha B_{0}^\dagger \vert 0 \rangle.
+    \end{align}
+\end{definition}
+
+\begin{lemma}
+    The joint density operator of the noise-idler state $\rho_j$ is given by the tensor product of $\rho_i$ and $\rho_b$:
+    \begin{align}
+        \rho_j 
+        &= \rho_i \otimes \rho_b \\
+        &= \mu_b \int \int {\rm d}\omega_s{\rm d}\omega_s' \int \int {\rm d}\omega_i'{\rm d}\omega_i''\phi_0^\ast(\omega_s', \omega_i') \phi_0(\omega_s', \omega_i'') a_i^\dagger(\omega_i') a_s^\dagger(\omega_s)\vert 0 \rangle \langle 0 \vert a_i(\omega_i'')a_s(\omega_s).
+    \end{align}
+\end{lemma}
+
+\begin{lemma}
+    The spectral density $S(\omega)$ of the upconverted photons is
+    \begin{align}
+        S(\omega)
+        &= \frac{\epsilon^2 \mu_b \exp\left[-\frac{(\omega - \omega_0)^2}{8 \sigma_-^2 - 2 \sigma_+^2}\right]}{\sqrt{\pi} \sqrt{4 \sigma_-^2 + \sigma_+^2}}.
+    \end{align}
+\end{lemma}
+
+\begin{theorem}
+    The error exponent of the classical Chernoff bound of the TFE QI protocol is given by $C_{QI}$ \cite{nussbaum2009chernoff}:
+    \begin{align}
+        C_{QI}
+        &= -\log~\min_{s \in [0,1]} \left\{\sum_{b \in 0,1}p_0(b)^s p_1(b)^{(1-s)}\right\}.
+    \end{align}
+\end{theorem}
+
 \section{Performance evaluation}
 
 \begin{lemma}
@@ -168,6 +279,8 @@ Given the close connection between the spontaneous parametric down-conversion (S
 \end{lemma}
 
 
-
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{alpha}
+%\bibliography{../../references.bib}
 
 \end{document}

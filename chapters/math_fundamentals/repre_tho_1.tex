@@ -1,0 +1,404 @@
+\documentclass[../../note.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Representation Theory of Finite Groups}
+\section{Irreducible Representations}
+\begin{definition}
+    Representation $\phi: G \rightarrow GL(V)$ is irreducible if $V \neq \left\{ 0 \right\}$ and the only invariant subspaces are $\left\{ 0 \right\}$ and $V$.
+\end{definition}
+\begin{example}
+    Every 1-dimensional rep. is irreducible.
+\end{example}
+
+\begin{example}
+    $\rho: S_3 \rightarrow GL_3(\mathbb{C})$ standard rep. not irreducible.
+    \begin{align}
+        W &= \mathbb{C}v,~v = e_1 +e_2+e_3 \\
+        U &= \mathbb{C}x + \mathbb{C}y,~x=e_1+e_2,~y=e_2-e_3 \\
+        \Longrightarrow &(\phi \vert_w)~and~(\phi \vert_U)~are~irreducible~S_3-reps.
+    \end{align}
+\end{example}
+\begin{proof}
+    $(\rho \vert_U) \sim \phi: S_3 \rightarrow GL_2(\mathbb{C})$.
+    \begin{align}
+        \phi_{(12)}\left[\begin{matrix}
+            -1&1\\
+            0&1
+        \end{matrix}\right]
+    \end{align}
+    \begin{align}
+        \phi_{(123)}\left[\begin{matrix}
+            0&-1\\
+            1&-1
+        \end{matrix}\right]
+    \end{align}
+    Claim: $\phi$ irreducible. dim $\phi = 2$. Consider $H = \mathbb{C}_z$, $z = \mathbb{C}^2 \backslash \left\{0\right\}$. H invariant $\Longleftrightarrow$ $\phi_{(12)}(z), \phi_{(123)}(z) \in \mathbb{C}_z$ i.e., $z$ is an eigenvector of both matrixces. We can compute that $\phi_{(12)}$ and $\phi_{(123)}$ have no common eigenvectors.
+\end{proof}
+
+\section{Morphism (Homomorphism) of Representations}
+\begin{definition}
+    $\phi: G \rightarrow GL(V)$, $\psi: G \rightarrow GL(W)$, a morphism of representations from $\phi$ to $\psi$ is a linear map $T: V \rightarrow W$ such that 
+    \begin{align}
+        \psi_g \circ T 
+        &= T \circ \phi_g,~\forall g \in G.
+    \end{align}
+    (also called intertwining operator)
+\end{definition}
+
+Note: if $T$ isomorphism of vector spaces, $T^{-1}: W \rightarrow V$ $\Longleftrightarrow \psi_g = T \circ \phi_g \circ T^{-1}$.
+
+Notations: $V, W$ vector spaces. $Hom(V,W):= \left\{T: V \rightarrow W~linear~maps\right\}$, where $Hom(V,W)$ is also a vector space. 
+
+\begin{definition}
+    Define $Hom_{G}(\phi, \psi):= \left\{T \in Hom(V,W) \vert \psi_g T = T \phi_g, \forall g \in G \right\}$, which is a vector space of $Hom({V,W})$ meaning that if $T_1, T_2 \in Hom_G(\phi, \psi)$, then $c_1 T_1 + c_2 T_2 \in Hom_G(\phi, \psi)$, $c_1,c_2 \in \mathbb{C}$.
+\end{definition}
+
+\begin{proposition}
+    $T: V \rightarrow W$ is a morphism of representations from $\phi$ to $\psi$ with $\phi: G \rightarrow GL(V)$, $\psi: G \rightarrow GL(W)$, then $ker(T) \leq V$ and $T(V) \leq W$ are invariant subspaces.
+\end{proposition}
+\begin{proof}
+    If $V \in ker(T),~g \in G$. $T(\phi_g(v)) = \psi_g(T(v)) = \psi_g(0) = 0$ so $\phi_g(ker(T)) \subseteq ker(T)$, also applies to $\phi_g^{-1}$.
+\end{proof}
+
+\section{Schur's Lemma}
+\begin{lemma}[Schur's Lemma]
+    Let $\phi: G \rightarrow GL(V)$, $\psi: G \rightarrow GL(W)$  irreducible and $T \in Hom_{G}(\phi, \psi)$ a morphism. Then either $T = 0$ or $T$ is an isomorphism.
+    \begin{itemize}
+        \item If $\phi \nsim \psi$, then $Hom_{G}(\phi, \psi) = \left\{0\right\}$.
+        \item If $\phi \sim \psi$, then dim $Hom_{G}(\phi, \psi) = 1$. In particular, $Hom_{G}(\phi, \psi) = \left\{\lambda I, \lambda \in \mathbb{C} \right\}$.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    $T \in Hom_{G}(\phi, \psi)$, $\phi, \psi$ irreducible. $ker(T) \leq V$, $T(V) \leq W$ invariant subspaces. If $T \neq 0$, then $ker(T) \neq V$, $T(V) \neq \left\{0\right\}$,
+    \begin{align}
+        \Longrightarrow &ker(T) \neq V,~T(V) \neq \left\{0\right\}\\
+        \Longrightarrow &T~is~isomorphism!
+    \end{align}
+    \begin{itemize}
+        \item $\phi \nsim \psi$, irreducible. $T \in Hom_{G}(\phi, \psi) \Longrightarrow T=0$.
+        \item $\phi \nsim \phi$ irreducible.
+        Special case: $\phi = \psi$, $T \in Hom_{G}(\phi, \psi)$. So $T: V \rightarrow V$, has an eigenvalue $\lambda \in \mathbb{C}$. So $T - \lambda I$ not an isomorphism of $V$,
+        \begin{align}
+            \Longrightarrow T - \lambda I = 0 \Longrightarrow T = \lambda I, \\
+            so~Hom_{G}(\phi, \psi) = \left\{\lambda I \vert \lambda \in \mathbb{C} \right\}.
+        \end{align}
+        General case: If $\phi \sim \psi$, irreducible. Pick $S \in Hom_{G}(\phi, \psi)$, equivalence, $S^{-1}$ exists. Is $T \in Hom_{G}(\phi, \psi)$, the $TS \in Hom_{G}(\psi, \psi)$,
+        \begin{align}
+            \Longrightarrow T= \lambda S^{-1}, Hom_{G}(\phi, \psi) = \left\{\lambda S^{-1}\right\}.
+        \end{align}
+    \end{itemize}
+\end{proof}
+
+\section{Trace of a Linear Operator}
+\begin{definition}[Trace of a Matrix]
+    The trace of s square matrix $A = (a_{ij}) \in {\rm Mat}_{n \times m}(\mathbb{C})$ is 
+    \begin{align}
+        \tr[A]
+        &:= \sum_{i=1}^{n} a_{ii} \\
+        &= a_{11} + \dots, a_{nn} \\
+        &= \sum_{i,j=1}^{n} a_{ij}\delta_{ij}.
+    \end{align}
+\end{definition}
+
+\begin{lemma}
+    \begin{align}
+        \tr[AB] 
+        &= \tr[BA]
+    \end{align}
+\end{lemma}
+
+\begin{corollary}
+    $P \in GL_n(\mathbb{C})$, we have $\tr[P A P^{-1}] = \tr[A]$.
+\end{corollary}
+
+\begin{lemma}[Trace of a Linear Operator]
+    Let $T \in Hom(V,V)$, dim V < $\infty$. The trace of $T$ is defined: Choose basis $B = \left\{v_1,...,v_n\right\}$ of V with $A = [T]_B \in Mat_{n \times n}(\mathbb{C})$. Define: $\tr[T]:= \tr[A]$. Show that $\tr[T]$ does not depend on choice of $B$.
+\end{lemma}
+\begin{proof}
+    If $B^\prime = \left\{v_1^\prime, ..., v_n^\prime\right\}$ basis, then $[T]_{B^\prime} = P [T]_B P^{-1}$ for some $P \in GL_n(\mathbb{C})$ 
+    \begin{align}
+        \Longrightarrow Trace~are~same.
+    \end{align}
+\end{proof}
+
+\begin{proposition}
+    $T \in Hom(V,V)$, $S \in Hom(W,W)$, dim $V$, dim $W$ <$\infty$, is $U: V \rightarrow W$ linear such that $U T U^{-1}=S$, then $\tr[T] = \tr[S]$.
+\end{proposition}
+\begin{proof}
+    Basis $B = \left\{v_1,..., v_n\right\}$ of V. Define $B^\prime = \left\{v_1^\prime,..., v_n^\prime\right\}$, $v_k^\prime:= U v_k$ basis of $W$.
+    \begin{align}
+        \Longrightarrow &[S]_{B^\prime} = [T]_B \\
+        \Longrightarrow & Trace~is~equal.
+    \end{align}  
+\end{proof}
+
+\begin{proposition}
+    Let $T_k: V_k \rightarrow V_k$, $k = 1,2,...,r$, dim $V_k < \infty$. Let $V:= V_1 \bigoplus \dots \bigoplus V_r$, define $T: V \rightarrow V$ by $T:= T_1 \bigoplus\dots\bigoplus T_r$ . Then $\tr[T_1 \bigoplus \dots \bigoplus T_r] = \tr[T_1] + \dots + \tr[T_r]$. ($T(v_1,\dots, v_r) = (T_1(v_1),\dots,T_r(v_r))$)
+\end{proposition}
+\begin{proof}
+    Choose basis $B$ of $V = V_1 \bigoplus \dots \bigoplus V_r$, so that $A = [T]_B$ is a block matrix such that
+    \begin{align}
+        \left[
+        \begin{matrix}
+            A_1&\dots   &0 \\
+            0  &A_2\dots&0 \\
+               &        &  \\
+            0  &0\dots  &A_r  
+        \end{matrix}
+        \right]
+    \end{align}
+    where $A_k = [T_k]_{B_k}$
+    \begin{align}
+        \Longrightarrow \tr[A] = \tr[A_1] + \dots, \tr[A_r].
+    \end{align}
+\end{proof}
+
+\section{Unitary Groups}
+First, we define the group of unitary  $n \times n$ matrices where the binary operation is matrix multiplication. A matrix is unitary if 
+\begin{align}
+    U^\dagger = U^{-1}.
+\end{align}
+
+\subsection{U(1), i.e., $1 \times 1$ Matrices}
+$U = [u]$ and $U^\dagger = [u^\ast]$. $U U^\dagger = [u] [u^\ast] = [u u^\ast] = [1]$. $u(\theta) = e^{i \theta}$.
+\begin{itemize}
+    \item Closure: $u(\alpha)u(\beta) = e^{i \alpha} e^{i \beta}$ 
+    \item Association: $[u(\alpha) u(\beta)]u(\gamma) = u(\alpha)[u(\beta)u(\gamma)]$ 
+    \item Identity: $I = u(0) =1$
+    \item Inverset: $u^{-1} = e^{-i \theta}$, consistent with $U^{-1} = U^\dagger$.
+\end{itemize}
+
+\subsection{SU(1)}
+The "S" stands for "spectial". We must have the determinant euqal to 1.
+\begin{align}
+    {\rm det}U = {\rm det}[u] = u = 1.
+\end{align}
+So the group SU(1) contains the single matrix: $A = [1]$.
+
+\subsection{SU(2)}
+This group consists of the spectial unitary $2 \times 2$ matrices. Start with
+\begin{align}
+    A=
+    \left[\begin{matrix}
+     a & b \\
+     c & d   
+    \end{matrix}\right],
+\end{align}
+and 
+\begin{align}
+    A^{-1}= \frac{1}{\vert A \vert}
+    \left[\begin{matrix}
+     d & -b \\
+     -c & a   
+    \end{matrix}\right].
+\end{align}
+As the determinant must be 1, we have
+\begin{align}
+    A=
+    \left[\begin{matrix}
+     a & b \\
+     c & d   
+    \end{matrix}\right],
+\end{align}
+and 
+\begin{align}
+    A^{-1}= 
+    \left[\begin{matrix}
+     d & -b \\
+     -c & a   
+    \end{matrix}\right].
+\end{align}
+For the unitary matrices we must have
+\begin{align}
+    A^\dagger = A^{-1}
+\end{align}
+which means 
+\begin{align}
+    A^{-1} = 
+    \left[\begin{matrix}
+        a^\ast & c^\ast \\
+        b^\ast & d^\ast   
+       \end{matrix}\right].
+\end{align}
+The conditions are $a^\ast = d$ and $c = -b^\ast$ along with $\vert A \vert = ad - bc = 1$. Let's write the real and imaginary  components out, applying these conditions. Then
+\begin{align}
+    A=
+    \left[\begin{matrix}
+        a_r + i a_i & b_r + i b_i \\
+        -b_r + i b_i & a_r - i a_i   
+       \end{matrix}\right]
+\end{align}
+for the general special unitary $2 \times 2$ matrix, where $a_r^2 + a_i^2 + b_r^2 + b_i^2 = 1$.
+
+Our general form of a matrix in the group SU(2):
+\begin{align}
+    A=
+    \left[\begin{matrix}
+        a_r + i a_i & b_r + i b_i \\
+        -b_r + i b_i & a_r - i a_i   
+       \end{matrix}\right].
+\end{align}
+Recall how you can write a vector in terms of basis unit vectors:
+\begin{align}
+    \overrightarrow{A}
+    &= A_x \hat{i} + A_y \hat{j} + A_z \hat{k}.
+\end{align}
+Check out the same trick with matrices:
+\begin{align}
+    A=
+    \left[\begin{matrix}
+        a & c \\
+        b & d   
+       \end{matrix}\right]
+    =
+    a\left[\begin{matrix}
+        1 & 0 \\
+        0 & 0   
+       \end{matrix}\right]
+       +
+       b\left[\begin{matrix}
+        0 & 1 \\
+        0 & 0   
+       \end{matrix}\right]
+       +    
+       c\left[\begin{matrix}
+        0 & 0 \\
+        1 & 0   
+       \end{matrix}\right]
+       +
+       d\left[\begin{matrix}
+        0 & 0 \\
+        0 & 1   
+       \end{matrix}\right].
+\end{align}
+But there is a natural expansion for SU(2) matrices.
+\begin{align}
+    A=
+    a_r\left[\begin{matrix}
+        1 & 0 \\
+        0 & 1   
+       \end{matrix}\right]
+       +
+       i a_i\left[\begin{matrix}
+        1 & 0 \\
+        0 & -1   
+       \end{matrix}\right]
+       +    
+       b_r\left[\begin{matrix}
+        0 & 1 \\
+        -1 & 0   
+       \end{matrix}\right]
+       +
+       i b_i\left[\begin{matrix}
+        0 & 1 \\
+        1 & 0   
+       \end{matrix}\right].
+\end{align}
+\begin{align}
+    A=
+    a_r\left[\begin{matrix}
+        1 & 0 \\
+        0 & 1   
+       \end{matrix}\right]
+       +
+       i a_i\left[\begin{matrix}
+        1 & 0 \\
+        0 & -1   
+       \end{matrix}\right]
+       +    
+       i b_r\left[\begin{matrix}
+        0 & -i \\
+        i & 0   
+       \end{matrix}\right]
+       +
+       i b_i\left[\begin{matrix}
+        0 & 1 \\
+        1 & 0   
+       \end{matrix}\right].
+\end{align}
+The Pauli matrices are
+\begin{align}
+       \sigma_x =
+       \left[\begin{matrix}
+        0 & 1 \\
+        1 & 0   
+       \end{matrix}\right]
+       \sigma_y =     
+       b_r\left[\begin{matrix}
+        0 & -i \\
+        i & 0   
+       \end{matrix}\right]
+       \sigma_z
+       i b_i\left[\begin{matrix}
+        1 & 0 \\
+        0 & -1   
+       \end{matrix}\right].
+\end{align}
+\begin{lemma}
+    We have
+    \begin{align}
+        \left\{\sigma_j, \sigma_k\right\}
+        &= 2 \delta_{jk} I,
+    \end{align}
+    where $\delta_{jk}$ is the Kronecker Delta symbol and $\left\{A,B\right\} := AB + BA$ is the anticommutator.
+\end{lemma}
+
+\begin{lemma}
+    We have
+    \begin{align}
+        \left[\sigma_j, \sigma_k\right]
+        &= 2 i \varepsilon_{jkl} \sigma_l,
+    \end{align}
+    where $\varepsilon_{jkl}$ is the Levi-Civita symbol and $\left[A,B\right] := AB - BA$ is the commutator. Thus SU(2) is non-abelian.
+\end{lemma}
+
+\section{SO(2)}
+This group consists of the spectial unitary orthogonal matrices. These are matrices where the columns and rows, thought of as vectors, are orthogonal. Remember or rotation matrix in 2D:
+\begin{align}
+    R(\theta) =
+    \left[\begin{matrix}
+     \cos \theta & \sin \theta \\
+     -\sin \theta & \cos \theta   
+    \end{matrix}\right],
+\end{align}
+\begin{align}
+    A =
+    \left[\begin{matrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}   
+       \end{matrix}\right]
+    =
+    \left[\begin{matrix}
+     \cos \theta & \sin \theta \\
+     -\sin \theta & \cos \theta   
+    \end{matrix}\right].
+\end{align}
+These matrices satisfy our orthogonal conditions since
+\begin{align}
+    a_{11}a_{12} + a_{21}a_{22} = \cos \theta \sin \theta - \cos \theta \sin \theta = 0 \\
+    a_{11}a_{21} + a_{12}a_{22} = -\cos \theta \sin \theta + \sin \theta \cos \theta = 0.
+\end{align}
+Note that now the transpose is the inverse:
+\begin{align}
+    A^{-1} = A^T,
+\end{align}
+\begin{align}
+    AA^{-1} =
+    \left[\begin{matrix}
+        \cos \theta & - \sin \theta \\
+        \sin \theta & \cos \theta   
+       \end{matrix}\right]
+    \times
+    \left[\begin{matrix}
+     \cos \theta & \sin \theta \\
+     -\sin \theta & \cos \theta   
+    \end{matrix}\right]
+    = I.
+\end{align}
+
+\begin{lemma}
+    SO(2) is an abelian group.
+\end{lemma}
+
+\end{document}

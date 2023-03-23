@@ -3,9 +3,363 @@
 \begin{document}
 
 \chapter{Introduction to Quantum Optics by Immanuel}
+\section{Introduction}
+\begin{itemize}
+    \item classicaal: classical atom and light
+    \item semiclassical: quantized atom and classical light
+    \item quantum mechanical: quantized atom and light
+\end{itemize}
 
-\section{Section Name}
+\paragraph{Light-Atom Interaction Hamiltonian}
+\begin{itemize}
+    \item classical dipole in eletric field: dipole moment $\overrightarrow{d} = q \overrightarrow{r}$, $U_I = - \overrightarrow{d} \cdot \overrightarrow{E}$. We have 
+    \begin{align}
+        \hat{H}_I 
+        &= - \hat{d} \cdot \overrightarrow{E}(\overrightarrow{v_0}, t),
+    \end{align}
+    where $\hat{d} = q \hat{v}$ is the dipole operator.
+    \item induced atomic dipole
+\end{itemize}
 
-\section{Section Name}
+\section{Light Atom Quantum Evolution}
+\paragraph{Time Evolution}
+We have the Schrodinger equation (both sides) as 
+\begin{align}
+    i \hbar \frac{\partial}{ \partial t} \vert \Psi(t) \rangle 
+    &= (\hat{H}_0 + \hat{H}_I(t))\vert \Psi(t) \rangle,
+\end{align}
+where the general ansatz (assumption) is 
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= \sum_{n} c_n(t) e^{-i E_n t/\hbar} \vert n \rangle,
+\end{align}
+and 
+\begin{align}
+    \hat{H}_0 \vert n \rangle
+    &= E_n \vert n \rangle
+\end{align}
+is the atomic eigenstates. Inserting $\vert \Psi(t) \rangle$ and $\hat{H}_0 \vert n \rangle$ into Schrodinger equation, we get
+\begin{align}
+    &i \hbar \sum_n \left\{\dot{c}_n e^{-i E_n t/\hbar} \vert n \rangle - \frac{i E_n}{\hbar} c_n e^{-i E_n t/\hbar} \vert n \rangle \right\} 
+    = \sum_n \left\{c_n e^{-i E_n t/\hbar} \vert n \rangle + c_n e^{-i E_n t /\hbar} \hat{H}_I \vert n \rangle \right\} \\
+    &\Longrightarrow i \hbar \sum_n \dot{c_n}e^{-i E_n t /\hbar} \vert n \rangle = \sum_n c_n e^{-i E_n t /\hbar} \hat{H}_I \vert n \rangle \\
+    &\Longrightarrow i \hbar \dot{c_n}e^{-i E_k t /\hbar} \vert= \sum_n c_n(t) e^{-i E_n t/\hbar} \langle k \hat{H}_I(t)\vert n \rangle \\
+    &\Longrightarrow i \hbar\dot{c}_k = \sum_n c_n(t) e^{-i E_{n,k} t / \hbar} \langle k \vert \hat{H}_I(t) \vert n \rangle,
+\end{align}
+where we use
+\begin{align}
+    \langle k \vert n \rangle 
+    &= \delta_{k n}, \\
+    E_{n,k}
+    &= E_n - E_k, \\
+    \omega_{nk}
+    &= (E_n - E_k)/\hbar.
+\end{align}
+and $\langle k \vert \hat{H}_I(t) \vert n \rangle$ is the matrix element.
+
+\section{Time Dependent Perturbation Theory}
+Recall the time evolution:
+\begin{align}
+    i \hbar\dot{c}_k = \sum_n c_n(t) e^{-i \omega_{nk} t} \langle k \vert \hat{H}_I(t) \vert n \rangle,
+\end{align}
+and
+\begin{align}
+    \omega_{nk}
+    &= (E_n - E_k)/\hbar.
+\end{align}
+
+Consider the Simplification (Perturbation Theory)
+\begin{itemize}
+    \item System only in state $\vert 1 \rangle$ at $t = 0$ $\Longrightarrow c_1 \vert 0 \rangle = 1$ (only the ground state $\vert 1 \rangle$),
+    \item Perturbative treatment of interaction term: weak perturbation $\forall \vert c_k(t) \vert^2 <<1$.
+\end{itemize}
+We then have
+\begin{align}
+    i \hbar \dot{c}_k
+    &= e^{i \omega_{1k}t} \langle k \vert \hat{H}_I(t) \vert 1 \rangle,
+\end{align}
+with $c_k(0) = 0$, we obtain:
+\begin{align}
+    c_k(t)
+    &= \frac{1}{i \hbar} \int_0^t e^{-i \omega_{1k} t} \langle k \vert \hat{H}_I(t^\prime)\vert 1 \rangle{\rm d}t^\prime.
+\end{align}
+\begin{example}[Sinusoidal perturbation]
+    Define
+    \begin{align}
+        \hat{H}(t)
+        &= \hat{H}_I e^{-i \omega t}.
+    \end{align}
+    Given the figure in the video, we have
+    \begin{align}
+        c_k(T)
+        &= \frac{1}{i \hbar} \int_{0}^T e^{i \Delta \omega t} \langle k \vert \hat{H}_I \vert 1 \rangle {\rm d}t \\
+        &\Longrightarrow Transition~probability~P_{k1}(T) = \vert c_k(T) \vert^2 = \frac{1}{\hbar^2} \vert \langle k \vert \hat{H}_I \vert 1 \rangle \vert^2 Y(\Delta \omega, T),
+    \end{align}
+    with 
+    \begin{align}
+        Y(\Delta \omega, T)
+        &= \frac{\sin^2(\Delta \omega T/2)}{(\Delta \omega /2)^2} \\
+        &\sim {\rm sinc}^2 x,
+    \end{align}
+    where $\Delta \omega = \omega - \omega_{1 k}$ is the detwining.
+\end{example}
+
+Let's take a look at the sinc function $Y(\Delta \omega, T) = {\rm sinc}^2 x$. Transition for $\Delta \omega \leq \frac{2 \pi}{T}$, we have $\Delta \omega \cdot T\leq 2 \pi$, which implies
+\begin{align}
+    \Delta E \cdot T \leq h,
+\end{align}
+which is the time-frequency uncertainty. (The expression in the video seems wrong, so I make corrections abrove.) We have the following case
+\begin{align}
+    \frac{1}{2 \pi T} Y(\Delta \omega, T)
+    &\stackrel{T \rightarrow \infty}{\rightarrow} \delta(\Delta \omega),
+\end{align}
+then we have
+\begin{align}
+    P_{k1}(T \rightarrow \infty)
+    &= \frac{2 \pi}{\hbar^2} \vert \langle k \vert \hat{H}_I \vert i \rangle \vert^2 \delta(\Delta \omega) T.
+\end{align}
+
+\paragraph{Fermi's Golden Rule}
+$\vert k \rangle$ Quasi continuum of final states. We have the transition probability
+\begin{align}
+    P_{k1} 
+    &= \Gamma_{k1} T,
+\end{align}
+where
+\begin{align}
+    \Gamma_{k1}
+    &= \frac{2 \pi}{ \hbar} \vert \langle k \vert \hat{H}_I \vert 1 \rangle \vert^2 \rho(E_k = E_1 + \hbar \omega) 
+\end{align}
+is called the Femi's Golden Rule,
+\begin{align}
+    \vert \langle k \vert \hat{H}_I \vert 1 \rangle \vert^2
+\end{align}
+is the coupling strength $\propto E_0^2$ and $\propto I$,
+\begin{align}
+    \rho(E_k = E_1 + \hbar \omega) 
+\end{align}
+is the density states which is number of availble final states to the system,
+\begin{align}
+    \Gamma_{k1}
+    &\hat{=} Transition~Rate=\frac{{\rm d}P_{k1}}{{\rm d}T},
+\end{align}
+and density states
+\begin{align}
+    \rho(E)
+    &= \frac{{\rm d}N}{{\rm d}E},
+\end{align}
+where $\Delta N$ is the number of states in an energy interval $\Delta E$ around energy $E_k$ and we let $\Delta E$ approaches 0.
+
+\section{Two Level Atom (TLA)}
+Given by the figure, in state $\vert 1 \rangle$, we have $E_1 = \hbar \omega_1$ and in state $\vert 2 \rangle$, we have $E_2 = \hbar \omega_2$ and $E_2 - E_1 = \hbar(\omega_2 - \omega_1) = \omega_{21}$. We have the Hamiltonian
+\begin{align}
+    \hat{H}
+    &= \hat{H}_0 - \hat{d} \cdot E(t),
+\end{align}
+where 
+\begin{align}
+    E(t)
+    &= \varepsilon E_0 \cos(\omega t),
+\end{align}
+where $\varepsilon$ is the polarization vector, $E_0$ is the field amplitude, and $\omega$ is the frequency of the light field.
+
+\paragraph{Ansatz for Solving TLA}
+We have
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= c_1(t) e^{-i \omega_1 t} \vert 1 \rangle +  c_2(t) e^{-i \omega_2 t} \vert 2 \rangle.
+\end{align}
+
+\paragraph{Time Evolution Amplitude}
+We have
+\begin{align}
+    \dot{c_1}(t)
+    &= i \frac{d^{\varepsilon}_{12} E_0}{\hbar} e^{- \omega_{21}} \cos(\omega t)c_2(t) \\
+    \dot{c_2}(t)
+    &= i \frac{d^{\varepsilon}_{12} E_0}{\hbar} e^{+ \omega_{21}} \cos(\omega t)c_1(t),
+\end{align}
+where 
+\begin{align}
+    d^{\varepsilon}_{12} 
+    &= \langle 1 \vert \hat{d} \cdot \varepsilon \vert 2 \rangle \\
+    &= \langle 1 \vert \hat{d} \vert 2 \rangle \cdot \varepsilon \\
+    &= \langle 1 \vert \hat{d}_x \vert 2 \rangle \cdot \varepsilon_x +\langle 1 \vert \hat{d}_y \vert 2 \rangle \cdot \varepsilon_y + \langle 1 \vert \hat{d}_z \vert 2 \rangle \cdot \varepsilon_z.
+\end{align}
+is the Dipole Matrix Element, which is the atomic property and we assume it's real. We also define
+\begin{align}
+    \Omega_0
+    &= \frac{d_{12}^{\varepsilon} E_0}{\hbar}
+\end{align}
+as the Rubi frequency.
+
+\paragraph{Time Evolution}
+Using Euler' form, we have
+\begin{align}
+    \dot{c_1}(t)
+    &= i \frac{\Omega_0}{2} e^{- \omega_{21}} (e^{i \omega t} + e^{-i \omega t})c_2(t) \\
+    \dot{c_2}(t)
+    &= i \frac{\Omega_0}{2} e^{+ \omega_{21}} (e^{i \omega t} + e^{-i \omega t}) c_1(t)
+\end{align}
+by
+\begin{align}
+    \cos \alpha
+    &= \frac{1}{2} (e^{i \alpha} + e^{-i \alpha})
+\end{align}
+and
+\begin{align}
+    e^{i \alpha}
+    &= \cos \alpha + i \sin \alpha.
+\end{align}
+
+\paragraph{Rotating Wave Approximation}
+We have
+\begin{align}
+    \dot{c_1}(t)
+    &= i \frac{\Omega_0}{2}  (e^{+ i (\omega - \omega_{21}) t} + e^{-i (\omega + \omega_{21}) t})c_2(t) \\
+    \dot{c_2}(t)
+    &= i \frac{\Omega_0}{2}  (e^{- i (\omega - \omega_{21}) t} + e^{+i (\omega + \omega_{21}) t}) c_1(t),
+\end{align}
+and we ignore the sum frequency term and get
+\begin{align}
+    \dot{c_1}(t)
+    &= i \frac{\Omega_0}{2}  e^{+ i (\omega - \omega_{21}) t} c_2(t) \\
+    \dot{c_2}(t)
+    &= i \frac{\Omega_0}{2}  e^{- i (\omega - \omega_{21}) t}  c_1(t),
+\end{align}
+which is a good approcimation for detwining $\delta = \omega - \omega_{21} \approx 0$.
+We introduce
+\begin{align}
+    \tilde{c_1}(t)
+    &= c_1(t) e^{-i \frac{\delta}{2} t} \\
+    \tilde{c_2}(t)
+    &= c_2(t) e^{+i \frac{\delta}{2} t}. \\
+\end{align}
+\paragraph{Ansatz Wavefunctions for TLA}
+Whole time evolution in state amplitudes
+\begin{align}
+    \vert \Psi(t) \rangle 
+    &= c_1^\prime(t) \vert 1 \rangle + c_2^\prime(t) \vert 2 \rangle.
+\end{align}
+Time evolution when field is off
+\begin{align}
+    \vert \Psi(t) \rangle 
+    &= c_1^\prime(0) e^{-i \omega_1 t} \vert 1 \rangle + c_2^\prime(0) e^{-i \omega_2} \vert 2 \rangle.
+\end{align}
+However, this is boring. We chose different ansatz as
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= c_1(t) e^{-i\omega_1 t} \vert 1 \rangle + c_2(t) e^{-i\omega_2 t} \vert 2 \rangle \\
+    &\Longleftrightarrow \vert \Psi(t) \rangle
+    = c_1(t)  \vert 1 \rangle + c_2(t) e^{-i\omega_{21} t} \vert 2 \rangle, 
+\end{align}
+where $c_1(t)$ and $c_2(t)$ capture time evolution on top of eigenstate evolution! We now have
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= c_1(t)  \vert 1 \rangle + c_2(t) e^{-i\omega_{21} t} \vert 2 \rangle,
+\end{align}
+which is called the rotating frame of atom. We also have Rotating frame of light field as
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= \tilde{c_1}(t)  \vert 1 \rangle + \tilde{c_2}(t) e^{-i\omega t} \vert 2 \rangle,
+\end{align}
+where $\omega$ is the light frequency, $\tilde{c_1}$ and $\tilde{c_2}$ describe time evolution on top of fast light field oscilation.
+
+\paragraph{Solving the TLA Dynamics}
+We have the following equations:
+\begin{align}
+    \frac{d}{d t} \left(\begin{matrix}
+        \tilde{c_1}(t) \\
+        \tilde{c_2}(t)
+    \end{matrix}\right) =  \frac{i}{2} \left(\begin{matrix}
+        -\delta & \Omega_0 \\
+        \Omega_0 & + \delta
+    \end{matrix}\right) \left(\begin{matrix}
+        \tilde{c_1}(t) \\
+        \tilde{c_2}(t)
+    \end{matrix}\right).
+\end{align}
+Considering the simplest case $\delta = 0$
+\begin{align}
+    \frac{d}{d t} \tilde{c_1}(t)
+    &= \frac{i}{2} \Omega_0 \tilde{c_2}(t) \\
+    \frac{d}{d t} \tilde{c_2}(t)
+    &= \frac{i}{2} \Omega_0 \tilde{c_1}(t).
+\end{align}
+Take time dirivative of the first equation, then we have
+\begin{align}
+    \ddot{c_1}(t)
+    &= - \frac{\Omega_0^2}{4} \tilde{c_1}(t),
+\end{align}
+the solutions of which are
+\begin{align}
+    \tilde{c_1}(t) = \cos(\Omega_0 t/2) \\
+    \tilde{c_2}(t) = i \sin(\Omega_0 t/2)
+\end{align}
+for $\tilde{c_1}(0) = 1$ and $\tilde{c_2}(0) = 0$. Also we can obtain the excited state probability as
+\begin{align}
+    P_2(t)
+    &= \vert c_2(t) \vert^2 \\
+    &= \vert \tilde{c_2}(t) \vert^2.
+\end{align}
+
+\paragraph{Rabi Oscillations (Resonant Case)}
+Nonlinear Response can be seen from the figure.
+
+\paragraph{General Rabi Oscillations (with detuning)}
+Given the figurem.
+\begin{align}
+    \vert \tilde{c_2}(t) \vert^2
+    &= \frac{\Omega_0^2}{\Omega} \sin^2\left(\frac{1}{2}\Omega t\right) \\
+    &= \frac{\Omega_0^2}{2 \Omega^2} \left\{1-\cos(\Omega t)\right\},
+\end{align}
+where $\Omega = \sqrt{\Omega_0^2 + \delta^2}$ is the effective Rabi frequency.
+
+\paragraph{Interesting Special Cases}
+a) Pi-Puls $\Omega_0 \tau = \pi$: swap population 
+\begin{align}
+    \vert 1 \rangle \rightarrow i \vert 2 \rangle \\
+    \vert 2 \rangle \rightarrow i \vert 1 \rangle.
+\end{align}
+
+b) 2Pi-Puls $\Omega_0 \tau = 2 \pi$: flip the sign
+
+c) Pi/2-Puls $\Omega_0 \tau = \pi/2$: superposition state
+
+\section{Oscillating Dipoles}
+\paragraph{Atomic Eigenstates}
+\begin{align}
+    \vert \Psi_{nlm}(t) \rangle 
+    &= e^{-i E_{nlm} t/\hbar} \vert \Psi_{nlm}(0) \rangle, \\
+    \hat{H_0} \vert \Psi_{nlm}(0) \rangle
+    &= E_{nlm} \vert \Psi_{nlm} \rangle,
+\end{align}
+and the electron density is
+\begin{align}
+    \rho(r, \theta, \phi)
+    &= \vert \Psi(r, \theta, \phi, t = 0)^2 \vert.
+\end{align}
+
+\paragraph{Atomic Dipole}
+Calculate (Oscillating) Dipole Moment for Atomic Eigenstate. We denote 
+$\vert 1 \rangle = \vert \Psi_{nlm} \rangle$. We have
+\begin{align}
+    d(t)
+    &= \langle 1(t) \vert \hat{d} \vert 1(t) \rangle \\
+    &= \langle \hat{d} \vert 1 \rangle \\
+    &= -e \langle 1 \vert \hat{r} \vert 1 \rangle.
+\end{align}
+Then, 
+\begin{align}
+    -e \langle 1 \vert \hat{r} \vert 1 \rangle 
+    &= -e \langle 1 \vert \hat{P} \hat{P}^{-1} \hat{r} \hat{P} \hat{P}^{-1} \vert 1 \rangle \\
+    &= + e \langle 1 \vert \hat{r} \vert 1 \rangle,
+\end{align}
+which implies
+\begin{align}
+    \langle 1 \vert \hat{r} \vert 1 \rangle 
+    &= 0.
+\end{align}
+
+\section{The Bloch Sphere}
 
 \end{document}

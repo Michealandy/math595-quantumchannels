@@ -1,0 +1,53 @@
+\documentclass[../../note.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Physics Flow}
+\section{Definition}
+\begin{definition}[Pure separable state and pure entangled state]
+    Define $\vert \Psi \rangle_{AB}$ as the joint state of the composite system A and B, then
+    \begin{itemize}
+        \item $\vert \Psi \rangle_{AB}$ is separable if and only if $\exists~\vert \Psi \rangle_A$, $\vert \Psi \rangle_B$ such that $\vert \Psi \rangle_{AB} = \vert \Psi \rangle_A \bigotimes \vert \Psi \rangle_B$.
+        \item $\vert \Psi \rangle_{AB}$ is entangled if and only if $\vert \Psi \rangle_{AB}$ is Not separable. 
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    Entangled: EPR Pair $\vert \Psi \rangle_{AB} = \frac{1}{\sqrt{2}} (\vert 00 \rangle_{AB} + \vert 11 \rangle_{AB})$.
+
+    Separable:
+    \begin{align}
+        \vert \Psi \rangle_{AB}
+        &= \frac{1}{\sqrt{2}} (\vert 00 \rangle_{AB} + \vert 11 \rangle_{AB}) \\
+        &= \frac{1}{\sqrt{2}} (\vert 0 \rangle_A + \vert 1 \rangle_A) \bigotimes \vert 1 \rangle_B.
+    \end{align}
+\end{example}
+
+\begin{definition}[Mixed separable state and mixed entangled state]
+    Define $\rho_{AB}$ as the joint state of the composite system A and B, then
+    \begin{itemize}
+        \item $\rho_{AB}$ is separable if and only if $\exists~\left\{p_j, \rho_A^j, \rho_B^j\right\}$ such that $\rho_{AB} = \sum_j p_j \rho_A^j \bigotimes \rho_B^j$.
+        \item $\rho_{AB}$ is entangled if and only if $\rho_{AB}$ is Not separable. 
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item $\rho_{AB} = \frac{1}{2} \vert 0 \rangle \langle 0 \vert_A \bigotimes \vert 1 \rangle \langle 1 \vert_B + \frac{1}{2} \vert +  \rangle \langle + \vert_A \bigotimes \vert - \rangle \langle - \vert_B$ is separable
+        \item Classical-quantum states, $\rho_{AB} = \sum_j p_j \vert j \rangle \langle \vert_A \bigotimes \rho_B^j$
+        \item EPR Pair 
+        \begin{align}
+            \frac{1}{2}\left[\begin{matrix}
+                1&0&0&1 \\
+                0&0&0&0 \\
+                0&0&0&0 \\
+                1&0&0&1 \\
+            \end{matrix}\right],
+        \end{align}
+        it is computational hard to test whether a given state is entangled or separable.
+    \end{itemize}
+\end{example}
+
+\section{Theorem}
+
+\end{document}
