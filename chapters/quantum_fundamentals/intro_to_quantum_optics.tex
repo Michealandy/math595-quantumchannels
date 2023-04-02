@@ -360,6 +360,552 @@ which implies
     &= 0.
 \end{align}
 
+\paragraph{Atomic Dipole - Superposition States}
+Calculate (Oscillating) Dipole Moment for Atomic Superposition State 
+\begin{align}
+    \vert \Psi(0) \rangle
+    &= \frac{1}{\sqrt{2}}(\vert 1 \rangle + i \vert 2 \rangle).
+\end{align}
+Evolution
+\begin{align}
+    \vert \Psi(t) \rangle
+    &= \frac{1}{\sqrt{2}}(\vert 1 \rangle + i e^{- i \omega_{21} t} \vert 2 \rangle).
+\end{align}
+We have
+\begin{align}
+    d(t)
+    &= \langle \Psi(t) \vert \hat{d} \vert \Psi(t) \rangle \\
+    &= \frac{1}{2}\left\{\langle 1 \vert \hat{d} \vert 1 \rangle + \langle 2 \vert \hat{d} \vert 2 \rangle + i e^{-i\omega_{21} t} \langle 1 \vert \hat{d} \vert 2 \rangle - i e^{-i\omega_{21} t} \langle 2 \vert \hat{d} \vert 1 \rangle\right\} \\
+    &= d_{12} i \frac{1}{2} \left\{e^{-i \omega_{21} t} - e^{i \omega_{21} t}\right\} \\
+    &= d_{12} \sin(\omega_{21} t),
+\end{align}
+where $d_{12}$ is the dipole moment amplitude, $\omega_{21}$ is the natural resonance frequency.
+
+\paragraph{Electron Density - Superposition States}
+Calculate Electron Probability Density for Superposition State. The superposition state is
+\begin{align}
+    \Psi(r,t)
+    &= \frac{1}{\sqrt{2}} \left(\Psi_1(r) + i e^{-i \omega_{21} t} \Psi_2D(t) \right).
+\end{align}
+The Electron Probability Density is
+\begin{align}
+    \rho(r, t)
+    &= \vert \Psi(r, t) \vert^2 \\
+    &= \Psi^\ast \Psi \\
+    &= \frac{1}{2} \left\{\vert \Psi_1(r) \vert^2 + \vert \Psi_2(r) \vert^2 + 2{\rm Re}\left(i e^{-i \omega_{21} t} \Psi_1^*(r) \Psi_2(r)\right)\right\},
+\end{align}
+where $2{\rm Re}\left(i e^{-i \omega_{21} t} \Psi_1^*(r) \Psi_2(r)\right)$ is the interference term.
+
+\paragraph{Examples}
+This is shown by animation and figure in the video.
+
+
+
 \section{The Bloch Sphere}
+\paragraph{General Two-Level State}
+\begin{itemize}
+    \item General State Description
+    \begin{align}
+        \vert \Psi \rangle
+        &= c_1^\prime \vert 1 \rangle + c_2^\prime \vert 2 \rangle \\
+        &\qquad\eqnote{Up to a global phase} \\
+        &= \vert c_1^\prime \vert \vert 1 \rangle + e^{i \phi} \vert c_2^\prime \vert 2 \rangle
+    \end{align}
+    satisfying $\vert c_1^\prime \vert^2 + \vert c_2^\prime \vert^2 = 1$.
+    \item Alternative way
+    \begin{align}
+        \vert \Psi \rangle
+        &= \cos(\theta/2) \vert 1 \rangle + e^{i \phi} \sin(\theta/2) \vert 2 \rangle,
+    \end{align}
+    since $\cos(\theta/2)^2 + \sin(\theta/2)^2 = 1$.
+\end{itemize}
+
+\paragraph{Geometric Description - Bloch Sphere}
+We then have
+\begin{align}
+    \vert \Psi \rangle
+    &= \cos(\theta/2) \vert 1 \rangle + e^{i \phi} \sin(\theta/2) \vert 2 \rangle
+\end{align}
+with $0 \leq \theta \leq \pi$ as the latitude and $0 \leq \phi \leq 2 \pi$ as the longitude. This is the Bloch Sphere representation. The definition of $\theta$ and $\theta$ and their ranges are different from my familiar coordinate system.
+
+\paragraph{Special States on Bloch Sphere}
+
+\paragraph{Analogy to Spin -1/2 States}
+Is is shown in the figure.
+
+\section{Density Operator and Density Matrix}
+\paragraph{The Problem}
+How do we describe "imperfect state preparation" in an experiment? For example, $50 \% \vert 1 \rangle$ and $50 \% \vert 2 \rangle$. We may think of 
+\begin{align}
+    \vert \Psi \rangle 
+    &= \frac{1}{\sqrt{2}} \left(\vert 1 \rangle + \vert 2 \rangle \right). ???
+\end{align}
+This is $100 \% \vert \Psi \rangle$ pure state. We need stable relative phase between the two states!
+
+\paragraph{Optical Analogy - Controlled Phase}
+The double slit problem is shown in the video.
+
+Intensity on Detection Screen:
+\begin{align}
+    I 
+    &\propto \vert E \vert^2 = \vert E_1 + e^{i \phi} E_2 \vert^2 \\
+    &= \vert E_1 \vert^2 + \vert E_2 \vert^2 + 2 {\rm Re}\left(E_1 E_2 e^{i \phi}\right).
+\end{align}
+As $\phi$ varies, Interference pattern "washed out"!
+
+We need new formalism to describe mixed states!(imperfect state preparation, spontaneous emission,\dots)
+
+\paragraph{Density Operator and Matrix}
+The description of mixed states can be handled by the density operator (matrix) formalism!
+
+\begin{itemize}
+    \item Density operator (hermitian)
+    \begin{align}
+        \hat{\rho}
+        &= \sum p_i \vert \Psi_i \rangle \langle \Psi_i \vert \\
+        \hat{\rho}
+        &= I \hat{\rho} I \\
+        &= \sum_{i,j} \vert i \rangle \langle i \vert \hat{\rho} \vert j \rangle \langle j \vert \\
+        &= \rho_{11} \vert 1 \rangle \langle  1 \vert + \rho_{12} \vert 1 \rangle \langle 2 \vert + \rho_{21} \vert 2 \rangle \langle 1 \vert + \rho_{22} \vert 2 \rangle \langle 2 \vert,
+    \end{align}
+    where $I = \sum_i \vert i \rangle \langle i \vert$.
+    \item Density matrix
+    \begin{align}
+        \rho
+        &= \left[\begin{matrix}
+            \rho_{11} & \rho_{12} \\
+            \rho_{21} & \rho_{22}
+        \end{matrix}\right],
+    \end{align}
+    where $\rho_{11}$ and $\rho_{22}$ are the populations, $\rho_{12}$ and $\rho_{21}$ are the coherence. Since $\rho$ is hermitian, we have
+    \begin{align}
+        \rho_{12}
+        &= \rho_{21}^\ast.
+    \end{align}
+\end{itemize}
+
+\begin{example}[Example: Density Matrix of Pure State]
+    We have
+    \begin{align}
+        \vert \Psi \rangle
+        &= \vert c_1 \vert \vert 1 \rangle + e^{i \phi} \vert c_2 \vert \vert 2 \rangle.
+    \end{align}
+    The corresponding density operator of the \textbf{pure state} is $\hat{\rho} = \vert \Psi \rangle \langle \Psi \vert$. Then the corresponding density matrix is 
+    \begin{align}
+        \rho
+        &= \left[\begin{matrix}
+            \vert c_1 \vert^2 & \vert c_1 \vert \vert c_2 \vert e^{-i \phi} \\
+            \vert c_1 \vert \vert c_2 \vert e^{i \phi} & \vert c_2 \vert^2
+        \end{matrix}\right],
+    \end{align}
+    where $\vert c_1 \vert \vert c_2 \vert e^{-i \phi}$ and $\vert c_1 \vert \vert c_2 \vert e^{i \phi}$ are relative phase between states $\vert 1 \rangle$ and $\vert 2 \rangle$.
+
+    specific example:
+    \begin{align}
+        \vert \Psi \rangle
+        &= \frac{1}{\sqrt{2}} \left(\vert 1 \rangle + \vert 2 \rangle \right),
+    \end{align}
+    so
+    \begin{align}
+        \rho
+        &= \left[
+        \begin{matrix}
+            1/2 & 1/2 \\
+            1/2 & 1/2
+        \end{matrix}
+        \right].
+    \end{align}
+\end{example}
+
+\begin{example}[Example: Fully Incoherent Mixture]
+    \begin{align}
+        \hat{\rho}
+        &= \frac{1}{2} \vert 1 \rangle \langle 1 \vert + \frac{1}{2} \vert 2 \rangle \langle 2 \vert
+    \end{align}
+    with 
+    \begin{align}
+        \rho
+        &= \left[\begin{matrix}
+            1/2 & 0 \\
+            0 & 1/2
+        \end{matrix}\right],
+    \end{align}
+    where vanishingly coherence and the phase varies from $0$ to $2 \pi$. It means that we did not control phase.
+\end{example}
+
+\paragraph{Useful Facts}
+\begin{itemize}
+    \item Expectation values: $\langle \hat{A} \rangle = \tr(\hat{\rho} \hat{A}) = \tr(\rho A)$
+    \item Time evolution (von Neumann equation)
+    \begin{align}
+        i \hbar \frac{\partial \hat{\rho}}{\partial t} 
+        &= [\hat{H}, \hat{\rho}]
+    \end{align}
+    \item Pure state:  $\tr(\rho^2) = 1$
+    \item Mixed states: $\tr(\rho^2) < 1$
+\end{itemize}
+
+\section{Optical Bloch Equations}
+\paragraph{Time Evolution of Density Matrix}
+How to calculate time evolution of density matrix?
+\begin{align}
+    i \hat{\hbar} \frac{\partial \hat{\rho}}{\partial t}
+    &= [\hat{H}, \hat{\rho}].
+\end{align}
+Assume pure state
+\begin{align}
+    \frac{d}{d t} \rho_{11}
+    &= \frac{d}{d t}(c_1 c_1^\ast) \\
+    &= \dot{c}_1 c_1^\ast + c_1 \dot{c}_1^\ast \\
+    &= i \frac{\Omega_0}{2} \left(e^{i \delta t} \rho_{21} - e^{-i \delta t} \rho_{12} \right) \\
+    &\qquad\eqnote{Transformation to rotality frame of light} \nonumber \\
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{21} - \tilde{\rho}_{12}\right),
+\end{align}
+where
+\begin{align}
+    \dot{c}_1(t)
+    &= i \frac{\Omega_0}{2} e^{+i \delta t} c_2(t) \\
+    \dot{c}_2(t)
+    &= i \frac{\Omega_0}{2} e^{-i \delta t} c_1(t) \\
+    \tilde{\rho}_{12} 
+    &= e^{-i \delta t} \rho_{12} \\
+    \tilde{\rho}_{21} 
+    &= e^{+i \delta t} \rho_{21}.
+\end{align}
+Other elements obtained in analogy!
+\begin{align}
+    \frac{d}{d t} \rho_{11}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{21} - \tilde{\rho}_{12}\right) \\
+    \frac{d}{d t} \rho_{22}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{12} - \tilde{\rho}_{21}\right) \\
+    \frac{d}{d t} \tilde{\rho}_{12}
+    &= -i \delta \tilde{\rho}_{12} + i \frac{\Omega_0}{2} \left(\rho_{22} - \rho_{11}\right) \\
+    \frac{d}{d t} \tilde{\rho}_{21}
+    &= +i \delta \tilde{\rho}_{21} + i \frac{\Omega_0}{2} \left(\rho_{11} - \rho_{22}\right).
+\end{align}
+Noting that $\tilde{\rho}_{12} = \tilde{\rho}_{21}$ due to hermitian matrix, the third and the forth equations are the same. So we have
+\begin{align}
+    \frac{d}{d t} \rho_{11}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{21} - \tilde{\rho}_{12}\right) \\
+    \frac{d}{d t} \rho_{22}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{12} - \tilde{\rho}_{21}\right) \\
+    \frac{d}{d t} \tilde{\rho}_{12}
+    &= -i \delta \tilde{\rho}_{12} + i \frac{\Omega_0}{2} \left(\rho_{22} - \rho_{11}\right).
+\end{align}
+\paragraph{Optical Bloch Equations with Damping}
+Phenomenological damping and spontaneous emission in the figure. Combine the decay, we have
+\begin{align}
+    \frac{d}{d t} \rho_{11}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{21} - \tilde{\rho}_{12}\right) + \gamma \rho_{22} \\
+    \frac{d}{d t} \rho_{22}
+    &= i \frac{\Omega_0}{2} \left(\tilde{\rho}_{12} - \tilde{\rho}_{21}\right) -\gamma \rho_{22}\\
+    \frac{d}{d t} \tilde{\rho}_{12}
+    &= -i \delta \tilde{\rho}_{12} + i \frac{\Omega_0}{2} \left(\rho_{22} - \rho_{11}\right) - (\gamma/2)\tilde{\rho}_{12}.
+\end{align}
+We now define the inversion $w = \rho_{22} - \rho_{11}$. We have Optical Bloch Equations with Damping
+\begin{align}
+    \frac{d}{d t} \tilde{\rho}_{21}
+    &= -\left(\gamma/2 - i \delta \right) \tilde{\rho}_{21} - \frac{i \omega \Omega_0}{2} \\
+    \frac{d}{d t}\omega
+    &= -\gamma \left(\omega + 1\right) - i \Omega_0 \left(\tilde{\rho}_{21} - \tilde{\rho}_{12}\right)
+\end{align}
+in the Density Matrix Form.
+
+\section{Optical Bloch Equations - Dynamics and Steady State}
+\paragraph{Dynamical Evolution of System}
+Shown in the figure in the picture.
+
+\paragraph{Steady State Solution}
+Conditions: $\frac{d}{d t} \tilde{\rho}_{21} = 0$ and $\frac{d}{d t}\omega = 0$. Then we have the solutions
+\begin{align}
+    \omega
+    &= - \frac{1}{1 + S} \\
+    \tilde{\rho}_{21}
+    &= \frac{2 \Omega_0}{2\left(\gamma/2 - -\delta \right)\left(1+S\right)} \\
+    S
+    &= \frac{\Omega_0^2/2}{\delta^2 + \gamma^2/4} = \frac{S_0}{1+4 \delta^2/\gamma^2} \\
+    S_0
+    &= \frac{2 \Omega_0^2}{\gamma^2} = \frac{I}{O_{sat}},
+\end{align}
+where $S$ is called the saturation parameter, $S_0$ is called resonant saturation parameter.
+
+Limiting Cases: 
+\begin{itemize}
+    \item $S \leq \leq 1$: $w \rightarrow -1$ where $w = \rho_{22} - \rho_{11}$. Atom is mainly in ground state.
+    \item $S \geq\geq 1$: $S \rightarrow \infty$, $w \rightarrow 0$.
+\end{itemize}
+
+\begin{itemize}
+    \item Excited State Population: 
+    \begin{align}
+        \rho_{22} \\
+        &\qquad\eqnote{Combine with $\rho_{22} + \rho_{11} = 1$} \nonumber \\
+        &= \frac{1}{2} (1+w) \\
+        &= \frac{S}{2(1+S)} \\
+        &= \frac{S_0/2}{1+S_0+4 \delta^2/\gamma^2} \\
+        &\stackrel{S_0 \rightarrow \infty, \delta = 0}{\longrightarrow} \frac{1}{2}.
+    \end{align}
+    \item Photon Scattering Rate: $\Gamma_{ph} = \gamma \rho_{22} = \frac{\gamma}{2} \frac{S_0}{1+S_0+4 \delta^2/\gamma^2}$. $\Gamma_{ph} \rightarrow \gamma/2$ for $S_0 \rightarrow \infty$ and $\delta = 0$. We rewrite it as
+    \begin{align}
+        \Gamma_{ph}
+        &= \left(\frac{S_0}{1+S_0}\right)\left(\frac{\gamma/2}{1+4 \delta^2 / \gamma'^2}\right) \\
+        \gamma'
+        &= \gamma \sqrt{1+S_0}.
+    \end{align} 
+\end{itemize}
+It has a figure in the video. The saturation brodening is shown in the figure.
+
+\section{Lambert-Beer Law}
+\paragraph{Attenuation of Light}
+It is shown in the figure.
+
+\paragraph{Scattered Light from Slab of Atoms}
+scattered light power by slab of length $d z$
+\begin{align}
+    d P_{sc}
+    &= \Gamma_{ph} \times n A dz \times \hbar \omega,
+\end{align}
+where $\Gamma_{ph}$ is the single atom photon scattering rate, $\hbar \omega$ is the energy of single atom, $n A d z$ is the number of atoms. Then we have
+\begin{align}
+    \frac{d P_{sc}}{d z}
+    &= \Gamma_{ph} \times nA \times \hbar \omega.
+\end{align}
+
+\paragraph{Scattered Light from Slab of Atoms}
+Energy conservation requires
+\begin{align}
+    \frac{d P}{d z}
+    &= - \frac{d P_{sc}}{d z} \\
+    \frac{d P}{d z}
+    &= \frac{d I}{d I} A.
+\end{align}
+
+Put every thing together:
+\begin{align}
+    \frac{d I}{d z}
+    &= -\Gamma n \hbar \omega.
+\end{align}
+We have
+\begin{align}
+    \frac{d I(z)}{d z}
+    &= - n \sigma I(z),
+\end{align}
+where $\sigma$ is the atomic scattering cross section.
+
+\paragraph{Lambert-Beer Law (no saturation)}
+We compute the solutions
+\begin{align}
+    I(z)
+    &= I(0)e^{-n \sigma z},
+\end{align}
+which is the Lambert-Beer Law of Absorption.
+
+\paragraph{Laser induced Fluorescence}
+Shown in a video.
+
+\section{Bloch Vector}
+\paragraph{Density Matrix Revisited}
+Density Matrix of TLA
+\begin{align}
+    \rho
+    &= \left(\begin{matrix}
+        \rho_{11} & \rho_{12} \\
+        \rho_{21} & \rho_{22}
+    \end{matrix}\right)
+\end{align}
+
+Density Matrix hermitian
+\begin{align}
+    \rho
+    &= \rho^\dagger = (\rho^T)^\ast,
+\end{align}
+so we have
+\begin{align}
+    \rho
+    &= \left(\begin{matrix}
+        \rho_{11} & {\rm Re}\rho_{12} + i {\rm Im}\rho_{12} \\
+        {\rm Re}\rho_{12} - i {\rm Im}\rho_{12} & \rho_{22}
+    \end{matrix}\right).
+\end{align}
+
+Pauli matrices are
+\begin{align}
+    \sigma_x
+    &= \left(\begin{matrix}
+        0 & 1\\
+        1 & 0
+    \end{matrix}\right)
+    \sigma_y
+    = \left(\begin{matrix}
+        0 & -i\\
+        i & 0
+    \end{matrix}\right)
+    \sigma_x
+    = \left(\begin{matrix}
+        1 & 0\\
+        0 & -1
+    \end{matrix}\right).
+\end{align}
+The decomposition of Density matrix into Pauli matrices
+\begin{align}
+    \rho
+    &= \frac{1}{2}\left(I + b_x \sigma_x + b_y \sigma_y + b_z \sigma_z \right),
+\end{align}
+where $b_x, b_y,b_y \in \mathbb{R}$.
+
+\paragraph{Bloch Vector}
+We have the density matrix in rotating frame of light
+\begin{align}
+    \tilde{\rho}
+    &= \left(\begin{matrix}
+        \rho_{11} & \tilde{\rho}_{12} \\
+        \tilde{\rho}_{21} & \rho_{22}
+    \end{matrix}\right),
+\end{align}
+where $\tilde{\rho}_{12} = \rho_{12} e^{-i \omega t}$. We use following sign convention and have
+\begin{align}
+    \tilde{\rho}
+    &= \frac{1}{2} \left(I + u \sigma_x - v \sigma_y - w \sigma_z \right),
+\end{align}
+and the bloch vector is defined as
+\begin{align}
+    \left(\begin{matrix}
+        u \\
+        v \\
+        w
+    \end{matrix}\right).
+\end{align}
+It can be easily shown that
+\begin{align}
+    u
+    &= 2 {\rm Re}(\tilde{\rho}_{12}) = \tilde{\rho}_{12} + \tilde{\rho}_{12}^\ast \\
+    v
+    &= 2 {\rm Im}(\tilde{\rho}_{12}) = i (\tilde{\rho}_{12}^\ast + \tilde{\rho}_{12}) \\
+    w
+    &= \rho_{22} - \rho_{11}, \\
+\end{align}
+where $u$ is the dispersive component, $v$ is the absorption component and $w$ is the inversion.
+
+Bloch vector can be used to describe any state of TLA density matrix!
+
+Properties of Bloch Vector
+\begin{itemize}
+    \item Mixed State: $u^2 + v^2 +w^2 < 1 $
+    \item Pure State: $u^2 + v^2 +w^2 = 1 $
+\end{itemize}
+
+\section{Understanding Bloch Vector}
+What physical behaviour do the components stand for?
+
+\begin{itemize}
+    \item $w=-1$ atom in ground state. $w = +1$ atom in excited state.
+    \item What about $u,v$?
+    \begin{align}
+        \langle \hat{d}_i(t)
+        &= \tr(\hat{\rho} \hat{d}) \\
+        &= \tr\left[\left(\begin{matrix}
+            \rho_{11} & \rho_{12} \\
+            \rho_{12}^\ast & \rho_{22} 
+        \end{matrix}\right) \left(\begin{matrix}
+            0 & d_{12}^i \\
+            d_{12}^i & 0
+        \end{matrix}\right)\right],
+    \end{align}
+    where $d_{12}^x = \langle 1 \vert -q \hat{x} \vert 2 \rangle$.
+
+    Written in the vector form, we have
+    \begin{align}
+        \langle \hat{d}  \rangle(t)
+        &= d_{12} \left(\rho_{12} + \rho_{12}^\ast \right) \\
+        &= d_{12} \left(\tilde{\rho}_{12} e^{i \omega t} + \tilde{\rho}_{12}^\ast e^{-i \omega t}\right) \\
+        &= d_{12} \left[u\cos(\omega t) - v \sin(\omega t) \right],
+    \end{align}
+    where we use $\rho_{12} = \tilde{\rho}_{12} e^{i \omega t}$, $u$ denotes in phase and $v$ denotes $90^\circ$ out of phase component.
+
+    Reminder: $E(t) = \epsilon E_0 \cos(\omega t)$.
+    \item Which component responsible for absorption/emission? We have a figure in the video to show the classical picture.
+    
+    Average absorbed power per atom (classical ensemble average)
+    \begin{align}
+        \langle \frac{d W}{d t} 
+        &= \epsilon E_0 \cos(\omega t)\langle -q \frac{d r}{d t} \rangle \\
+        &= \epsilon E_0 \cos(\omega t) \langle \dot{d} \rangle.
+    \end{align}
+
+    Quantum mechanical analogue (Ehrenfest)
+    \begin{align}
+        \langle \frac{d W}{d t} \rangle
+        &= \epsilon E_0 \cos(\omega t) \langle \dot{d} \rangle \\
+        \langle \hat{d} \rangle(t)
+        &= d_{12} [u \cos(\omega t) - v \sin(\omega t)]. \\
+        \langle \frac{d W}{d t} \rangle
+        &= -d_{12} \cdot \epsilon E_0 \omega (u \cos(\omega t) \sin(\omega t) + v \sin(\omega t)^2) \\
+        \overline{\langle \frac{d W}{d t} \rangle}
+        &= \frac{1}{T} \int dt \langle \frac{d W}{d t} \rangle \\
+        &= - \frac{d_{12} \cdot \epsilon E_0 \omega v}{2} \\
+        &= - \hbar \frac{d_{12} \epsilon E_0}{\hbar} \omega \frac{v}{2} \\
+        &= - \hbar \Omega_0 \omega \frac{v}{2},
+    \end{align}
+    which is the absorption.
+\end{itemize}
+
+\section{Optical Bloch Equations using Bloch Vector}
+
+
+\section{Interlude: The Mach-Zehnder Interferometer}
+
+\section{Ramsey Interferometer}
+
+%\section{Review: QM of the Harmonic Oscillator}
+
+%\section{Wave equation and energy density of classical radiation field}
+
+\section{Quantization of the e.m. field}
+\paragraph{Fundamental Idea}
+RadiationMode $(k, \alpha)$
+\begin{itemize}
+    \item \textbf{To every radiation mode, we associate a harmonic oscillator!} Creation and annihilation operators can change the degree of excitation of mode (occupation with photons) 
+    \item \textbf{A photon is an excitation quantum of the harmonic oscillator associated with a mode!}
+\end{itemize}
+
+\paragraph{Creation and Annihilation Operators}
+$\hat{a}_k \vert n_k \rangle = \sqrt{n_k} \vert n_k -1 \rangle$: decrease photon number by one photon.
+
+$\hat{a}_k^\dagger \vert n_k \rangle = \sqrt{n_k + 1}  \vert n_k +1 \rangle$: increase photon number by one photon.
+
+\textbf{Number operator}: $\hat{n}_k \vert n_k \rangle = n_k \vert n_k \rangle$.
+
+\textbf{Fock state}: $\vert n_k \rangle$.
+
+
+%\section{Field state of single radiation field mode: Fock States}
+
+%\section{Field state of single radiation field mode: Coherent States}
+
+%\section{Quadrature Operators and Phase Space of Field States}
+
+%\section{Thermal Radiation States and Planck's Black Body Radiation Formula}
+
+%\section{The Classical Beamsplitter}
+
+%\section{The Quantum Beamsplitter}
+
+%\section{The Quantum Mach-Zehnder Interferometer}
+
+%\section{Balanced Homodyne Detection}
+
+%\section{Quantized Light-Atom Interaction}
+
+%\section{Jaynes-Cummings Model}
+
+%\section{Interaction of TLA with a Coherent State}
+
+%\section{Primer on Cabity Quantum Electrodynamics}
+
+%\section{Seeing a Single Photon without Destroying it}
+
+%\section{Dressed States}
+
+
 
 \end{document}

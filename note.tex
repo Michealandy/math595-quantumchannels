@@ -2,6 +2,7 @@
 \documentclass[a4paper,11pt,openany]{book} 
 %\documentclass[a4paper]{article} 
 \input{preamble.tex}
+\newcommand\SZQ[1]{{\color{blue}\footnotesize\sffamily [SZQ: #1]}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -11,6 +12,18 @@
 \tcbuselibrary{breakable}
 
 \definecolor{light-gray}{gray}{0.95}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ctex}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\numberwithin{equation}{section}
 
 \begin{document}
 \title{\textbf{Note}}
@@ -26,6 +39,10 @@
 \subfile{chapters/math_fundamentals/advent_math_symbols}
 \subfile{chapters/math_fundamentals/measure_theory}
 \subfile{chapters/math_fundamentals/linear_algebra}
+\subfile{chapters/math_fundamentals/func_ana.tex}
+
+\part{Physics Fundamentals}
+\subfile{chapters/classical_physics_fundamentals/electro_dynamics.tex}
 
 \part{Machine Learning Fundamentals}
 \subfile{chapters/machine_learning_fundamentals/comp_learning_tho}
@@ -34,6 +51,8 @@
 \subfile{chapters/quantum_fundamentals/prerequisites}
 \subfile{chapters/quantum_fundamentals/prerequisites}
 \subfile{chapters/quantum_fundamentals/quantum_channels}
+\subfile{chapters/quantum_fundamentals/intro_to_quantum_optics.tex}
+\subfile{chapters/quantum_fundamentals/quanutm_mechanics.tex}
 
 \part{Quantum Information}
 \subfile{chapters/quantum_information_research/estimation}

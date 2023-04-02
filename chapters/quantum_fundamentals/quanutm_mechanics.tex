@@ -1,0 +1,445 @@
+\documentclass[../../note.tex]{subfiles}
+
+%\usepackage[lmargin=1cm,rmargin=1.5cm,tmargin=2cm,bmargin=2cm]{geometry}
+\usepackage{amsmath,mathrsfs,bm,ctex}
+\usepackage{amssymb}
+
+\begin{document}
+
+\chapter{A Nutshell of Quantum Mechanics}
+一、量子论基础
+
+1. Plank 黑体辐射假说
+
+能量量子化 $E_\nu=h \nu$
+
+2. 光电效应的实验现象 (为什么不能从波动的观点进行解释)
+
+光强大小正比于光子数目；䧻止频率 $\nu=A / h$ ；光子吸收、发射时间很短
+
+3. Einstein 的光量子假说
+
+频率 $\nu$ 的电磁波辐射场由宏观多个光量子组成， $E_\nu=h \nu=\hbar \omega$, 逸出功 $A=h \nu-\frac{1}{2} m v^2$.
+
+4. Bohr 的氢原子理论
+
+定态假设；量子化条件即角动量量子化 $L=n \hbar$ ；跃迁条件 $\Delta E=h\left(\nu_1-\nu_2\right)$ ； 给出了能级公式 $E_n \propto-1 / n^2$.
+
+5. 德布罗意物质波
+$$
+\lambda=\frac{h}{p}, \quad \boldsymbol{p}=\hbar \boldsymbol{k}
+$$
+
+二、量子力学的基本概念
+
+1. 量子力学的基本假设 (sy 的 3 条版)
+
+1. 量子坬立系统由量子态描述，量子态是希尔伯特空间中是态矢 $|\psi\rangle$. 其随时间 的演化满足薛定诏方程
+$$
+i \hbar \frac{\partial}{\partial t} \Psi=\hat{H} \Psi
+$$
+其中， $\hat{H}$ 是哈密顿量
+
+II. 每一个可观测量 $A$, 与希尔伯特空间中的一个厄米算符 $\hat{A}$ 相关联。测量结 果是它的本征值之一，概率幅是原量子态在该本征值相应的本征态上的分量 (即展开系数)
+$$
+\hat{A}|i\rangle=a_i|i\rangle ;|\psi(t)\rangle=\sum_i C_i(t)|i\rangle ; p_i(t)=|\langle i \mid \psi(t)\rangle|^2=\left|C_i(t)\right|^2
+$$
+III. 对于由态矢 $|\psi\rangle$ 描述的系统，如测量可观测量 $A$ ，得到结果 $a_n$ ，那么测量 刚结束时，系统的状态是
+$$
+\frac{P_n|\psi\rangle}{\sqrt{\left\langle\psi\left|P_n\right| \psi\right\rangle}}
+$$
+$P_n$ 为投影到相应于 $a_n$ 对应的 $A$ 的本征矢量张成的子空间。
+
+2. 定态薛定谔方程的得到
+$$
+i \hbar \frac{\partial}{\partial t} \Psi=\hat{H} \Psi=\left(-\frac{\hbar^2}{2 m} \nabla^2+V\right) \Psi
+$$
+当 $H$ 不含时间时，可分离变量 $\Psi(\boldsymbol{r}, t)=\psi(\boldsymbol{r}) \phi(t)$
+$$
+\begin{array}{r}
+i \hbar \frac{1}{\phi} \frac{\partial \phi}{\partial t}=-\frac{\hbar^2}{2 m} \frac{1}{\psi} \nabla^2 \psi+V=E \\
+\left(-\frac{\hbar^2}{2 m} \nabla^2+V\right) \psi=E \psi, \phi(t)=\exp [-i E t / \hbar]
+\end{array}
+$$
+3. 波函数的统计诠释
+
+$\int_a^b|\Psi(x, t)|^2 d x$ 表示 $\mathrm{t}$ 时刻发现粒子处于 $\mathrm{a}$ 和 b 之间的几率.
+
+4. 波函数的归一化条件及其意义
+$$
+\int_{-\infty}^{\infty}|\Psi(x, t)|^2 d x=1
+$$
+全空间的总几率为 1 。
+
+5. 量子力学中概率流密度的连续性方程
+$$
+\begin{array}{r}
+\frac{\partial}{\partial t} \rho+\nabla \cdot j(\boldsymbol{r}, t)=0 \\
+\rho=|\Psi|^2, j=\frac{i \hbar}{2 m}\left[\Psi \nabla \Psi^*-\Psi^* \nabla \Psi\right]
+\end{array}
+$$
+6. 可观测量 $A$ 的期待值
+$$
+\langle\hat{A}\rangle=\int \Psi^*(r, t) \hat{A} \Psi(r, t) \mathrm{d}^3 r
+$$
+7. 为什么可观测量对应厄米算符
+$$
+\langle\hat{Q}\rangle=\langle\hat{Q}\rangle^* \rightarrow\langle\psi \mid \hat{Q} \psi\rangle=\langle\hat{Q} \psi \mid \psi\rangle \rightarrow \hat{Q}=\hat{Q}^{\dagger}
+$$
+8. 证明不同本征值的本征函数正交
+$$
+\hat{Q} \psi_i=q_i \psi_i ; \quad q_2\left\langle\psi_1 \mid \psi_2\right\rangle=\left\langle\psi_1 \mid \hat{Q} \psi_2\right\rangle=\left\langle\hat{Q} \psi_1 \mid \psi_2\right\rangle=q_1\left\langle\psi_1 \mid \psi_2\right\rangle
+$$
+
+9. 同时对角化定理 ( $\hat{A}, \hat{B}$ 具有共同本征态的条件)
+$$
+[\hat{A}, \hat{B}]=0
+$$
+10. Gram-Schmidt 正交化法则
+$$
+\psi_i^{\prime}=\psi_i-\sum_{k=1}^{i-1} \frac{\left\langle\psi_k^{\prime} \mid \psi_i\right\rangle}{\left\langle\psi_k^{\prime} \mid \psi_k^{\prime}\right\rangle} \psi_k^{\prime}
+$$
+11. 不确定原理
+$$
+\begin{array}{rr}
+\sigma_x=\sqrt{\left\langle x^2\right\rangle-\langle x\rangle^2} ; & \sigma_x \sigma_p \geq \frac{\hbar}{2} ; \quad \Delta E \Delta t \geq \frac{\hbar}{2} \\
+& \sigma_A^2 \sigma_B^2 \geq\left(\frac{1}{2 i}\langle[\hat{A}, \hat{B}]\rangle\right)^2
+\end{array}
+$$
+[* 请利用 Schwarz 不等式自行推导]
+
+12. Heisenberg 动力学方程
+$$
+\frac{\mathrm{d}}{\mathrm{d} t}\langle\hat{Q}\rangle=\frac{i}{\hbar}\langle[\hat{H}, \hat{Q}]\rangle+\left\langle\frac{\partial \hat{Q}}{\partial t}\right\rangle
+$$
+
+13. 动量空间的本征函数及其正交与完备条件
+$$
+\begin{array}{r}
+\hat{p} \psi_p(x)=p \psi_p(x), \quad \psi_p(x)=\frac{1}{\sqrt{2 \pi \hbar}} \exp [i p x / \hbar] \\
+\int \psi_{p^{\prime}}(x) \psi_p(x) \mathrm{d} x=\delta\left(p-p^{\prime}\right) \\
+\int \psi_p^*(x) \psi_p(y) \mathrm{d} p=\delta(x-y) \text { 或 } \int|p\rangle\langle p|=1
+\end{array}
+$$
+14. Dirac 符号下能量本征函数的正交与完备条件
+$$
+\langle m \mid n\rangle=\delta_{m n}, \sum_n|n\rangle\langle n|=1
+$$
+15. 位置算符与动量算符的对易关系
+$$
+\left[\hat{x}, \hat{p}_x\right]=i \hbar, \quad\left[\hat{x}, \hat{p}_y\right]=0
+$$
+
+三、定态薛定谔方程的解
+
+1. 无限深势阱的解及函数图像
+$$
+\psi_n=\sqrt{\frac{2}{a}} \sin \left(\frac{n \pi x}{a}\right), \quad E_n=\frac{n^2 \pi^2 \hbar^2}{2 m a^2}
+$$
+2. 谐振子的阶梯算符, 对偶关系及其对本征波函数的作用效果
+$$
+\begin{array}{r}
+\hat{a}_{ \pm}=\frac{1}{\sqrt{2 \hbar m \omega}}(\mp i \hat{p}+m \omega x), \quad\left[\hat{a}_{-}, \hat{a}_{+}\right]=1 \\
+\hat{a}_{+}|n\rangle=\sqrt{n+1}|n+1\rangle, \quad \hat{a}_{-}|n\rangle=\sqrt{n}|n-1\rangle
+\end{array}
+$$
+
+3. 谐振子的本征函数图像及总能
+$$
+\hat{H}=\left(\hat{a}_{+} \hat{a}_{-}+\frac{1}{2}\right) \hbar \omega, \quad E_n=\left(n+\frac{1}{2}\right) \hbar \omega
+$$
+4. 束缚态与散射态的定义
+
+束缚态: 能量 $E<V(-\infty)$ and $V(\infty)$, 波函数可归一化 
+
+散射态: 能量 $E>V(-\infty)$ or $V(\infty)$, 波函数不可归一化
+
+5. $\delta$ 势阱中波函数满足的条件
+
+波函数连续 $\psi\left(0^{-}\right)=\psi\left(0^{+}\right)$
+
+波函数的一阶导连续 $\int_{0^{-}}^{0^{+}}\left[-\frac{\hbar^2}{2 m} \frac{\mathrm{d}^2 \psi}{\mathrm{d} x^2}-\alpha \delta(x) \psi\right] \mathrm{d} x=E \int_{0^{-}}^{0^{+}} \psi \mathrm{d} x$
+$$
+\rightarrow \psi^{\prime}\left(0^{+}\right)-\psi^{\prime}\left(0^{-}\right)=-\frac{2 \alpha m}{\hbar^2} \psi(0)
+$$
+
+6. $V=-\alpha \delta$ 势阱中束缚态的解及函数图像
+$$
+\psi(x)=\frac{\sqrt{m \alpha}}{\hbar} \exp \left[-m \alpha|x| / \hbar^2\right], \quad E=-\frac{m \alpha^2}{2 \hbar^2}
+$$
+7. $V=-\alpha \delta$ 势阱中反射率 $R$ 与透射率 $T$ ，其中左侧波函数为 $e^{i k x}+r e^{-i k x}$, 右 侧波函数为 $t e^{i k x}$
+$$
+\begin{aligned}
+& \beta=\frac{\alpha m}{h^2 k}, \quad r=\frac{i \beta}{1-i \beta}, \quad t=\frac{1}{1-i \beta} \\
+& R=|r|^2=\frac{\beta^2}{1+\beta^2}, T=|t|^2=\frac{1}{1+\beta^2}
+\end{aligned}
+$$
+
+8. 有限深势阱的束缚态的奇函数解
+$$
+\begin{gathered}
+\psi(x)= \begin{cases}B e^{-\kappa x} & x>a \\
+D \cos (l x), & 0<x<a \\
+\psi(-x) & x<0\end{cases} \\
+\kappa=\frac{\sqrt{-2 m E}}{\hbar}, l=\frac{\sqrt{2 m\left(E+V_0\right)}}{\hbar}, \kappa a=l a \tan (l a)
+\end{gathered}
+$$
+9. 自由粒子解
+$$
+\begin{array}{r}
+\psi(x, t)=\sqrt{\frac{1}{L}} e^{i k_n x} e^{-i E_n t / \hbar}, k_n=\frac{2 n \pi}{L}= \pm \frac{\sqrt{2 m E_n}}{\hbar} \\
+\Psi(x, t)=\frac{1}{\sqrt{2 \pi}} \int \phi_k \exp \left[i k x-i \frac{\hbar k^2}{2 m} t\right] d k
+\end{array}
+$$
+
+四、三维空间中的量子力学
+
+1. 氢原子薛定谔方程中的哈密顿量
+$$
+\hat{H}=-\frac{\hbar^2}{2 m} \nabla^2-\frac{e^2}{4 \pi \epsilon_0} \frac{1}{r}
+$$
+2. 氢原子薛定谔方程的解
+$$
+\begin{array}{r}
+\hat{H} \psi_{n l m}=E_n \psi_{n l m}, \quad \psi_{n l m}=R_{n l}(r) Y_l^m(\theta, \phi) \\
+n=1,2,3, \cdots, \quad l=0,1, \cdots, n-1 \quad m=-l,-l+1, \cdots, l-1, l \\
+E_n=\frac{E_1}{n^2}, E_1=\frac{m}{2 \hbar^2}\left(\frac{e^2}{4 \pi \epsilon_0}\right)^2=-13.6 \mathrm{eV}
+\end{array}
+$$
+3. (自旋/轨道) 角动量的对易关系
+$$
+\left[\hat{L}_x, \hat{L}_y\right]=i \hbar \hat{L}_z, \quad\left[\hat{L}_y, \hat{L}_z\right]=i \hbar \hat{L}_x, \quad\left[\hat{L}_z, \hat{L}_x\right]=i \hbar \hat{L}_y, \quad\left[\hat{L}^2, \hat{L}\right]=0
+$$
+$\hat{S}$ 同理
+
+[*请自行从 $L=r \times p$ 推导得到]
+
+4. 轨道角动量与自旋角动量的本征方程
+$$
+\begin{array}{r}
+\hat{\boldsymbol{L}}^2|l m\rangle=\hbar^2 l(l+1)|l m\rangle, \quad \hat{L}_z|l m\rangle=\hbar m|l m\rangle \\
+l=0,1,2, \cdots \quad m=-l,-l+1, \cdots, l-1, l \\
+\hat{\boldsymbol{S}}^2|s m\rangle=h^2 s(s+1)|s m\rangle, \quad \hat{S}_z|s m\rangle=h m|s m\rangle \\
+s=0, \frac{1}{2}, 1, \frac{3}{2}, 2, \cdots \quad m=-s,-s+1, \cdots, s-1, s
+\end{array}
+$$
+5. 角动量的上升下降算符，及其对本征波函数的作用
+$$
+\hat{L}_{ \pm}=\hat{L}_x \pm i L_y, \quad \hat{L}_{ \pm}|l m\rangle=\hbar \sqrt{l(l+1)-m(m \pm 1)}|l, m \pm 1\rangle
+$$
+
+$\hat{S}$ 同理
+
+6. 1/2 自旋的角动量在本征波函数空间的矩阵表示
+$$
+\begin{aligned}
+& \hat{S}=\frac{\hbar}{2} \sigma \\
+& \sigma_x=\left(\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right), \quad \sigma_y=\left(\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right), \quad \sigma_z=\left(\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right) \\
+&
+\end{aligned}
+$$
+
+7. 自旋在磁场中受到的相互作用及拉莫尔进动频率
+$$
+\boldsymbol{\mu}=\gamma \boldsymbol{S}, \quad \hat{H}=-\gamma \boldsymbol{B} \cdot \hat{\boldsymbol{S}}, \quad \omega=\gamma B_0
+$$
+8. 角动量的叠加， $\hat{S}=\hat{S}_1+\hat{S}_2$, 则 $\hat{\boldsymbol{S}}^2, \hat{S}_z$ ?
+$$
+\hat{S}^2=\hat{S}_1^2+\hat{\boldsymbol{S}}_2^2+2 \hat{\boldsymbol{S}}_1 \cdot \hat{\boldsymbol{S}}_2, \quad \hat{S}_z=\hat{S}_{1 z}+\hat{S}_{2 z}
+$$
+9. 2 个自旋 $1 / 2$ 的相加
+$$
+\text { 三重态 }(s=1):\left\{\begin{array}{l}
+|1,1\rangle=|\uparrow \uparrow\rangle \\
+|1,0\rangle=\frac{1}{\sqrt{2}}(|\uparrow \downarrow\rangle+|\downarrow \uparrow\rangle) \\
+|1,-1\rangle=|\downarrow \downarrow\rangle
+\end{array}\right.
+$$
+单态 $(s=0):|0,0\rangle=\frac{1}{\sqrt{2}}(|\uparrow \downarrow\rangle-|\downarrow \uparrow\rangle)$
+
+10. 角动量叠加后，本征态用 Clebsch-Gordan (CG) 系数和原本的态表示
+$$
+|s m\rangle=\sum_{m_1+m_2=m} C_{s_1 m_1 ; s_2 m_2}^{s m}\left|s_1 m_1 ; s_2 m_2\right\rangle
+$$
+
+五、全同粒子
+
+1. 玻色子和费米子的区别
+
+玻色子: 自旋为整数， $\psi_{+}\left(r_1, r_2\right)=\psi_{+}\left(r_2, r_1\right)$
+
+费米子: 自旋为半整数， $\psi_{-}\left(r_1, r_2\right)=-\psi_{-}\left(r_2, r_1\right)$
+
+2. 由两个全同粒子组成的波函数为 (考虑自旋与否)
+$$
+\psi_{ \pm}\left(\boldsymbol{r}_1, \boldsymbol{r}_2\right)=A\left[\psi_a\left(\boldsymbol{r}_1\right) \psi_b\left(\boldsymbol{r}_2\right) \pm \psi_b\left(\boldsymbol{r}_1\right) \psi_a\left(\boldsymbol{r}_2\right)\right]
+$$
+考虑自旋的玻色子: $\psi_{ \pm}\left(r_1, r_2\right)\left[\chi_a\left(s_1\right) \chi_b\left(s_2\right) \pm \chi_b\left(s_1\right) \chi_a\left(s_2\right)\right]$ 
+
+考虑自旋的费米子: $\psi_{ \pm}\left(\boldsymbol{r}_1, \boldsymbol{r}_2\right)\left[\chi_a\left(\boldsymbol{s}_1\right) \chi_b\left(\boldsymbol{s}_2\right) \mp \chi_b\left(\boldsymbol{s}_1\right) \chi_a\left(\boldsymbol{s}_2\right)\right]$
+
+3. 证明费米子满足泡利不相容原理
+
+若 $\psi_a=\psi_b$ ，则 $\psi_{-}=0$
+
+4.交换相互作用的表现
+
+在不考虑自旋情况下，空间对称波函数（玻色子）受到牵引力，空间反对称波函数（费米子）受到排斥力
+
+六、定态微扰理论
+
+1. 非简并微扰 (一阶波函数，二阶能量，微扰项为 $\hat{H}^{\prime}$ )
+$$
+\begin{array}{r}
+E_n=E_n^0+\left\langle\psi_n^0\left|\hat{H}^{\prime}\right| \psi_n^0\right\rangle+\mathop{\sum}\limits_{m \neq n} \frac{\left|\left\langle\psi_m^0\left|\hat{H}^{\prime}\right| \psi_n^0\right\rangle\right|^2}{E_n^0-E_m^0} \\
+\psi_n=\psi_n^0+\mathop{\sum}\limits_{m \neq n} \frac{\left\langle\psi_m^0\left|\hat{H}^{\prime}\right| \psi_n^0\right\rangle}{E_n^0-E_m^0} \psi_m^0
+\end{array}
+$$
+[*请自行推导]
+
+2. 非简并微扰成立条件
+
+能级非简并，且 $\left|\left\langle\psi_m^0\left|\hat{H}^{\prime}\right| \psi_n^0\right\rangle\right| \ll\left|E_n^0-E_m^0\right|$
+
+3. 近简并微扰
+$$
+\begin{gathered}
+\left(\begin{array}{cccc}
+H_{11}^{\prime} & H_{12}^{\prime} & \cdot & H_{1 g}^{\prime} \\
+\vdots & \vdots & \ddots & \vdots \\
+H_{g 1}^{\prime} & H_{g 2}^{\prime} & \cdot & H_{g g}^{\prime}
+\end{array}\right)\left(\begin{array}{c}
+a_1 \\
+\vdots \\
+a_g
+\end{array}\right)=E^1\left(\begin{array}{c}
+a_1 \\
+\vdots \\
+a_g
+\end{array}\right) \\
+H_{i j}^{\prime}=\left\langle\psi_{n, i}^0\left|\hat{H}^{\prime}\right| \psi_{n, j}^0\right\rangle, \quad \phi_n=\sum_i a_i \psi_{n, i}
+\end{gathered}
+$$
+4. 氢原子哈密顿量的相对论效应修正
+$$
+T=\sqrt{p^2 c^2+m^2 c^4}-m c^2 \approx \frac{p^2}{2 m}-\frac{p^4}{8 m^3 c^2}\left(\text { 泰勒展开) } \rightarrow H^{\prime}=-\frac{p^4}{8 m^3 c^2}\right.
+$$
+5. 氢原子的自旋轨道耦合修正的哈密顿量及对应的好量子数
+$$
+\begin{array}{r}
+B=\frac{\mu_0 I}{2 r}=\frac{1}{4 \pi \epsilon_0} \frac{e}{m c^2 r^3} \boldsymbol{L}, \boldsymbol{\mu}_e=-\frac{e}{m} \boldsymbol{S} \\
+\hat{H}^{\prime}=\frac{1}{2} \frac{e^2}{4 \pi \epsilon_0} \frac{1}{m^2 c^2 r^3} \hat{\boldsymbol{S}} \cdot \hat{\boldsymbol{L}} \\
+\left\{\hat{H}_0, \hat{L}^2, \hat{S}^2, \hat{J}^2, \hat{\boldsymbol{J}}_z\right\}, \hat{\boldsymbol{J}}=\hat{\boldsymbol{L}}+\hat{\boldsymbol{S}}
+\end{array}
+$$
+
+6. 外加电场下，氢原子 Stark 效应的微扰哈密顿量
+$$
+\hat{H}^{\prime}=-q E z=e E \hat{z}
+$$
+7. 氢原子的精细结构能级修正
+$$
+E_n^{(1)}=\frac{E_n^2}{2 m c^2}\left(3-\frac{4 n}{j+1 / 2}\right)
+$$
+8. 外加磁场下，氢原子 Zeeman 效应的微扰哈密顿量
+$$
+\hat{H}^{\prime}=-\left(\boldsymbol{\mu}_L+\boldsymbol{\mu}_S\right) \cdot \boldsymbol{B}=\frac{e}{2 m}(\hat{\boldsymbol{L}}+2 \hat{\boldsymbol{S}}) \cdot \boldsymbol{B}=\frac{e B}{2 m}\left(\hat{L}_z+2 \hat{S}_z\right)
+$$
+[*请自行推导，在强弱磁场下该如何选择好量子数及对应的能量修正]
+
+七、变分原理与 WKB 近似
+
+1. 变分原理
+$$
+E_{g s} \leq\langle\psi|\hat{H}| \psi\rangle
+$$
+取到等号时即对应基态能量与波函数。
+
+2. WKB 近似公式
+
+经典区域 $(E>V): \psi(x)=\frac{C}{\sqrt{p(x)}} \exp \left[ \pm \frac{i}{\hbar} \int p(x) \mathrm{d} x\right], \quad p(x)=\sqrt{2 m(E-V(x))}$
+
+隧穿区域 $(E<V): \psi(x)=\frac{C}{\sqrt{|p(x)|}} \exp \left[ \pm \frac{1}{\hbar} \int p(x) \mathrm{d} x\right]$
+
+八、含时微扰理论
+
+1. 含时微扰理论的系数满足的方程
+$$
+i \hbar \frac{d}{d t} c_m(t)=\sum_n c_n(t)\left\langle m\left|\hat{H}^{\prime}(t)\right| n\right\rangle e^{i \omega_{m n} t}, \quad \omega_{m n}=\frac{E_m-E_n}{\hbar}
+$$
+2. 2 能级系统含时微扰理论的一级修正 $\left(c_m(0)=0, c_n(0)=1\right)$
+$$
+\begin{array}{r}
+c_m(t)=\frac{1}{i \hbar} \int_0^t\left\langle m\left|\hat{H}^{\prime}\left(t^{\prime}\right)\right| n\right\rangle e^{i \omega_{m n} t^{\prime}} \mathrm{d} t^{\prime}, \quad c_n(t)=1 \\
+\omega_{m n}=\frac{E_m-E_n}{h}, \quad P_{n \rightarrow m}=\left|c_m(t)\right|^2
+\end{array}
+$$
+3. 正弦微扰 $H^{\prime}(\boldsymbol{r}, t)=V(r) \cos (\omega t)\left(\omega_0+\omega>>\left|\omega_0-\omega\right|\right)$ 下的跃迁几率
+$$
+P_{a \rightarrow b}(t)=\frac{\left|V_{a b}\right|^2}{\hbar^2} \frac{\sin ^2\left[\left(\omega_0-\omega\right) t / 2\right]}{\left(\omega_0-\omega\right)^2}
+$$
+
+4，光与原子相互作用的三种类型及辐射的物理原因
+
+吸收、受激辐射与自发辐射
+
+受激发射：一个光子进入，两个光子出来，包含引起跃迁的原始光子和另一个来自原子的光子、可以通过计算跃迁几率得到。是激光的理论基础。
+
+$$
+P_{2 \rightarrow 1}(t)=\left(\frac{\left|e\left\langle\psi_1|z| \psi_2\right\rangle\right| E_0}{\hbar}\right)^2 \frac{\sin ^2\left[\left(\omega_0-\omega\right) t / 2\right]}{\left(\omega_0-\omega\right)^2}, \quad E_2-E_1=\hbar \omega_0 
+$$
+
+自发辐射其实并不是真正的“自发”，而是受到热涨落或电磁波的量子零点涨落（真空涨落）的刺激。
+
+5.跃迁的选择定则及物理原因
+
+$$\boldsymbol{P}=e\left\langle\psi_2|\boldsymbol{r}| \psi_1\right\rangle \neq 0 \rightarrow \Delta m=0, \pm 1 \text { 且 } \Delta l= \pm 1$$
+
+因为光子的自旋为 1 , 角动量 ( $z$ 分量) 守恒要求原子失去的等于光子获得的角 动量, 角动量的叠加规律只允许 $l^{\prime}=l+1, l^{\prime}=l, l^{\prime}=l-1$, 但对于电偶极辐 射， $l^{\prime}=l$ 不会发生。
+
+九、散射理论
+
+1. 考虑平面波入射的散射情形下的波函数
+$$
+\psi(r, \theta, \phi)=A\left[e^{i k x}+f(\theta, \phi) \frac{e^{i k r}}{r}\right]
+$$
+2. 微分散射截面与散射截面
+$$
+\frac{\mathrm{d} \sigma}{\mathrm{d} \Omega}=|f(\theta, \phi)|^2, \sigma=\int \frac{\mathrm{d} \sigma}{\mathrm{d} \Omega} \mathrm{d} \Omega
+$$
+3. $l$ 分波具有 $\delta_l$ 的相移时，对应的散射截面
+$$
+\sigma=\frac{4 \pi}{k^2} \sum_{l=0}^{\infty}(2 l+1) \sin ^2\left(\delta_t\right)
+$$
+4. 散射理论中的 Born 近似及球对称下的表述
+$$
+\begin{aligned}
+f(\theta, \phi) & =-\frac{m}{2 \pi \hbar^2} \int V\left(\boldsymbol{r}_0\right) \exp \left[i\left(\boldsymbol{k}^{\prime}-\boldsymbol{k}\right) \cdot \boldsymbol{r}_0\right] \mathrm{d}^3 \boldsymbol{r}_0 \\
+f(\theta, \phi) & =-\frac{2 m}{\hbar^2 \kappa} \int r V(r) \sin (\kappa r) \mathrm{d} r, \quad \kappa=2 k \sin \frac{\theta}{2}
+\end{aligned}
+$$
+$\theta$ 为 $k, k^{\prime}$ 之间的夹角
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+\end{document}
