@@ -856,9 +856,123 @@ What physical behaviour do the components stand for?
 
 \section{Ramsey Interferometer}
 
-%\section{Review: QM of the Harmonic Oscillator}
+\section{Review: QM of the Harmonic Oscillator}
+\SZQ{2023.04.20: I have understandard the content in this video.}
 
-%\section{Wave equation and energy density of classical radiation field}
+\section{Wave equation and energy density of classical radiation field}
+This section  is also known as the review of Maxwell equations vector potentials.
+
+\paragraph{Fundamentaals}
+Maxwell equations in free space
+\begin{align}
+    \label{eq: Maxwell equations in free space}
+    &\nabla \cdot E = 0, \nabla \times E = - \frac{\partial B}{\partial t} \\
+    &\nabla \cdot B = 0, \nabla \times B = \frac{1}{c^2} \frac{\partial E}{\partial t}.
+\end{align}
+
+\begin{lemma}[Coulomb Gauge]
+    \label{lemma: Coulomb Gauge}
+    Considering Coulomb Gauge, we have
+    \begin{align}
+        \nabla \cdot A = 0.
+    \end{align}
+    Then we can express the eletric field and magnetic field in terms of the vector potential 
+    \begin{align}
+        & B(r,t) = \nabla \times A(r,t) \\
+        & E(r,t) = -\frac{\partial A(r,t)}{\partial t}.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}[Wave equation]
+    \label{lemma: wave equation}
+    Considering Coulomb Gauge, the wave equation is
+    \begin{align}
+        \nabla^2 A - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} A 
+        &= 0.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Using \ref{lemma: Coulomb Gauge} and the forth equation in \ref{eq: Maxwell equations in free space}, we have
+    \begin{align}
+        \nabla \times B 
+        &= \nabla \times (\nabla \times A(r,t)),
+    \end{align}
+    and 
+    \begin{align}
+        \nabla \times B 
+        &= \frac{1}{c^2} \frac{\partial E}{\partial t} \\
+        &= - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} A(r,t).
+    \end{align}
+    So we have
+    \begin{align}
+        \nabla \times (\nabla \times A)
+        &= - \frac{1}{c^2} \frac{\partial^2}{\partial t^2}.
+    \end{align}
+    Then use the rule in vector Calculus
+    \begin{align}
+        \nabla \times (\nabla \times A)
+        &= \nabla(\nabla \cdot A) - \Delta A.
+    \end{align}
+    Use lemma \ref{lemma: Coulomb Gauge}, we then have
+    \begin{align}
+        - \Delta A
+        &= -\frac{1}{c^2} \frac{\partial^2}{}\partial t^2 A \\
+        &= - \nabla^2 A.
+    \end{align}
+    So we have
+    \begin{align}
+        \nabla^2 A - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} = 0.
+    \end{align}
+\end{proof}
+
+\paragraph{Solutions of Wave Equation}
+\begin{lemma}[Solutions of Wave Equation]
+    Plane waves:
+    \begin{align}
+        \textbf{A}_{\textbf{k},\alpha}
+        &= \epsilon_{\textbf{k}, \alpha} A_{\textbf{k},\alpha} \exp\left[i(\textbf{k}\textbf{r}-\omega_k t)\right],
+    \end{align}
+    where $\epsilon_{\textbf{k}, \alpha}$ is polarization, $A_{\textbf{k}, \alpha}$ is complex amplitude, $\vert k \vert = \frac{2 \pi}{\lambda}$ is wavenumber i.e., the magnitude of the wave vector, $\textbf{k}$ is the wave vector, $\omega_k = c k$.
+\end{lemma}
+
+Which wave vectors are possible? (a). in finite space, $\textbf{k}$ distributed continuous; (b). finite box of length $L$, $\textbf{k}$ distributed discretely (periodic boundary conditions)
+\begin{align}
+    &k_x = \frac{2 \pi}{L} n_x, k_y = \frac{2\pi}{L} n_y, k_z = \frac{2 \pi}{L} n_z \\
+    &\textbf{A}(\textbf{r},t) 
+    = \sum_{\textbf{k}, \alpha} \epsilon_{\textbf{k}, \alpha} \left(A_{\textbf{k},\alpha} \exp[i(\textbf{kr} - \omega_k t)] + A_{\textbf{k},\alpha}^\ast \exp[- i(\textbf{kr} - \omega_k t)]\right) \\
+    &\textbf{E}(\textbf{r},t) = -\frac{\partial}{\partial t} \textbf{A}(r,t) = \sum_{\textbf{k},\alpha} \epsilon_{\textbf{k},\alpha}i \omega_{k} \left[A_{\textbf{k},\alpha} \exp[i(\textbf{kr}-\omega_k t)] - A_{\textbf{k},\alpha}^\ast \exp[-i(\textbf{kr}-\omega_k t)] \right]\\
+    &\textbf{B}(\textbf{r},t) = \sum_{\textbf{k},\alpha} i (\textbf{k} \times \epsilon_{\textbf{k},\alpha}) \left[A_{\textbf{k},\alpha} \exp[i(\textbf{kr}-\omega_k t)] - A_{\textbf{k},\alpha}^\ast \exp[-i(\textbf{kr}-\omega_k t)] \right].
+\end{align}
+\SZQ{2023.04.20: The complex conjugate term is used to eliminate the imaginary part.}
+
+\paragraph{Total Energy of Radiation Field}
+Total energy of radiation field in volume $V = L^3$.
+\SZQ{2023.04.20: The total energy is the integration of the electric density and magenetic density over the volume.}
+
+The electric density is
+\begin{align}
+    \frac{1}{2} \varepsilon_0 E(r,t)^2.
+\end{align}
+
+The magenetic density is
+\begin{align}
+    \frac{1}{2 \mu_0} B(r,t)^2. 
+\end{align}
+
+Then the total energy of radiation field in volume $V = L^3$ is
+\begin{align}
+    H 
+    &= \frac{1}{2} \int_V dV \left[\varepsilon_0 E(r,t)^2 + \frac{1}{\mu_0} B(r,t)^2\right] \\
+    &= \sum_{\textbf{k},\alpha} \varepsilon_0 V \omega_{k}^2 \left[A_{\textbf{k},\alpha} A_{\textbf{k},\alpha}^\ast + A_{\textbf{k},\alpha}^\ast A_{\textbf{k},\alpha}\right] \\
+    &= \sum_{\textbf{k},\alpha} E_{\textbf{k},\alpha},
+\end{align}
+where 
+\begin{align}
+    E_{\textbf{k},\alpha}
+    &=  \varepsilon_0 V \omega_{k}^2 \left[A_{\textbf{k},\alpha} A_{\textbf{k},\alpha}^\ast + A_{\textbf{k},\alpha}^\ast A_{\textbf{k},\alpha}\right].
+\end{align}
+\SZQ{2023.04.20: This expression is similar to the quantum harmonic oscillators.}
+\SZQ{2023.04.20: I ignore the bold. So you should understand where you should use the bold.}
 
 \section{Quantization of the e.m. field}
 \paragraph{Fundamental Idea}
@@ -875,10 +989,108 @@ $\hat{a}_k^\dagger \vert n_k \rangle = \sqrt{n_k + 1}  \vert n_k +1 \rangle$: in
 
 \textbf{Number operator}: $\hat{n}_k \vert n_k \rangle = n_k \vert n_k \rangle$.
 
-\textbf{Fock state}: $\vert n_k \rangle$.
+\textbf{Fock state}: $\vert n_k \rangle$. Fock state is the eigenstate of quantum harmonic oscillator.
 
+\paragraph{Hamitonian of Radiation Field}
+The Hamitonian of Radiation Field is the sum of the hamitonian of harmonic oscillator of each mode as
+\begin{align}
+    \hat{H}_R
+    &= \sum_k \hat{H}_k,
+\end{align}
+where 
+\begin{align}
+    \hat{H}_k
+    &=\frac{1}{2} \hbar \omega_k\left(\hat{a}_k \hat{a}_k^\dagger + \hat{a}_k^\dagger \hat{a}_k \right).
+\end{align}
+We can compare it with classicall expression
+\begin{align}
+    E_{k,\alpha} = \epsilon_0 V \omega_k^2 \left(A_{k,\alpha} A_{k,\alpha}^\ast + A_{k,\alpha}^\ast A_{k,\alpha}\right).
+\end{align}
+If we replace $A_k$ with
+\begin{align}
+    A_k = \sqrt{\frac{\hbar}{2 \epsilon_0 V \omega_k} }\hat{a}_k,
+\end{align}
+and replace $A_k^\ast$ with
+\begin{align}
+    A_k^\ast = \sqrt{\frac{\hbar}{2 \epsilon_0 V \omega_k} }\hat{a}_k^\dagger.
+\end{align}
+We will arrive at $\hat{H}_k$. Also we can obtain the quantum version of vector potential operator. The classical vector potential operator is
+\begin{align}
+    A_{k}(r,t) = \epsilon_k\left[A_k \exp[i(kr-\omega_k t)] + A_k^\ast \exp[-i(kr-\omega_k t)] \right].
+\end{align}
+The quantum version will be
+\begin{align}
+    \hat{A}_{k}(r,t) = \epsilon_k \sqrt{\frac{\hbar}{2 \epsilon_0 V \omega_k} } \left[\hat{a}_k \exp[i(kr-\omega_k t)] + \hat{a}_k^\dagger \exp[-i(kr-\omega_k t)] \right].
+\end{align}
 
-%\section{Field state of single radiation field mode: Fock States}
+Use the quantum vector potential, we can derive the quantum electric field operator as
+\begin{align}
+    \hat{E}_k(r,t) 
+    &= - \frac{\partial}{\partial t} \hat{A}_k(r,t) \\
+    &= - \epsilon_k \sqrt{\frac{\hbar}{2 \epsilon_0 \omega_k V}} (- \omega_k) \left[i \hat{a}_k \exp[i(kr - \omega_k t)] - i \hat{a}_k^\dagger \exp[-i(kr -\omega t)]\right].
+\end{align}
+Recall that $i = \exp[i \pi/2]$ and define
+\begin{align}
+    \chi_{k}(r,t) 
+    &= -kr + \omega_k t - \pi/2.
+\end{align}
+We then have the compact form
+\begin{align}
+    \hat{E}(r,t) 
+    &= \sum_k \epsilon_k \sqrt{\frac{\hbar \omega_k}{2 \epsilon_0 V}} \left[\hat{a}_k \exp[-i \chi_k(r,t)] + \hat{a}_k^\dagger \exp[i \chi_k(r,t)]\right] \\
+    &= \sum_k \hat{E}_k(r,t) \\
+    &:= \hat{E}^{+}(r,t) + \hat{E}^{-}(r,t).
+    \label{eq: compact form}
+\end{align}
+
+\paragraph{Hamiltonian of Radiation Field}
+The Hamiltonian of Radiation Field is
+\begin{align}
+    \hat{H}_R 
+    &= \frac{1}{2} \int_V dV \left[\epsilon_0 \hat{E} \cdot \hat{E} + \frac{1}{\mu_0} \hat{B} \cdot \hat{B}\right] \\
+    &\qquad\eqnote{$\hat{B}, \hat{E}$ are the quantum operator of $B,E$} \nonumber \\
+    &= \sum_k \frac{\hbar \omega_k}{2} \left[\hat{a}_k^\dagger \hat{a}_k + \hat{a}_k \hat{a}_k^\dagger \right] \\
+    &\qquad\eqnote{Use the commutation relation} \nonumber \\
+    &= \sum_k \left(\hat{a_k}^\dagger \hat{a}_k + 1/2\right).
+\end{align}
+Use this hamiltonian, we derive the energy of multi-mode Fock states as
+\begin{align}
+    \hat{H}_R \vert n_{k_1}, n_{k_2},\dots \rangle
+    &= \sum_k \hbar \omega_k \left(n_k + \frac{1}{2}\right) \vert n_{k_1}, n_{k_2},\dots \rangle
+\end{align}
+using the fact that $\hat{a}_k^\dagger \hat{a}_k$ is the number operator $\hat{n}_k$.
+
+Also the vacuum state energy will be
+\begin{align}
+    E_0
+    &= \sum_k \frac{1}{2} \hbar \omega_k
+\end{align}
+corresponds to 
+\begin{align}
+    \vert 0 \rangle = \vert 0 \rangle \otimes \dots \otimes \vert 0 \rangle.
+\end{align}
+This is divergent, but do not worry. When we calculate the difference, this term will be canceled.
+
+\section{Field state of single radiation field mode: Fock States}
+We focus  discussion on a \textbf{single mode of the radiation field (wave vector $k$)}
+We define the phase factor
+\begin{align}
+    \chi
+    &= \chi_{k}(r,t) = \omega_{k} t - \textbf{kr} - \pi/2.
+\end{align}
+
+Then we have
+\begin{align}
+    \hat{E}(\chi)
+    &= \hat{E}^+(\chi) + \hat{E}^{-}(-\chi) \\
+    &= \left(\frac{\hbar \omega}{2 \varepsilon_0 V}\right)^{1/2} (\hat{a} \exp[-i \chi] + \hat{a}^\dagger \exp[i \chi]).
+\end{align}
+
+We write the field operator in natural units $2 \left(\frac{\hbar \omega}{2 \varepsilon_0 V}\right)^{1/2}$, which is also called vacuum field strength. We then have
+\begin{align}
+    \hat{E}(\chi)
+    &= \frac{1}{2} \left(\hat{a}\exp[-i \chi] - \hat{a}^\dagger \exp[i \chi] \right)
+\end{align}
 
 %\section{Field state of single radiation field mode: Coherent States}
 

@@ -2,7 +2,704 @@
 
 \begin{document}
 
-\section{Quantum Optics}
+\chapter{Quantum Optics by Carlos}
+\section{Prerequisites}
+This section is used to collect the supplementary material to understand the content when I learn this  this course.
+
+\subsection{Position and momentum operators in quantum mechanics}
+In quantum mechanics \textbf{position} and \textbf{momentum} are \textbf{operators}.
+
+\begin{definition}[Position operator]
+    Position operator
+    \begin{align}
+        \hat{X} \psi(x)
+        &= x \psi(x),
+    \end{align}
+    where $x$ is the eigenvalue of $\hat{X}$ acting on $\psi(x)$.
+\end{definition}
+
+$\hat{X}$ and $x$ are different things, i.e., $\hat{X}$ is an operator and $x$ is a variable.
+
+\begin{definition}[Momentum operator]
+  The momentum operator is defined as
+  \begin{align}
+    \hat{P} \psi(x) 
+    &= -i \hbar \frac{\partial}{\partial x} \psi(x).
+  \end{align}
+  When we consider the three dimensional and time dependent case, we have the \textbf{orthogonal components} of a three-dimensional system as
+  \begin{align}
+    \hat{P}_x \psi(x,y,z,t)
+    &= -i \hbar \frac{\partial}{\partial x} \psi(x,y,z,t) \\
+    \hat{P}_y \psi(x,y,z,t)
+    &= -i \hbar \frac{\partial}{\partial y} \psi(x,y,z,t) \\
+    \hat{P}_z \psi(x,y,z,t)
+    &= -i \hbar \frac{\partial}{\partial z} \psi(x,y,z,t).
+  \end{align}
+\end{definition}
+
+ \begin{theorem}[De Broglie principle]
+  $\psi$ can be expressed as
+  \begin{align}
+    \psi
+    &= \exp\left[i (kx - \omega t)\right].
+  \end{align}
+  Then we have
+  \begin{align}
+    \hat{P}_x \psi
+    &= \hbar k \psi,
+  \end{align}
+  where wave-vector $k= 2 \pi / \lambda$ and  $\lambda$ is the wavelength. Thus, the eigenvalue of momentum operator is $\hbar k$.
+ \end{theorem}
+ \begin{proof}
+\begin{align}
+  \hat{P}_x \psi
+  &= -i \hbar \frac{\partial}{\partial x} \psi \\
+  &= -i \hbar (ik \psi) \\
+  &= \hbar k \psi.
+\end{align}
+ \end{proof}
+
+ \begin{proposition}[De Broglie relation]
+  \label{prop: De Broglie relation}
+  We have
+  \begin{align}
+    \lambda
+    &= \frac{h}{p},
+  \end{align}
+  where $\lambda$ is the wavelength, $h$ is Plank constant and $p$ is momentum.
+ \end{proposition}
+
+ \begin{corollary}
+  We have 
+  \begin{align}
+    p
+    &= \hbar k.
+  \end{align}
+ \end{corollary}
+\begin{proof}
+  Start from \ref{prop: De Broglie relation}, we have
+  \begin{align}
+    p
+    &= \frac{h}{\lambda} \\
+    &= \frac{h}{2 \pi / k} \\
+    &= \frac{hk}{2 \pi} \\
+    &= \hbar k.
+  \end{align}
+\end{proof}
+
+\begin{property}
+\begin{itemize}
+  \item $\hat{S} = \hat{A} + \hat{B}$ $\Longrightarrow$ $\hat{S} \psi = \hat{A} \psi + \hat{B} \psi$ 
+  \item $\hat{C} = \beta \hat{B}$ $\Longrightarrow$ $\hat{C} \psi = \beta (\hat{B} \psi)$
+  \item $\hat{A} = \hat{A}^\dagger$, all operators that represent observable are Hermitian (self-adjoint)
+  \item $\hat{A} \hat{B} \neq \hat{B} \hat{A}$ $\Longrightarrow$ If $\hat{M} = \hat{A} \hat{B}$, $\hat{M} \psi = \hat{A} (\hat{B} \psi)$
+  \item The power of an operator: $\hat{X}^2\psi = \hat{X} (\hat{X} \psi) = \hat{X}(x \psi) = x^2 \psi$
+  \item The commutator: $[\hat{A}, \hat{B}] = \hat{A} \hat{B} - \hat{B} \hat{A} \neq 0$, operators generally do not commute. Commutator is also a operator, then we have $[\hat{A}, \hat{B}]\psi = \hat{A} \hat{B} \psi - \hat{B} \hat{A} \psi$.
+\end{itemize}
+\end{property}
+
+\begin{theorem}[Fundamental commutator of position and momentum]
+  \label{thm: commutator of position and momentum}
+  We have the fundamental commutator of position and momentum as
+  \begin{align}
+    [\hat{X}, \hat{P}]
+    &= i \hbar.
+  \end{align}
+\end{theorem}
+\begin{proof}
+  \begin{align}
+    [\hat{X}, \hat{P}] \psi
+    &= \hat{X}\hat{P} \psi - \hat{P} \hat{X} \psi \\
+    &= \hat{X} (-i \hbar)(i k \psi) - \hat{P} (x \psi) \\
+    &= \hat{X} (\hbar k \psi) - (-i \hbar (\psi + i k x \psi)) \\
+    &= x \hbar k \psi - (- i \hbar \psi + \hbar k x \psi) \\
+    &= i \hbar \psi.
+  \end{align}
+  This leads to $[\hat{X}, \hat{P}] = i \hbar$.
+\end{proof}
+
+\begin{corollary}
+  We have Heisenberg Uncertainty Principle
+  \begin{align}
+    \Delta x \Delta p
+    &\geq \frac{\hbar}{2}.
+  \end{align}
+\end{corollary}
+\begin{proof}
+  This can be proved by \ref{thm: commutator of position and momentum}.
+\end{proof}
+
+\section{Ch 12: What are generators in classical mechanics? | Maths of Quantum Mechanics}
+Lagrangian $\mathcal{L}(t,x(t), \cdot{x}(t))$ represents the classical state.
+
+Lagrangian:
+\begin{align}
+  \mathcal{L} = \frac{1}{2} m \dot{x}^2 - V(x)
+\end{align}
+Principle of stationary action.
+\begin{align}
+  S[\mathcal{L}]
+  &= \int_{t_i}^{t_f} dt~\mathcal{L}(t,x(t),\dot{x}(t)).
+\end{align}
+
+Calculus of variations.
+
+Euler-Lagrange equation:
+\begin{align}
+  \frac{\partial \mathcal{L}}{\partial x}
+  &= \frac{d}{d t} \frac{\partial \mathcal{L}}{\partial \dot{x}}.
+\end{align}
+
+\begin{theorem}
+  Euler-Lagrange equation is more abstract version of Newton's second law.
+\end{theorem}
+\begin{proof}
+  
+\end{proof}
+
+\begin{theorem}
+  \begin{itemize}
+    \item momentum is the generator of spatial change
+    \begin{align}
+      \frac{\partial \mathcal{L}}{\partial x}
+      &= \frac{d}{d t} p.
+    \end{align}
+    \item position is the generator of momentum change
+    \begin{align} 
+      \frac{\partial \mathcal{L}}{\partial p}
+      &= \frac{d}{d t} x.
+    \end{align}
+    \item energy is the generator of time change
+    \begin{align}
+      \frac{\partial \mathcal{L}}{\partial t}
+      &= - \frac{d}{d t} E.
+    \end{align}
+    \item angular momentum is the generator of rotational change
+    \begin{align}
+      \frac{\partial \mathcal{L}}{\partial \theta}
+      &= \frac{d}{d t} L.
+    \end{align}
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  
+\end{proof}
+
+How is this related to quantum mechanics: recall we think about $\mathcal{L} \Longleftrightarrow \vert \psi \rangle$. They are both mathematical objects that contains all the information about the partical!
+
+\subsection{Ch 13: Where does the Schrödinger equation come from? | Maths of Quantum Mechanics}
+Time evolution in quantum mechanics?
+\begin{theorem}
+  The Schrödinger equation is derived as
+  \begin{align}
+    i \hbar \frac{d}{d t}\vert \psi \rangle
+    &= \hat{H} \vert \psi \rangle.
+  \end{align}
+\end{theorem}
+\begin{proof}
+  
+\end{proof}
+
+\subsection{SPDC}
+This content is from 'Q-Leap Edu Quantum Communications' from YouTube.
+
+Spontaneous parametric down-conversion (SPDC) is a process useful in generating entangled pairs of photons.
+
+
+Use linear polarization to encode a qubit.
+
+
+How do polarized photons interact with a BBO? That depends on the optical axis of the crystal.
+
+
+Here we have two figures to show this.
+
+
+Polarization of the photon pairs is opposite to the pump!
+
+
+How do we create entangled photons?
+
+
+\begin{itemize}
+  \item BBO crystals must be very thin to ensure indistinguishability.
+  \item SPDC is a rare process. Expect 1 photon pair per $10^6$ pump photons in state-of-the-art experiments.
+\end{itemize}
+
+\subsection{Schrodinger vs. Heisenberg pictures of quantum mechanics}
+This content is from 'Professor M does Science' from YouTube.
+
+\paragraph{Schrodinger picture: state}
+$t_0: \vert \psi_s(t_0) \rangle \Longrightarrow t: \vert \psi_s(t) \rangle$. From the postulates of quantum mechanics, the evolution of state is described by Schrodinger picture:
+\begin{align}
+    i \hbar \frac{d}{d t} \vert \psi_s(t) \rangle
+    &= \hat{H}_s(t) \vert \psi_s(t) \rangle.
+\end{align}
+
+\paragraph{Schrodinger picture: observable}
+\begin{itemize}
+    \item Time independent observable e.g.
+    \begin{align}
+        &\textrm{momentum operator}~\hat{P}_s \longrightarrow - i \hbar \frac{d}{d x} \\
+        &\textrm{kinetic energy operator}~\frac{\hat{P}_s}{2 m} \longrightarrow - \frac{\hbar^2}{2 m }\frac{d^2}{d x^2}.
+    \end{align}
+    \item Time dependent observable e.g.
+    \begin{align}
+        \hat{H}_s(t)
+        &= \frac{\hat{P}_s^2}{2 m} + V(\hat{x}_s) \sin(\omega t).
+    \end{align}
+\end{itemize}
+
+\paragraph{Time evolution operator}
+We have
+\begin{align}
+    \vert \psi_s(t) \rangle 
+    &= \hat{U}(t, t_0) \vert \psi_s(t_0) \rangle,
+\end{align}
+where subindex $s$ means we work in Schrödinger picture, $\hat{U}(t,t_0)$ is the time evolution operator which depends on the intial time $t_0$ and time $t$. This is the same of Schrodinger equation. They are both in Schrodinger picture. Combine the time evolution operator and Schrodinger picture, we have
+\begin{align}
+    \label{eq: combine the time evolution operator and Schrodinger picture}
+    i \hbar \frac{d}{d t}\hat{U}(t, t_0)
+    &= \hat{H}_s(t) \hat{U}(t,t_0),
+\end{align}
+satisfying $\hat{U}(t_0,t_0) = I$. For the time independent Hamiltonian $\hat{H}_s(t) = \hat{H}_s$, we have
+\begin{align}
+    \hat{U}(t,t_0)
+    &= \exp\left[-i \hat{H}_s \frac{t-t_0}{\hbar} \right].
+\end{align}
+For time dependent case, we need Dyson series.
+
+\paragraph{Time evolution in quantum mechanics: alternative picture}
+From Schrodinger picture,
+\begin{align}
+    \vert \psi_s(t) \rangle 
+    &= \hat{U}(t, t_0) \vert \psi_s(t_0) \rangle.
+\end{align}
+We then have the expectation value of observable $\hat{A}_s$ as
+\begin{align}
+    \langle \psi_s(t) \vert \hat{A}_s \vert \psi_s(t) \rangle
+    &= \langle \psi_s(t_0) \vert \hat{U}^\dagger(t,t_0) \hat{A}_s \hat{U}(t,t_0) \vert \psi_s(t_0) \rangle \\
+    &= \langle \psi_s(t_0) \vert \hat{A}_H(t) \vert \psi_s(t_0) \rangle \\
+    &= \langle \psi_H(t_0) \vert \hat{A}_H(t) \vert \psi_H(t_0) \rangle,
+\end{align}
+where $\hat{A}_s$ is the observable in Schrödinger picture, $\vert \psi_H \rangle$ is the state in Heisenberg picture, and $\hat{A}_H$ is the observable in Heisenberg picture.
+
+\paragraph{Unitary operator/tranaformation}
+Unitary operator: $\hat{U}^{-1} = \hat{U}^\dagger$ satisfying $\hat{U}^\dagger \hat{U} = \hat{U} \hat{U}^\dagger = I$.
+
+Unitary transformation: 
+\begin{align}
+    \vert \psi \rangle
+    &= \vert \psi^\prime \rangle = \hat{U} \vert \psi \rangle \\
+    \vert \phi \rangle
+    &= \vert \phi^\prime \rangle = \hat{U} \vert \phi \rangle \\
+    &\Longrightarrow \langle \psi^\prime \vert \phi^\prime \rangle = \langle \psi \vert \phi \rangle,
+\end{align}
+which shows unitary transformation preserves inner product.
+
+For observable $\hat{A}$, we have
+\begin{align}
+    &\hat{A} \Longrightarrow \hat{A}^\prime = \hat{U} \hat{A} \hat{U}^\dagger \\
+    &\Longrightarrow \langle \phi^\prime \vert \hat{A}^\prime \vert \psi^\prime \rangle = \langle \phi \vert \hat{A} \vert \psi \rangle.
+\end{align}
+
+\paragraph{Why we can have different pictures of time evolution in quantum mechanics}
+Prediction of quantum mechanics: inner products e.g.
+\begin{align}
+    \vert \psi_s \rangle, \hat{A}_s \vert (u_n)_s \rangle = \lambda_n \vert (u_n)_s \rangle \\
+    P(\lambda_n) = \vert \langle (u_n)_s \vert \psi_s \rangle \vert^2 \\
+    \langle \hat{A} \rangle = \langle \psi_s \vert \hat{A}_s \vert \psi_s \rangle,
+\end{align}
+where $n$ denote $n^{th}$ eigenstate, this leads to the fact that unitary transformations do not change the above results. Therefore,
+\begin{align}
+    &\textbf{unitary transformation to Schrodinger picture} \\
+    &\Longrightarrow \textbf{alternative picture of quantum mechanics}
+\end{align}
+
+\paragraph{Heisenberg picture} 
+\begin{definition}
+    \label{def: heisenberg picture}
+    In the Heisenberg picture, quantum states are time independent.
+\end{definition}
+
+\begin{lemma}
+    \label{lemma: state relation}
+    The relation between the state in Schrodinger picture and the state in Heisenberg picture is 
+    \begin{align}
+        \vert \psi_H \rangle
+        &= \hat{U}^\dagger(t,t_0) \vert \psi_s(t)\rangle \\
+        &= \vert \psi_s(t_0) \rangle,
+    \end{align}
+    where $\vert \psi_H \rangle$ is the state in Heisenberg picture, $\vert \psi_s(t) \rangle$ is the state in the Schrodinger picture and $\vert \psi_s(t_0) \rangle$ is the initial state in the Schrödinger picture.
+\end{lemma}
+\begin{proof}
+    Recall the time evolution:
+    \begin{align}
+        \vert \psi_s(t) \rangle
+        &= \hat{U}(t,t_0) \vert \psi_s(t_0) \rangle.
+    \end{align}
+    By definition \ref{def: heisenberg picture}, we perform $\hat{U}^{-1}(t,t_0)$ on $\vert \psi_s(t) \rangle$ to get the time independent state
+    \begin{align}
+        \hat{U}^{-1}(t,t_0) \vert \psi_s(t) \rangle
+        &= \hat{U}^{-1}(t,t_0) \hat{U}(t,t_0) \vert \psi_s(t_0) \rangle \\
+        &= \vert \psi_s(t_0) \rangle.
+    \end{align}
+    Since $\hat{U}^{-1}(t,t_0) = \hat{U}^\dagger(t,t_0)$, we have
+    \begin{align}
+        \vert \psi_H \rangle
+        &:= \hat{U}^\dagger(t,t_0) \vert \psi_s(t) \rangle \\
+        &= \vert \psi_s(t_0) \rangle.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    \label{lemma: observable relation}
+    The relation of the observable in the Schrodinger and Heisenberg picture is
+    \begin{align}
+        \hat{A}_H(t)
+        &= \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{U}(t,t_0),
+    \end{align}
+    where $\hat{A}_H$ is the observable in the Heisenberg picture and $\hat{A}_s$ is the observable in the Schrödinger picture.
+\end{lemma}
+\begin{proof}
+    Recall the unitary transformation
+    \begin{align}
+        \hat{A}^\prime
+        &= \hat{U} \hat{A} \hat{U}^\dagger,
+    \end{align}
+    and $\hat{U} = \hat{U}^\dagger(t,t_0)$. Then we define $\hat{A}_H = \hat{A}^\prime$, and we get 
+    \begin{align}
+        \hat{A}_H(t)
+        &= \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{U}(t,t_0).
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The expectation value of the observable in Schrodinger picture and Heisenberg picture are the same
+    \begin{align}
+        \langle \psi_s(t) \vert \hat{A}_s(t) \vert \psi_s(t) \rangle 
+        &= \langle \psi_H \vert \hat{A}_H(t) \vert \psi_H\rangle.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        &\qquad\eqnote{Insert the identy $\hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) = I$} \nonumber \\
+        \langle \psi_s(t) \vert \hat{A}_s(t) \vert \psi_s(t) \rangle 
+        &= \langle \psi_s(t)\vert \hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) \vert \psi_s(t) \rangle \\
+        &= \langle \psi_H \vert \hat{A}_H(t) \vert \psi_H \rangle,
+    \end{align}
+    where in the second equation we use the definitions of \ref{lemma: state relation} and \ref{lemma: observable relation}.
+\end{proof}
+
+\paragraph{Dynamics}
+\begin{lemma}
+    \label{lemma: dynamics}
+    We have the dynamics in Heisenberg picture as
+    \begin{align}
+        i \hbar \frac{d}{d t} \hat{A}_H(t) 
+        &= [\hat{A}_H(t), \hat{H}_H(t)] + i \hbar \left[\frac{d}{d t} \hat{A}_s(t) \right]_H.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \frac{d}{d t} \hat{A}_H(t)
+        &= \frac{d}{d t} \left[\hat{U}^\dagger(t,t_0)\hat{A}_s(t) \hat{U}(t,t_0)\right] \\
+        &\qquad\eqnote{Use chain rule} \nonumber \\
+        &= \left[\frac{d}{d t} \hat{U}^\dagger(t,t_0)\right] \hat{A}_s(t) \hat{U}(t,t_0) + \hat{U}^\dagger \left[\frac{d}{d t }\hat{A}_s(t)\right] \hat{U}(t,t_0) \\
+        &+ \hat{U}^\dagger(t,t_0) \hat{A}_s(t)\left[\frac{d}{d t} \hat{U}(t,t_0)\right] \\
+        &\qquad\eqnote{Use \ref{eq: combine the time evolution operator and Schrodinger picture}} \nonumber \\
+        &= \left[-\frac{1}{i \hbar} \hat{U}^\dagger(t,t_0) \hat{H}_s(t) \right] \hat{A}_s(t) \hat{U}(t,t_0) + \hat{U}^\dagger(t,t_0) \left[\frac{d}{d t }\hat{A}_s(t)\right] \hat{U}(t,t_0) \\
+        &+ \hat{U}^\dagger(t,t_0) \hat{A}_s(t)\left[\frac{1}{i \hbar} \hat{H}_s(t)\hat{U}(t,t_0)\right] \\
+        &= \frac{1}{i \hbar} \left[ \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{H}_s(t)\hat{U}(t,t_0)-  \hat{U}^\dagger(t,t_0) \hat{H}_s(t) \hat{A}_s(t) \hat{U}(t,t_0)\right] \\
+        &+ \hat{U}^\dagger(t,t_0) \left[\frac{d}{d t }\hat{A}_s(t)\right] \hat{U}(t,t_0) \\
+        &\qquad\eqnote{Insert the identy $\hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) = I$} \nonumber \\
+        &= \frac{1}{i \hbar} [ \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) \hat{H}_s(t)\hat{U}(t,t_0)\\
+        &-  \hat{U}^\dagger(t,t_0) \hat{H}_s(t) \hat{U}(t,t_0) \hat{U}^\dagger(t,t_0) \hat{A}_s(t) \hat{U}(t,t_0)] + \left[\frac{d}{d t }\hat{A}_s(t)\right]_H \\
+        &= \frac{1}{i \hbar} \left(\hat{A}_H(t) \hat{H}_H(t) - \hat{H}_H(t) \hat{A}_H(t) \right) + \left[\frac{d}{d t }\hat{A}_s(t)\right]_H \\
+        &= \frac{1}{i \hbar} [\hat{A}_H(t), \hat{H}_H(t)]+ \left[\frac{d}{d t }\hat{A}_s(t)\right]_H,
+    \end{align}
+    which lead to
+    \begin{align}
+        i \hbar \frac{d}{d t} \hat{A}_H(t) 
+        &= [\hat{A}_H(t), \hat{H}_H(t)] + i \hbar \left[\frac{d}{d t} \hat{A}_s(t) \right]_H.
+    \end{align}
+\end{proof}
+
+\begin{corollary}
+    When $\hat{A}_s(t) = \hat{A}_s$, we have
+    \begin{align}
+        i \hbar \frac{d}{d t} \hat{A}_H(t) 
+        &= [\hat{A}_H(t), \hat{H}_H(t)].
+    \end{align}
+\end{corollary}
+
+\paragraph{Conservative system}
+\begin{definition}
+    \label{def: conservative system}
+    The conservative system have the following
+    \begin{align}
+        \hat{H}_s(t)
+        &= \hat{H}_s.
+    \end{align}
+\end{definition}
+
+\begin{lemma}
+    \label{lemma: commutation relation}
+    If we have $[\hat{B},\hat{C}]$, then we have
+    \begin{align}
+        [\hat{B}, F(\hat{C})] = 0,
+    \end{align}
+    where $F$ denote any function.
+\end{lemma}
+
+\begin{lemma}
+    Assume we have a conservative system and assume a time independent observable $\hat{A}_s(t) = \hat{A}_s$ satisfying $[\hat{A}_s, \hat{H}_s] = 0$, then we have
+    \begin{align}
+        \hat{A}_H(t) = \hat{A}_s.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Using \ref{lemma: commutation relation} and 
+    \begin{align}
+        \hat{U}(t,t_0)
+        &= \exp\left[-i \hat{H}_s (t-t_0) /\hbar\right],
+    \end{align}
+    we have
+    \begin{align}
+        [\hat{A}_s, \hat{U}(t,t_0)] = 0.
+    \end{align}
+    Then we have
+    \begin{align}
+        \hat{A}_H(t)
+        &= \hat{U}^\dagger(t,t_0) \hat{A}_s \hat{U}(t,t_0) \\
+        &\qquad\eqnote{Use $[\hat{A}_s, \hat{U}(t,t_0)] = 0$} \nonumber \\
+        &= \hat{U}^\dagger(t,t_0) \hat{U}(t,t_0) \hat{A}_s \\
+        &= \hat{A}_s.
+    \end{align}
+\end{proof}
+
+\begin{corollary}
+    The conservative system have the following
+    \begin{align}
+        \hat{H}_H
+        &= \hat{H}_s = \hat{H}.
+    \end{align}
+\end{corollary}
+
+\paragraph{Why we use the Heisenberg picture}
+In the Heisenberg picture, it is easier to reach at Ehrenfest theorem.
+\begin{theorem}
+    The Ehrenfest theorem states that
+    \begin{align}
+        \frac{d}{d t} \langle \hat{A} \rangle
+        &= \frac{1}{i \hbar} \langle [\hat{A}_s(t), \hat{H}_s(t)] \rangle + \langle \frac{d}{d t} \hat{A}_s(t) \rangle.
+    \end{align}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \frac{d}{d t} \langle \hat{A} \rangle
+        &= \frac{d}{d t} \langle \psi_H \vert \hat{A}_H(t)\vert \psi_H \rangle \\
+        &= \langle \psi_H \vert \frac{d}{d t} \hat{A}_H(t)\vert \psi_H \rangle \\
+        &\qquad\eqnote{Use lemma \ref{lemma: dynamics}} \nonumber \\
+        &= \frac{1}{i \hbar} \langle [\hat{A}_H(t), \hat{H}_H(t)] \rangle + \langle \left[\frac{d}{d t} \hat{A}_s(t)\right]_H \rangle.
+    \end{align}
+    We then use the fact that the expectation value is invariant under unitary transformation, which leads to the final result.
+\end{proof}
+
+\paragraph{Summary}
+Here we have a nice table to summarize this subsection!
+
+\section{Part 3. Quantum oscillator in phase space, Wigner function, and Gaussian states}
+\subsection{Quantum oscillator in phase space}
+\subsection{Wigner function}
+\paragraph{Visualizing quantum states in phase space: Wigner function!}
+\begin{itemize}
+    \item $\hat{X}$ and $\hat{P}$'s eigenstates are not physical
+    \item $\hat{X}$ and $\hat{P}$ do not possess common eigenstates
+\end{itemize}
+$\Longrightarrow$ impossible to prepare state where the quadrature take definite values! Most we can offer:
+\begin{itemize}
+    \item Position probability density function (PDF) $\langle x \vert \hat{\rho} \vert x \rangle = \int_{\mathbb{R}}{d p}~w_{\rho}(\overrightarrow{r})$,
+    \item Momentum PDF $\langle p \vert \hat{\rho} \vert p \rangle = \int_{\mathbb{R}}{d x}~w_{\rho}(\overrightarrow{r})$,
+\end{itemize}
+where
+\begin{align}
+    \overrightarrow{r}
+    &= \left(
+        \begin{matrix}
+            x \\
+            p
+        \end{matrix}
+       \right),
+\end{align}
+and $x, p$ are eigenvalues of position and momentum. Is it possible to describe these through a combined PDF, i.e., \textbf{wigner function} $w_{\rho}(\overrightarrow{r})$ in phase space.
+
+\begin{itemize}
+    \item $\hat{\overrightarrow{R}} = \left(
+        \begin{matrix}
+            \hat{X} \\
+            \hat{P}
+        \end{matrix}
+       \right)$, so $[\hat{R_m}, \hat{R}_n] = 2 i \Omega_{mn}$, where $\Omega = \left(
+        \begin{matrix}
+            0  & 1 \\
+            -1 & 0
+        \end{matrix}
+       \right)$ is the sympletic form satisfying $\Omega = - \Omega^T = - \Omega^{-1}$.
+    \item Displacement operator $\hat{D}(\overrightarrow{r}) = \exp\left[{\frac{i}{2} \hat{\overrightarrow{R}}^T \Omega \overrightarrow{r}}\right] = \exp\left[\frac{i}{2}(p \hat{X} - x \hat{P})\right]$
+    \item Define quantum characteristic function $\chi_{\rho}(\overrightarrow{s}) = \langle \hat{D}(\overrightarrow{s})\rangle = \tr[\hat{\rho}\hat{D}(\overrightarrow{s})]$
+\end{itemize}
+Then, we have
+\begin{definition}[Wigner function]
+    The wigner function is defined as
+    \begin{align}
+        w_{\rho}(\overrightarrow{r})
+        &= \int_{\mathbb{R}^2} \frac{d^2\overrightarrow{s}}{(4 \pi)^2} \exp\left[- \frac{i}{2} \overrightarrow{r}^T \Omega \overrightarrow{s}\right] \chi_{\rho}(\overrightarrow{s}).
+    \end{align}
+\end{definition}
+
+\begin{remark}
+    $\overrightarrow{x}^T \Omega \overrightarrow{y} = x_1 y_2 - x_2 y_1$
+
+    \begin{align}
+        &\int_{\mathbb{R}} \frac{d x}{2 \pi} \exp\left[i x p \right]
+        = \delta(p) \\
+        &\Longrightarrow   \int_{\mathbb{R}} \frac{d x}{4 \pi} \exp\left[\frac{i}{2} x p \right]= \delta(p)
+    \end{align}
+
+    \begin{align}
+        &\int_{\mathbb{R}} \frac{d^2 \overrightarrow{r}}{(2 \pi)^2} \exp\left[i \overrightarrow{r}^T \overrightarrow{s} \right]
+        = \delta^{(2)}(\overrightarrow{s}) \\
+        &\Longrightarrow  \int_{\mathbb{R}} \frac{d^2 \overrightarrow{r}}{(4 \pi)^2} \exp\left[\frac{i}{2} \overrightarrow{r}^T \Omega \overrightarrow{s} \right]
+        = \delta^{(2)}(\overrightarrow{s})
+    \end{align}
+\end{remark}
+
+\begin{lemma}
+    We have the right marginals:
+    \begin{align}
+        \int_{\mathbb{R}}d p~w_{\rho}(\overrightarrow{r}) 
+        &= \langle x \vert \hat{\rho} \vert x \rangle.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \int_{\mathbb{R}}d p~w_{\rho}(\overrightarrow{r}) 
+        &= \int_{\mathbb{R}} \frac{d^2 \overrightarrow{r}^\prime}{4 \pi} \exp\left[- \frac{i}{2} x p^\prime \right] \int_{\mathbb{R}} \frac{d p}{4 \pi} \exp\left[\frac{i}{2}p x^\prime\right] \chi_{\rho}(\overrightarrow{r}^\prime) \\
+        &\qquad\eqnote{$\int_{\mathbb{R}} \frac{d p}{4 \pi} \exp\left[\frac{i}{2}p x^\prime\right] = \delta(x^\prime)$} \nonumber \\
+        &= \int_{\mathbb{R}} \frac{d p^\prime}{4 \pi} \exp\left[- \frac{i}{2} x p^\prime\right] \tr[\hat{\rho} \hat{D}(0, p^\prime)] \\
+        &\qquad\eqnote{$\hat{D}(0, p^\prime) = \exp\left[\frac{i}{2} p^\prime \hat{X} \right]$} \nonumber \\
+        &= \int_{\mathbb{R}} \frac{d p^\prime}{4 \pi} \exp\left[- \frac{i}{2} x p^\prime\right] \int_{\mathbb{R}} d x^\prime \langle x^\prime \vert \hat{\rho} \exp\left[\frac{i}{2} p^\prime \hat{X} \right] \vert x^\prime \rangle \\
+        &= \int_{\mathbb{R}} d x^\prime \int_{\mathbb{R}} \frac{d p^\prime}{4 \pi} \exp\left[\frac{i}{2} (x^\prime - x)p^\prime\right] \langle x^\prime \vert \hat{\rho} \vert x' \rangle \\
+        &= \langle x \vert \hat{\rho} \vert x \rangle.
+    \end{align}
+\end{proof}
+
+\begin{property}
+    \begin{itemize}
+        \item     
+        \begin{align}
+            \int_{\mathbb{R}}d p~w_{\rho}(\overrightarrow{r}) 
+            &= \langle x \vert \hat{\rho} \vert x \rangle.
+        \end{align}
+        \item $w_{\rho}(\overrightarrow{r}) \in \mathbb{R}, \forall (\overrightarrow{r}, \hat{\rho})$
+        \item $\int_{\mathbb{R}} d^2 \overrightarrow{r} w_{\rho}(\overrightarrow{r}) = 1$ 
+        \item $\langle (\hat{X}^m \hat{P}^n)^{(s)} \rangle = \int_{\mathbb{R}^2} d^2 \overrightarrow{r} w_{\rho}(\overrightarrow{r}) x^m p^n$, where for example 
+        \begin{align}
+            (\hat{X}^2 \hat{P})^{(s)} = \frac{1}{3}\left(\hat{X}^2 \hat{P} + \hat{X} \hat{P} \hat{X} + \hat{P} \hat{X}^2 \right)
+        \end{align}
+        \item $\int_{\mathbb{R}^2} d^2 \overrightarrow{r} w_{\rho}^2(\overrightarrow{r}) \leq \frac{1}{4 \pi} \Longrightarrow \textrm{No divergence!}$ 
+        \item Unique-state correspondence: $\rho = \int_{\mathbb{R}^2} = \frac{d^2 \overrightarrow{s}}{4 \pi} \hat{D}^\dagger(\overrightarrow{s}) \chi_{\rho}(\overrightarrow{s})$ 
+        \item Wigner's original: $w_{\rho}(\overrightarrow{r}) = \int_{\mathbb{R}} \frac{d y}{4 \pi} \exp\left[- \frac{i}{2} p y\right] \langle x+y/2 \vert \hat{\rho} \vert x - y/2 \rangle$
+        \item
+        \begin{align}
+            \tr\left[\hat{\rho_1} \hat{\rho_2}\right] 
+            &= 4 \pi \int_{\mathbb{R}^2} w_{\rho_1}(\overrightarrow{r}) w_{\rho_2}(\overrightarrow{r}) \\
+            &\qquad\eqnote{When $\hat{\rho_j} = \vert \psi_j \rangle \langle \psi_j \vert$} \nonumber \\
+            &= \vert \langle \psi_1 \vert \psi_2 \rangle \vert^2 \\
+            &\qquad\eqnote{Choose $\langle \psi_1 \vert \psi_2 \rangle = 0$} \nonumber \\
+            &= 0,
+        \end{align}
+        which implies that \textbf{$w_{\rho}(\overrightarrow{r})$ is negative for some $(\rho, \overrightarrow{r})$}. $\Longrightarrow$ It is not a true PDF ! $\Longrightarrow$  quantum mechanics $\neq$ noise on classical mechanics.
+    \end{itemize}
+\end{property}
+
+\begin{example}
+    The wigner function of number states can be derived as
+    \begin{align}
+        w_{\vert n \rangle}(\overrightarrow{r}) 
+        &= \frac{(-1)^n}{2 \pi} L_n(\overrightarrow{r}^2) \exp\left[- \frac{\overrightarrow{r}^2}{2}\right].
+    \end{align}
+    Negativity is a smoking gun for quantum phenomena in experiments! There is a nich figure in the video!
+\end{example}
+\begin{proof}
+    It can be found in the lecture notes.
+\end{proof}
+
+\subsection{Gaussian states}
+\begin{definition}
+    Gaussian states are equivalent to statistics defined from $1^{st}$ and $2^{nd}$ order moments $\langle \hat{R}_j \rangle$, $\langle \hat{R}_j \hat{R}_l \rangle$. It's wigner function is
+    \begin{align}
+        w_{\rho}(\overrightarrow{r})
+        &= \frac{1}{2 \pi \sqrt{det~V}} \exp\left[-\frac{1}{2} (\overrightarrow{r} - \overrightarrow{d})^T V^{-1} (\overrightarrow{r} - \overrightarrow{d})\right].
+    \end{align}
+\end{definition}
+
+\begin{theorem}[Gaussian integral theorem]
+    We have
+    \begin{align}
+        \int_{\mathbb{R}} d^N \overrightarrow{r} \exp\left[- \frac{1}{2} \overrightarrow{r}^T A \overrightarrow{r} + \overrightarrow{x}^T \overrightarrow{r}\right] 
+        &= \sqrt{\frac{(2 \pi)^N}{det~A}} \exp\left[\frac{1}{2} \overrightarrow{x}^T A^{-1} \overrightarrow{x}\right].
+    \end{align}
+\end{theorem}
+
+\begin{lemma}
+    The mean vector of Gaussian states is
+    \begin{align}
+        d_j 
+        &= \int_{\mathbb{R}^2} d^2 \overrightarrow{r} w_{\rho}(\overrightarrow{r}) r_j \\
+        &= \langle \hat{R}_j \rangle \\
+        &\longrightarrow \overrightarrow{d} = \langle \hat{\overrightarrow{R}} \rangle.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}
+    The covariance matrix of Gaussian states is
+    \begin{align}
+        V_{jl}
+        &= \int_{\mathbb{R}} d^2 \overrightarrow{r} w_{\rho}(\overrightarrow{r}) w_{\rho}(\overrightarrow{r}) \delta r_j \delta r_l \\
+        &= \frac{1}{2} \langle \delta \hat{R}_j \delta \hat{R}_l + \delta \hat{R}_l \delta \hat{R}_j \rangle 
+    \end{align}
+    with $\delta \overrightarrow{r} = \overrightarrow{r} - \overrightarrow{d}$ and $\delta \hat{A} = \hat{A} - \langle \hat{A} \rangle$ ($V(A) = \langle \delta \hat{A}^2 \rangle$). These leads to covariance matrix 
+    \begin{align}
+        V
+        &= \langle \delta \hat{\overrightarrow{R}} \delta \hat{\overrightarrow{R}}^T \rangle - i \Omega.
+    \end{align}
+\end{lemma}
+
+\begin{theorem}[Gaussian moment theorem]
+    \begin{align}
+        \int_{\mathbb{R}^2} d^2 \overrightarrow{r}~w_{\rho}(\overrightarrow{r}) \delta r_{j1} \delta r_{j2} \dots \delta_{jN}
+        &= 
+        \left\{\begin{matrix}
+            0,~for~odd~N \\
+            \sum_{\left\{i_1,..., i_N\right\} \in all~(N-1)!!~pairings} V_{i1 i2} V_{i3 i4} \dots V_{i{N-1} i{N}}~for~each~N
+        \end{matrix}
+        \right.
+    \end{align}
+\end{theorem}
+
+\begin{example}
+    $N=4$: $\int_{\mathbb{R}^2} \overrightarrow{r} w_{\rho}(\overrightarrow{r}) \delta x \delta p \delta x \delta p = V_{12} V_{21} + V_{11} V_{22} + V_{12}V_{21}$.
+\end{example}
+
+\begin{example}
+    \begin{align}
+        \langle \hat{X}^3 \rangle
+        &= \langle (\delta \hat{X} + \langle \hat{X} \rangle)^3 \rangle \\
+        &= \langle \delta \hat{X}^3 \rangle + 2 \langle \hat{X} \rangle \langle \delta \hat{X}^2 \rangle + 2 \langle \hat{X} \rangle^2 \langle \delta \hat{X} \rangle + \langle \hat{X} \rangle^3.
+    \end{align}
+\end{example}
 
 
 \end{document}
