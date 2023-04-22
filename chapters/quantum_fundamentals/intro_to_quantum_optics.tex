@@ -1,8 +1,13 @@
 \documentclass[../../note.tex]{subfiles}
-
+\usepackage{authblk}
 \begin{document}
 
-\chapter{Introduction to Quantum Optics by Immanuel}
+\title{\textbf{Note}}
+\author{Zanqiu Shen}
+\affil{University of Toronto}
+\maketitle
+
+\chapter{Introduction to Quantum Optics}
 \section{Introduction}
 \begin{itemize}
     \item classicaal: classical atom and light
@@ -987,7 +992,7 @@ $\hat{a}_k \vert n_k \rangle = \sqrt{n_k} \vert n_k -1 \rangle$: decrease photon
 
 $\hat{a}_k^\dagger \vert n_k \rangle = \sqrt{n_k + 1}  \vert n_k +1 \rangle$: increase photon number by one photon.
 
-\textbf{Number operator}: $\hat{n}_k \vert n_k \rangle = n_k \vert n_k \rangle$.
+\textbf{Number operator}: $\hat{n}_k \vert n_k \rangle = n_k \vert n_k \rangle$. $\hat{a}^\dagger_k \hat{a}_k = \hat{n}_k$.
 
 \textbf{Fock state}: $\vert n_k \rangle$. Fock state is the eigenstate of quantum harmonic oscillator.
 
@@ -1089,22 +1094,699 @@ Then we have
 We write the field operator in natural units $2 \left(\frac{\hbar \omega}{2 \varepsilon_0 V}\right)^{1/2}$, which is also called vacuum field strength. We then have
 \begin{align}
     \hat{E}(\chi)
-    &= \frac{1}{2} \left(\hat{a}\exp[-i \chi] - \hat{a}^\dagger \exp[i \chi] \right)
+    &= \frac{1}{2} \left(\hat{a}\exp[-i \chi] - \hat{a}^\dagger \exp[i \chi] \right).
 \end{align}
 
-%\section{Field state of single radiation field mode: Coherent States}
+\textbf{Fock states}: $\vert n \rangle$ means $n$ photons in radiation mode, also means eigenstate of number operator $\hat{n}$.
+\begin{align}
+    \hat{H} \vert n \rangle
+    &= \hbar \omega(\hat{a}^\dagger \hat{a} + \frac{1}{2}) \vert n \rangle \\
+    &= \hbar\omega(\hat{n} + \frac{1}{2}) \vert n \rangle \\
+    &= \hbar \omega (n + \frac{1}{2}) \vert n \rangle.
+\end{align}
 
-%\section{Quadrature Operators and Phase Space of Field States}
+\begin{lemma}
+    Fluctuations in $n$ is
+    \begin{align}
+        (\Delta n)^2 = 0.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        (\Delta n)^2
+        &= \langle n \vert (\hat{n} - \langle \hat{n} \rangle)^2 \vert n \rangle \\
+        &= \langle n \vert (\hat{n}^2 - 2 \langle \hat{n} \rangle \hat{n} + \langle \hat{n} \rangle^2)\vert n \rangle \\
+        &= \langle n \vert \hat{n}^2 \vert n \rangle - 2 \langle \hat{n} \rangle^2 + \langle \hat{n} \rangle^2 \\
+        &= \langle n \vert \hat{n}^2 \vert n \rangle - \langle n \vert \hat{n} \vert n \rangle^2 \\
+        &= \langle n \vert n^2 \vert n \rangle - \langle n \vert n \vert n \rangle^2 \\
+        &= n^2 - n^2 \\
+        &= 0,
+    \end{align}
+    where we use
+    \begin{align}
+        \langle n \vert \hat{n} \vert n \rangle = \langle \hat{n} \rangle.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The expectation value of the field is
+    \begin{align}
+        E = \langle n \vert \hat{E}(\chi) \vert n \rangle = 0.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        E 
+        &= \langle n \vert \hat{E}(\chi) \vert n \rangle \\
+        &= \frac{1}{2} \langle n \vert \hat{a} \exp[-i \chi] + \hat{a}^\dagger \exp[i \chi] \vert n \rangle \\
+        &= \frac{1}{2} \langle n \vert \hat{a} \exp[-i \chi] \vert n \rangle + \frac{1}{2} \langle n \vert \hat{a}^\dagger \exp[i \chi] \vert n \rangle \\
+        &= 0 + 0 \\
+        &= 0.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    Field fluctuations is
+    \begin{align}
+        (\Delta E(\chi))^2
+        &= \frac{1}{2} (n+\frac{1}{2}).
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        (\Delta E(\chi))^2
+        &= \langle n \vert \hat{E}(\chi)^2 \vert n \rangle - \langle n \vert \hat{E}(\chi) \vert n \rangle^2 \\
+        &= \langle n \vert \hat{E}(\chi)^2 \vert n \rangle - 0 \\
+        &= \frac{1}{4} \langle n \vert (\hat{a}\exp[-i \chi] + \hat{a}^\dagger \exp[i \chi])^2 \vert n \rangle \\
+        &= \frac{1}{4} \langle n \vert \hat{a}^2 \exp[-2 i \chi] + \hat{a}^{\dagger 2} \exp[2 i \chi] + \hat{a}\hat{a}^\dagger + \hat{a}^\dagger \hat{a} \vert n \rangle \\
+        &= \frac{1}{4} \langle n \vert 2 \hat{n} + 2 \vert n \rangle \\
+        &= \frac{1}{4} \langle n \vert 2 n + 1 \vert n \rangle \\
+        &= \frac{1}{2} (n+\frac{1}{2}).
+    \end{align}
+\end{proof}
+
+When $n = 0$, which is vacuum state, we have the standard deviation as $1/2$, which is half of the unit, i.e., vacuum field strength.
+
+\section{Field state of single radiation field mode: Coherent States}
+\paragraph{How to reproduce classical motion}
+Superposition of Fock states reproduces oscillating wavepacket motion! 
+\begin{align}
+    \vert \alpha \rangle 
+    &\propto \exp[-i\frac{1}{2} \omega t] \vert 0 \rangle +  \exp[-i\frac{3}{2} \omega t] \alpha \vert 1 \rangle +
+    \exp[-i\frac{5}{2} \omega t] \frac{\alpha^2}{\sqrt{2}}\vert 2 \rangle + \dots \\
+    &= \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n !}} \exp\left[-i E_n t / \hbar \right].
+\end{align}
+
+\textbf{What we want:} states of light, whose expectation value corresponds to classical e.m. waves!
+
+\textbf{Solotion:} Coherent States
+\begin{definition}
+    Coherent States:
+    \begin{align}
+        \vert \alpha \rangle = \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n !}} \vert n \rangle,
+    \end{align}
+    where $\alpha$ is complex number, amplitude of coherent state. $\alpha = \vert \alpha \vert \exp[i \theta]$, $\vert n \rangle$ is the fock state.
+\end{definition}
+
+\begin{lemma}
+    Coherent state is normalized: $\langle \alpha \vert \alpha \rangle = 1$.
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \langle \alpha \vert \alpha \rangle
+        &= \exp\left[- \vert \alpha \vert^2 \right] \sum_{n, n^\prime} \frac{(\alpha^\ast)^n \alpha^{n^\prime}}{ \sqrt{n!} \sqrt{n^\prime !}} \langle n \vert n^\prime \rangle \\
+        &= \exp\left[-\vert \alpha \vert^2 \right] \sum_{n=0}^{\infty} \frac{\vert \alpha \vert^{2 n}}{n !} \\
+        &= \exp\left[-\vert \alpha \vert^2 \right] \exp\left[+ \vert \alpha \vert^2 \right] \\
+        &= 1.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    Coherent state is quasi orthogonal: $\vert \alpha - \beta \vert >> 1 \longrightarrow \vert \langle \alpha \vert \alpha \rangle \vert \rightarrow 0$.
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \langle \alpha \vert \beta \rangle
+        &= \exp\left[-\frac{1}{2} \vert \alpha \vert^2 - \frac{1}{2} \vert \beta \vert^2 + \alpha^\ast \beta \right].
+    \end{align}
+    \begin{align}
+        \vert \langle \alpha \vert \beta \rangle \vert^2
+        &= \langle \alpha \vert \beta \rangle^\ast \langle \alpha \vert \beta \rangle \\
+        &= \exp\left[- \vert \alpha \vert^2 - \vert \beta \vert^2 + \alpha^\ast \beta + \beta^\ast \alpha   \right] \\
+        &= \exp\left[- \vert \alpha -\beta \vert^2 \right].
+    \end{align}
+    We have $\vert \alpha - \beta \vert >> 1 \longrightarrow \vert \langle \alpha \vert \alpha \rangle \vert \rightarrow 0$, which is called quasi-orthogonal.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma: coherent state robust}
+    Coherent states are eigenstates of destruction operator $\hat{a} \vert \alpha \rangle = \alpha \vert \alpha \rangle$.
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \hat{a} \vert \alpha \rangle
+        &= \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n !}} \vert n \rangle \\
+        &= \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n !}} \hat{a} \vert n \rangle \\
+        &= \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{n=1}^{\infty} \frac{\alpha^n}{\sqrt{n !}} \sqrt{n}\vert n-1 \rangle \\
+        &= \alpha \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{n=1}^{\infty} \frac{\alpha^{n-1}}{\sqrt{(n-1) !}} \vert n-1 \rangle \\
+        &\qquad\eqnote{k:= n-1} \nonumber \\
+        &= \alpha \exp\left[-\frac{1}{2} \vert \alpha \vert^2 \right] \sum_{k=0}^{\infty} \frac{\alpha^{k}}{\sqrt{k !}} \vert k \rangle \\
+        &= \alpha \vert \alpha \rangle.
+    \end{align}    
+\end{proof}
+
+\begin{lemma}
+    \label{lemma: The average photon number of coherent states}
+    The average photon number of coherent states: $\overline{n} = \vert \alpha \vert^2$.
+\end{lemma}
+\begin{proof}
+\begin{align}
+    \overline{n}
+    &= \langle \alpha \vert \hat{n} \vert \alpha \rangle  \\
+    &= \langle \alpha \vert \hat{a}^\dagger \hat{a} \vert \alpha \rangle \\
+    &\qquad\eqnote{Use \ref{lemma: coherent state robust}} \nonumber \\
+    &= \langle \alpha^\ast \alpha \vert \alpha \rangle \\
+    &= \vert \alpha \vert^2 \langle \alpha \vert \alpha \rangle \\
+    &= \vert \alpha \vert^2.
+\end{align}
+\end{proof}
+\SZQ{2023.04.20: coherent state is robust!}
+
+\begin{lemma}
+    Photon number variance of coherent states is
+    \begin{align}
+        (\Delta n)^2
+        &= \overline{n}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        (\Delta n)^2
+        &= \langle \alpha \vert \hat{n}^2 \vert \alpha \rangle - \langle \alpha \vert \hat{n} \vert \alpha \rangle^2 \\
+        &= \langle \hat{a}^\dagger \hat{a} \hat{a}^\dagger \hat{a} \vert \alpha \rangle - \vert \alpha \vert^4 \\
+        &\qquad\eqnote{$\hat{a} \hat{a}^\dagger = \hat{a}^\dagger \hat{a} + 1$} \nonumber \\
+        &= \langle \alpha \vert \hat{a}^\dagger \hat{a}^\dagger \hat{a} \hat{a} \vert \alpha \rangle + \langle \hat{a}^\dagger \hat{a} \vert \alpha \rangle - \vert \alpha \vert^4 \\
+        &= \vert \alpha \vert^2 \\
+        &= \overline{n}.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The photon number distribution is
+    \begin{align}
+        P(n)
+        &= \vert \langle n \vert \alpha \rangle \vert^2 \\
+        &= \vert \langle n \vert \exp\left[-\frac{\vert \alpha \vert^2}{2}\right] \sum_{n^\prime=0}^{\infty} \frac{\alpha^{n^\prime}}{\sqrt{n !}} \vert n^{\prime} \rangle \vert^2 \\
+        &= \vert \exp\left[-\frac{\vert \alpha \vert^2}{2}\right] \sum_{n^\prime=0}^{\infty} \frac{\alpha^{n^\prime}}{\sqrt{n !}} \langle n \vert n^{\prime} \rangle \vert^2 \\
+        &= \vert \exp\left[-\frac{\vert \alpha \vert^2}{2}\right]  \frac{\alpha^{n}}{\sqrt{n !}}  \vert^2 \\
+        &= \exp\left[-\vert \alpha \vert^2 \right] \frac{\vert \alpha\vert^{2 n}}{n !} \\
+        &\qquad\eqnote{Use lemma \ref{lemma: The average photon number of coherent states}} \nonumber \\
+        &= \exp\left[- \overline{n}\right] \frac{\overline{n}^n}{n !}.
+    \end{align}
+\end{lemma}
+
+This is known as \textbf{Poisson distribution}. The standard deviation is
+\begin{align}
+    \Delta n = \sqrt{\overline{n}}.
+\end{align}
+The standard deviation relative to the mean is
+\begin{align}
+    \frac{\Delta n}{\overline{n}} = \frac{1}{\sqrt{\overline{n}}},
+\end{align}
+which shows that the fluctuations is smaller and smaller when the mean becomes larger and larger.
+
+For large $\overline{n}$, we have
+\begin{align}
+    P(n) \simeq \frac{1}{\sqrt{2 \pi \overline{n}}} \exp\left[- \frac{1}{2} \frac{(n-\overline{n})^2}{\overline{n}}\right].
+\end{align}
+\SZQ{$\simeq$ means asymptoticallly equal to.}
+
+\begin{lemma}
+    The expectation value of the field operator
+    \begin{align}
+        \langle \alpha \hat{E}(\chi) \vert \alpha \rangle 
+        &= \frac{1}{2} (\langle \alpha \vert \hat{a} \exp\left[-i \chi\right] + \hat{a}^\dagger \exp\left[i \chi\right] \vert \alpha \rangle) \\
+        &= \frac{1}{2}\left(\langle \alpha \vert \hat{a}\exp\left[-i \chi\right] \vert \alpha \rangle + \langle \alpha \vert \hat{a}^\dagger\exp\left[i \chi\right] \vert \alpha \rangle \right) \\
+        &= \frac{1}{2}\left(\alpha \exp\left[-i \chi \right]+ \alpha^\ast \exp\left[i \chi\right]\right) \\
+        &= \vert \alpha \vert \cos\left(\chi - \theta \right),
+    \end{align}
+    where $\alpha$ is the complex amplitude and $\alpha = \vert \alpha \vert \exp\left[i \theta \right]$.
+\end{lemma}
+
+We can plot $ \langle \alpha \vert \hat{E}(\chi) \vert \alpha \rangle $ in Phasor Diagram in terms of $\vert \alpha \vert$ and $\theta$.
+
+\begin{lemma}
+    The fluctuations (variance) of the E-field 
+    \begin{align}
+        (\Delta \hat{E}(\chi))^2
+        &= \langle \alpha \vert \hat{E}(\chi)^2\vert \alpha \rangle - \langle \alpha \vert \hat{E}(\chi) \vert \alpha \rangle^2 = \frac{1}{4}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        (\Delta \hat{E}(\chi))^2
+        &= \langle \alpha \vert \hat{E}(\chi)^2\vert \alpha \rangle - \langle \alpha \vert \hat{E}(\chi) \vert \alpha \rangle^2 \\
+        &= \frac{1}{4} \langle \alpha \vert \left[\hat{a}\exp\left[-i \chi\right] + \hat{a}^\dagger \exp\left[i \chi\right]\right]^2 \vert \alpha \rangle - \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \frac{1}{4} \langle \alpha \vert \hat{a}^2 \exp\left[-2 i \chi\right] + \hat{a}^{\dagger 2} \exp\left[2 i \chi \right] + \hat{a} \hat{a}^\dagger + \hat{a}^\dagger \hat{a} \vert \alpha \rangle - \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \frac{1}{4} \left(\alpha^2 \exp\left[-2 i \chi\right] + \alpha^{\ast 2} \exp\left[2 i \chi\right] + 2 \vert \alpha \vert^2 + 1 \right) - \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \frac{1}{4} \left(\vert \alpha \exp\left[-i \chi \right] + \alpha^\ast \exp\left[i \chi \right]\vert^2 + 1\right) - \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \frac{1}{4} \left(4 \vert \alpha \vert^2 \cos^2(\chi - \theta) + 1 \right)- \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \vert \alpha \vert^2\cos^2\left(\chi - \theta \right) + \frac{1}{4} - \vert \alpha \vert^2 \cos^2\left(\chi - \theta \right) \\
+        &= \frac{1}{4}.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The expectation value of the Energy of Coherent States
+    \begin{align}
+        \langle \alpha \vert \hat{H} \vert \alpha \rangle
+        &= \hbar \omega (\overline{n} + 1/2).
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \langle \alpha \vert \hat{H} \vert \alpha \rangle
+        &= \hbar \omega \langle \alpha \vert \hat{n} + \frac{1}{2} \vert \alpha \rangle \\
+        &= \hbar \omega\left(\vert \alpha \vert^2 + 1/2 \right) \\
+        &= \hbar \omega \left(\overline{n} + \frac{1}{2}\right).
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The fluctuations of the energy of coherent States
+    \begin{align}
+        \Delta H = \hbar \omega \vert \alpha \vert.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        (\Delta H)^2
+        &= \langle \alpha \vert \hat{H}^2 \vert \alpha \rangle - \langle \alpha \vert \hat{H} \vert \alpha \rangle^2,
+    \end{align}
+    where 
+    \begin{align}
+        \langle \alpha \vert \hat{H}^2 \vert \alpha \rangle
+        &= \langle \alpha \vert (\hbar \omega(\hat{n} + \frac{1}{2}))^2 \vert \alpha \rangle \\
+        &= \hbar^2 \omega^2 \langle \alpha \vert \hat{n}^2 + \hat{n} + \frac{1}{4} \vert \alpha \rangle \\
+        &= \hbar^2 \omega^2 \left(\vert \alpha \vert^4 + \vert \alpha \vert^2 + \frac{1}{4} \right).
+    \end{align}
+    Then 
+    \begin{align}
+        (\Delta H)^2
+        &=\hbar^2 \omega^2\left(\vert \alpha \vert^4 + \vert \alpha \vert^2 + \frac{1}{4}\right) - \hbar^2 \omega^2 \left(\vert \alpha \vert^2 +\frac{1}{2}\right)^2 \\
+        &= 0
+    \end{align}
+\end{proof}
+\SZQ{2023.04.21: I derive wrong answer. Where is the mistake?}
+
+\section{Quadrature Operators and Phase Space of Field States}
+
+\begin{definition}
+    \label{def: quadrature variables}
+    Classical eletromagnetic field is
+    \begin{align}
+        E(t)
+        &= E_0 \cos\left(\omega t + \theta \right) \\
+        &= E_0 \cos \theta \cos \omega t - E_0 \sin \theta \sin \omega t \\
+        &= X_1 \cos \omega t + X_2 \sin \omega t,
+    \end{align}
+    where $X_1, X_2$ are quadrature variables defined as
+    \begin{align}
+        X_1
+        &= E_0 \cos \theta \\
+        X_2
+        &= - E_0 \sin \theta.
+    \end{align}
+\end{definition}
+
+\begin{definition}
+    \label{def: Phasor representation of field}
+    Phasor representation of field
+    \begin{align}
+        a(t)
+        &= E_0 \exp\left[-i \theta\right] \exp\left[-i \omega t\right] = a \exp\left[-i \omega t\right],
+    \end{align}
+    where $a$ is defined as $E_0 \exp\left[-i \theta\right]$. \textbf{$a(t)$ is called the phaor}.
+\end{definition}
+
+\begin{lemma}[Relations between the Phasor representation and quadrature variables]
+    \label{lemma: Relations between the Phasor representation and quadrature variables}
+    \begin{align}
+        a = X_1 + i X_2.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    By definition \ref{def: Phasor representation of field},
+    \begin{align}
+        a 
+        &= E_0 \exp\left[-i \theta\right] \\
+        &= E_0 \left(\cos \theta - i \sin \theta \right) \\
+        &= E_0 \cos \theta - i E_0 \sin \theta \\
+        &\qquad\eqnote{By definition \ref{def: quadrature variables}} \nonumber \\
+        &= X_1 + i X_2.
+    \end{align}
+\end{proof}
+\SZQ{2023.04.21: $a$ is determined by $E_0$ and $\theta$.}
+
+\begin{corollary}
+    \begin{align}
+        X_1
+        &= Re(a) = \frac{1}{2} \left(a+a^\ast\right) \\
+        X_2
+        &= Im(a) = \frac{1}{2 i} \left(a - a^\ast\right).
+    \end{align}
+\end{corollary}
+\begin{proof}
+    By lemma \ref{lemma: Relations between the Phasor representation and quadrature variables}, we can prove this corollary.
+\end{proof}
+
+\paragraph{Quantum-Quadrature Operators}
+\begin{definition}
+    Quadrature operators:
+    \begin{align}
+        \hat{x}
+        &\hat{=} \hat{X}_1 = \frac{1}{2} \left(\hat{a} + \hat{a}^\dagger \right) \\
+        \hat{p}
+        &\hat{=} \hat{X}_2 = \frac{1}{2 i} \left(\hat{a} - \hat{a}^\dagger\right).
+    \end{align}
+\end{definition}
+\SZQ{$\hat{=}$ means "define"}
+\SZQ{Quadrature operators are \textbf{Hermitian operators}, i.e., observables.}
+
+\begin{lemma}
+    The commutation and uncertainty relations:
+    \begin{align}
+        \left[\hat{X}_1, \hat{X}_2\right] = \frac{i}{2} \\
+        \Delta X_1 \Delta X_2 \geq \frac{1}{4}.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+\begin{definition}
+    Generalized  quadrature operators have the same commutation relations with quadrature operators:
+    \begin{align}
+        \hat{X}_{\phi}
+        &= \frac{1}{2} \left(\hat{a} \exp\left[-i \phi\right] + \hat{a}^\dagger \exp\left[i \phi\right]\right) \\
+        \hat{X}_{\phi + \frac{\pi}{2}}
+        &= \frac{1}{2 i} \left(\hat{a} \exp\left[-i \phi\right] - \hat{a}^\dagger \exp\left[i \phi\right]\right).
+    \end{align}
+\end{definition}
+
+\paragraph{Phase space distribution of field states}
+\begin{lemma}
+    In vacuum state $\vert 0 \rangle$, we have
+    \begin{align}
+        P^{(0)}(X_1) = \vert \langle X_1 \vert 0 \rangle \vert^2 
+        &= \sqrt{\frac{2}{\pi}} \exp\left[-2 X_1^2\right] \\
+        P^{(0)}(X_2) = \vert \langle X_2 \vert 0 \rangle \vert^2 
+        &= \sqrt{\frac{2}{\pi}} \exp\left[-2 X_2^2\right].\\
+        \textrm{Fluctuations:} \Delta X_1
+        &= \sqrt{\langle 0 \vert \hat{X}_1^2\vert 0 \rangle - \langle 0 \vert \hat{X}_1 \vert 0 \rangle^2} = \frac{1}{2}.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}
+    In fock state $\vert n \rangle$, we have
+    \begin{align}
+        P^{(n)}(X_1)
+        &= \vert \langle X_1 \vert n \rangle \vert^2 \\
+        &= \sqrt{\frac{2}{\pi}} \frac{1}{2^n n!} \exp\left[-2 X_1^2 \right] \left(H_n(\sqrt{2} X_1)\right)^2\\
+        \Delta X_1
+        &= \frac{1}{2} \sqrt{2 n + 1}.
+    \end{align}
+\end{lemma}
+
+\paragraph{Coherent state - A displaced vacuum}
+\begin{definition}
+    Displacement operator (shifts any coherent state by $\alpha$)
+    \begin{align}
+        \hat{D}(\alpha)
+        &= \exp\left[\alpha \hat{a}^\dagger - \alpha^\ast \hat{a}\right].
+    \end{align}
+\end{definition}
+
+\begin{corollary}
+    Coherent state from vacuum state
+    \begin{align}
+        \vert \alpha \rangle
+        &= \hat{D}(\alpha) \vert 0 \rangle.
+    \end{align}
+\end{corollary}
+
+\paragraph{Squeezed states of light}
+We have nice pictures in the video.
+
+We have phase squeezed state and amplitude squeezed state.
 
 %\section{Thermal Radiation States and Planck's Black Body Radiation Formula}
 
-%\section{The Classical Beamsplitter}
+\section{The Classical Beamsplitter}
+Assume all beams have same polarization and frequency. We input $E_1, E_2$ and output $E_3, E_4$. There is a nice picture to illustrate it. Then we have
+\begin{align}
+    E_3 
+    &= R E_1 + T E_2 \\
+    E_4 
+    &= T^\prime E_1 + R^\prime E_2,
+\end{align}
+which is 
+\begin{align}
+    \left(\begin{matrix}
+        E_3 \\
+        E_4
+    \end{matrix}\right)
+    &=  \left(\begin{matrix}
+        R & T \\
+        T^\prime & R^\prime 
+    \end{matrix}\right) 
+    \left(\begin{matrix}
+        E_1 \\
+        E_2
+    \end{matrix}\right),
+\end{align}
+where $R, R^\prime$ denote reflection coefficients, which are complex coefficients, $T, T^\prime$ denote transmission coefficients, which are complex coefficients. 
 
-%\section{The Quantum Beamsplitter}
+The simplified case: symmetric Beamsplitter
+\begin{align}
+    \label{eq: classical beam splitter}
+    \left(\begin{matrix}
+        E_3 \\
+        E_4
+    \end{matrix}\right)
+    &=  \left(\begin{matrix}
+        R & T \\
+        T & R 
+    \end{matrix}\right) 
+    \left(\begin{matrix}
+        E_1 \\
+        E_2
+    \end{matrix}\right).
+\end{align}
 
+\begin{lemma}
+    \label{lemma: energy conservation of classical beam splitter}
+    The energy conservation 
+    \begin{align}
+        \vert E_1 \vert^2 + \vert E_2 \vert^2
+        &=  \vert E_3 \vert^2 + \vert E_4 \vert^2
+    \end{align}
+    leads to 
+    \begin{align}
+        \vert R \vert^2 + \vert T \vert^2 = 1 \\
+        R T^\ast + T R^\ast = 0.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \vert E_3 \vert^2 + \vert E_4 \vert^2
+        &= (R E_1 + T E_2) (R E_1 + T E_2)^\ast + (T E_1 + R E_2) (T E_1 + R E_2)^\ast \\
+        &= \vert R \vert^2 \vert E_1 \vert^2 + \vert T \vert^2 \vert E_2 \vert^2 + R T^\ast E_1 E_2^\ast + T R^\ast E_2 E_1^\ast \\
+        &+ \vert T \vert^2 \vert E_1 \vert^2 + \vert R \vert^2 \vert E_2 \vert^2 + T R^\ast E_1 E_2^\ast + R T^\ast E_2 E_1^\ast \\
+        &= (\vert R \vert^2 + \vert T \vert^2) \vert E_1 \vert^2 + (\vert R \vert^2 + \vert T \vert^2) \vert E_2 \vert^2 \\
+        &+ (R T^\ast + T R^\ast) E_1 E_2^\ast + (R T^\ast + T R^\ast) E_2 E_1^\ast \\
+        &= \vert E_1 \vert^2 + \vert E_2 \vert^2.
+    \end{align}
+    Therefore,
+    \begin{align}
+        \vert R \vert^2 + \vert T \vert^2 = 1 \\
+        R T^\ast + T R^\ast = 0.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    Define $R = \vert R \vert e^{i \phi_R}$ and $T = \vert T \vert e^{i \phi_T}$. We have $\phi_R - \phi_T = \frac{\pi}{2}$.
+\end{lemma}
+\begin{proof}
+    By the second requirement in \ref{lemma: energy conservation of classical beam splitter}, we have
+    \begin{align}
+        \vert R \vert \vert T \vert e^{i(\phi_R - \phi_T)} + \vert R \vert \vert T \vert e^{-i(\phi_R - \phi_T)} = 0.
+    \end{align}
+    So 
+    \begin{align}
+        2 \cos(\phi_R - \phi_T) = 0,
+    \end{align}
+    leads to
+    \begin{align}
+        \phi_R - \phi_T = \frac{\pi}{2}.
+    \end{align}
+\end{proof}
+
+Set $\phi_T = 0$, then $\phi_R = \frac{\pi}{2}$. We then have
+\begin{align}
+    E_3
+    &= i \vert R \vert E_1 + \vert T \vert E_2 \\
+    E_4
+    &= \vert T \vert E_1 + i \vert R \vert E_2.
+\end{align}
+
+\paragraph{50/50 beamsplitter input-output}
+Symmetrized beamsplitter input-output relations
+\begin{align}
+    \label{eq: 50/50 classical beam splitter}
+    \left(\begin{matrix}
+        E_3 \\
+        E_4
+    \end{matrix}\right)
+    &=  \frac{1}{\sqrt{2}}\left(\begin{matrix}
+        i & 1 \\
+        1 & i 
+    \end{matrix}\right) 
+    \left(\begin{matrix}
+        E_1 \\
+        E_2
+    \end{matrix}\right).
+\end{align}
+\textbf{In this case, light is always equally splited in port 3 and port 4.}
+
+\section{The Quantum Beamsplitter}
+In the quantum beamsplitter, $E_1, E_2, E_3, E_4$ are replaced by $\hat{a}_1, \hat{a}_2, \hat{a}_3, \hat{a}_4$. There is a nice picture. We have
+\begin{align}
+    \hat{a}_3 
+    &= R \hat{a}_1 + T \hat{a}_2 \\
+    \hat{a}_4 
+    &= T \hat{a}_1 + R \hat{a}_2,
+\end{align}
+which is 
+\begin{align}
+    \left(\begin{matrix}
+        \hat{a}_3 \\
+        \hat{a}_4
+    \end{matrix}\right)
+    &=  \left(\begin{matrix}
+        R & T \\
+        T & R 
+    \end{matrix}\right) 
+    \left(\begin{matrix}
+        \hat{a}_1 \\
+        \hat{a}_2
+    \end{matrix}\right),
+\end{align}
+where $R$ denotes reflection coefficient, which is complex coefficient, $T$ denotes transmission coefficient, which is complex coefficient. 
+
+\textbf{What about $\hat{a}_1$ and $\hat{a}_2$?}
+\begin{lemma}
+    \begin{align}
+        \hat{a}_1
+        &= R^\ast \hat{a}_3 + T^\ast \hat{a}_4 \\
+        \hat{a}{2}
+        &= T^\ast \hat{a}_3 + R^\ast \hat{a}_4.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Recall that 
+    \begin{align}
+        \hat{a}_3 
+        &= R \hat{a}_1 + T \hat{a}_2 \\
+        \hat{a}_4 
+        &= T \hat{a}_1 + R \hat{a}_2.
+    \end{align}
+    We have
+    \begin{align}
+        R^\ast \hat{a}_3
+        &= \vert R \vert^2 \hat{a}_1 + R^\ast T \hat{a}_2 \\
+        T^\ast \hat{a}_4 
+        &= \vert T \vert^2 \hat{a}_1 + T^\ast R \hat{a}_2.
+    \end{align}
+    Sum two equations, we have
+    \begin{align}
+        (\vert R \vert^2 + \vert T \vert^2) \hat{a}_1 + R^\ast T \hat{a}_2 + T^\ast R \hat{a}_2 
+        &= R^\ast \hat{a}_3 + T^\ast \hat{a}_4.
+    \end{align}
+    Use lemma \ref{lemma: energy conservation of classical beam splitter}, we have
+    \begin{align}
+        \hat{a}_1
+        &= R^\ast \hat{a}_3 + T^\ast \hat{a}_4.
+    \end{align}
+    Similarly, we can get
+    \begin{align}
+        \hat{a}_2 = T^\ast \hat{a}_3 + R^\ast \hat{a}_4.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    We have the creation operators
+    \begin{align}
+        \hat{a}_1^\dagger 
+        &= R \hat{a}_3^\dagger + T \hat{a}_4^\dagger \\
+        \hat{a}_2^\dagger
+        &= T \hat{a}_3^\dagger + R \hat{a}_4^\dagger \\
+        \hat{a}_3^\dagger
+        &= R^\ast \hat{a}_1^\dagger + T^\ast \hat{a}_2^\dagger \\
+        \hat{a}_4^\dagger
+        &= T^\ast \hat{a}_1^\dagger + R^\ast \hat{a}_2^\dagger.
+    \end{align}
+\end{lemma}
+
+\paragraph{Single photon on BS}
+\textbf{Input state}
+We have a nice picture in the video.
+\begin{align}
+    \vert 1 \rangle_1 \vert 0 \rangle_2 \\
+    \vert 1 \rangle_1 \vert 0 \rangle_2 = \hat{a}_1^\dagger \vert 0 \rangle_1 \vert 0 \rangle_2
+\end{align}
+
+\textbf{Output state}
+\begin{align}
+    \hat{a}_1^\dagger = R \hat{a}_3^\dagger + T \hat{a}_4^\dagger.
+\end{align}
+This shows how $\hat{a}_1^\dagger$ is splitted in port 3 and port 4. We have the output state as
+\begin{align}
+    \left(R \hat{a}_3^\dagger + T\hat{a}_4^\dagger \right) \vert 0 \rangle_3 \vert 0 \rangle_4
+    &= R \vert 1 \rangle_3 \vert 0 \rangle_4 + T \vert 0 \rangle_3 \vert 1 \rangle_4,
+\end{align}
+which is an entangled state of photon between field modes.
+
+\paragraph{Single photon on 50/50 BS}
+We have
+\begin{align}
+     \frac{1}{\sqrt{2}} (i \vert 1 \rangle_3 \vert 0 \rangle_4 + \vert 0 \rangle_3 \vert 1 \rangle_4).
+\end{align}
+
+\begin{lemma}
+    Average output photon number at port 3
+    \begin{align}
+        \langle \hat{n}_3 \rangle = \frac{1}{2},
+    \end{align}
+    and at port 4
+    \begin{align}
+        \langle \hat{n}_4 \rangle = \frac{1}{2},
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \langle \hat{n}_3 \rangle 
+        &= \langle \hat{a}_3^\dagger \hat{a}_3 \rangle \\
+        &= _2\langle 0 \vert _1\langle 1 \vert \hat{a}_3^\dagger \hat{a}_3 \vert 1 \rangle_1 \vert 0 \rangle_2 \\
+        &= _2\langle 0 \vert _1\langle 1 \vert (R^\ast \hat{a}_1^\dagger + T^\ast \hat{a}_2^\dagger)(R \hat{a}_1 + T \hat{a}_2)\vert 1 \rangle_1 \vert 0 \rangle_2 \\
+        &\qquad\eqnote{number operator $\hat{n} = \hat{a}^\dagger \hat{a}$} \nonumber \\
+        &= \vert R \vert^2 _2\langle 0 \vert _1\langle 1 \vert  1 \rangle_1 \vert 0 \rangle_2 \\
+        &= \frac{1}{2}.
+    \end{align}
+    Similiarly, we have
+    \begin{align}
+        \langle \hat{n}_4 \rangle = \frac{1}{2}.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    Correlations
+    \begin{align}
+        \langle \hat{n}_3 \hat{n}_4 \rangle&= _2\langle 0 \vert _1\langle 1 \vert \hat{n}_3^\dagger \hat{n}_4 \vert 1 \rangle_1 \vert 0 \rangle_2 = 0.
+    \end{align}
+\end{lemma}
+
+\begin{remark}
+    \begin{itemize}
+        \item non-classical Correlations.
+        \item due to entangled single photon state between field modes.
+    \end{itemize}
+\end{remark}
+
+\textbf{What about coherent states?}
 %\section{The Quantum Mach-Zehnder Interferometer}
 
-%\section{Balanced Homodyne Detection}
+\section{Balanced Homodyne Detection}
 
 %\section{Quantized Light-Atom Interaction}
 
