@@ -1465,6 +1465,7 @@ We can plot $ \langle \alpha \vert \hat{E}(\chi) \vert \alpha \rangle $ in Phaso
 \end{proof}
 
 \begin{definition}
+    \label{def: Generalized  quadrature operators}
     Generalized  quadrature operators have the same commutation relations with quadrature operators:
     \begin{align}
         \hat{X}_{\phi}
@@ -1705,6 +1706,7 @@ where $R$ denotes reflection coefficient, which is complex coefficient, $T$ deno
 \end{proof}
 
 \begin{lemma}
+    \label{lemma: creation operators}
     We have the creation operators
     \begin{align}
         \hat{a}_1^\dagger 
@@ -1790,24 +1792,35 @@ We have
 Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, where $\vert \beta \rangle$ is the coherent state.
 
 \begin{lemma}
-    Difference photoncurrent
+    For a balanced 50/50 beamsplitter, difference photoncurrent
     \begin{align}
         i_{34} \propto -2 \vert \beta \vert \langle \hat{X} \left(\phi + \pi/2 \right) \vert \Psi \rangle.
     \end{align}
 \end{lemma}
 \begin{proof}
+    For a balanced 50/50 beamsplitter, $T = \frac{1}{\sqrt{2}}, R = \frac{1}{\sqrt{2}} i$. Recall that \ref{lemma: creation operators}, $\hat{a}_4 = T \hat{a}_1 + R \hat{a}_2$. We then have
     \begin{align}
         \hat{n}_4
         &= \hat{a}_4^\dagger \hat{a}_4 \\
-        &= \\
+        &= (T^\ast \hat{a}_1^\dagger + R^\ast \hat{a}_2^\dagger)(T \hat{a}_1 + R \hat{a}_2)\\
+        &= (\frac{1}{\sqrt{2}} \hat{a}_1^\dagger - \frac{1}{\sqrt{2}} i \hat{a}_2^\dagger)(\frac{1}{\sqrt{2}} \hat{a}_1 + \frac{1}{\sqrt{2}} i \hat{a}_2) \\
+        &= \frac{1}{2} (\hat{a}_1^\dagger - i \hat{a}_2^\dagger)(\hat{a}_1 + i \hat{a}_2) \\
+        &= \frac{1}{2}(\hat{a}_1^\dagger \hat{a}_1 - i \hat{a}_2^\dagger \hat{a}_1 + i \hat{a}_1^\dagger \hat{a}_2 + \hat{a}_2^\dagger \hat{a}_2).
+    \end{align}
+    Similarly, we have
+    \begin{align}
         \hat{n}_3 
         &= \hat{a}_3^\dagger \hat{a}_3 \\
-        &= \\
+        &= \frac{1}{2}(\hat{a}_1^\dagger \hat{a}_1 + i \hat{a}_2^\dagger \hat{a}_1 - i \hat{a}_1^\dagger \hat{a}_2 + \hat{a}_2^\dagger \hat{a}_2).
     \end{align}
+    We have $\beta = \vert \beta \vert \exp\left[i \phi\right]$.Then,
     \begin{align}
         i_{34} = i_3 -i_4 \propto \langle in \vert \hat{n}_3 - \hat{n}_4 \vert in \rangle 
         &= -2 _1\langle \Psi \vert _2\langle \beta \vert \frac{1}{2 i} \left(\hat{a}_2^\dagger \hat{a}_1 - \hat{a}_1^\dagger \hat{a}_2\right) \vert \beta \rangle_2 \vert \Psi \rangle_1 \\
-        &= ,
+        &= -2 _1 \langle \Psi \vert \frac{1}{2 i} \left(\beta^\ast \hat{a}_1 - \hat{a}_1^\dagger \beta \right) \vert \Psi \rangle_1 \\
+        &=  -2 \vert \beta \vert _1 \langle \Psi \vert \frac{1}{2 i} \left(\hat{a}_1 \exp\left[-i \phi \right] - \hat{a}_1^\dagger \exp\left[i \phi\right] \right) \vert \Psi \rangle_1 \\
+        &\qquad\eqnote{By \ref{def: Generalized  quadrature operators}} \nonumber \\
+        &= -2 \vert \beta \vert _1\langle \Psi \vert \hat{X}_1(\phi + \frac{\pi}{2}) \vert \Psi \rangle_1, 
     \end{align}
     where $\vert \beta \vert$ is the amplification of quadrature signal.
 \end{proof}
@@ -1819,7 +1832,7 @@ Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, w
 
 %\section{Interaction of TLA with a Coherent State}
 
-%\section{Primer on Cabity Quantum Electrodynamics}
+%\section{Primer on Cavity Quantum Electrodynamics}
 
 %\section{Seeing a Single Photon without Destroying it}
 
