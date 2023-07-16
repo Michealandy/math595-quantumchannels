@@ -3,11 +3,38 @@
 \begin{document}
 
 \chapter{Sensing}
-\section{Joint measurement of TFE via SFG}
-\section{Mathematical preliminaries}
+\section{Quantum state distrimination with Bosonic channels aand Gaussian states}
+This PhD thesis is written by Sihui Tan, who is the one that first propose Quantum Illumination. So this thesis is a very valuable material to learn QI.
 
-\section{Physics preminaries}
-\subsection{SFE}
+\subsection{Mathematical preliminaries}
+\begin{definition}[Direct sum of matrix]
+    
+\end{definition}
+
+\subsection{Physics preliminaries}
+
+
+\subsection{Introduction}
+
+
+\subsection{Problem formulation}
+
+\subsection{Protocol}
+
+\subsection{Protocol Details}
+
+
+\subsection{Performance evaluation}
+
+
+\section{Joint Measurement of TFE via SFG \cite{liu2020joint}}
+\subsection{Mathematical preliminaries}
+\begin{proposition}[The Fourier Transform of 1]
+    
+\end{proposition}
+
+\subsection{Physics preliminaries}
+\begin{definition}[Sum Frequency Generation (SFG)]
 The SFG process in a $\chi^{(2)}$ nonlinear medium could be modeled as the following evolution operator:
 \begin{align}
     \label{evolution operator of sfg process}
@@ -15,17 +42,50 @@ The SFG process in a $\chi^{(2)}$ nonlinear medium could be modeled as the follo
     &= I + \varepsilon\left(\int {\rm d}\omega_p {\rm d}\omega_s{\rm d}\omega_i a_p^\dagger(\omega_p)a_s(\omega_s)a_i(\omega_i)\delta(\omega_p - \omega_s - \omega_i) - H.C. \right),
 \end{align}
 where photons in the signal mode $a_s(\omega_s)$ and ideler mode $a_i(\omega_i)$ are annihilated to generate photons in the pump mode $a_p(\omega_p)$ and $\varepsilon$ characterizes the interaction strength. The SPDC process is the time-reversal process of SFG, which can also be described by the same revolution operator.
+\end{definition}
 
-\subsection{SPDC}
+\begin{definition}[SPDC]
+    
+\end{definition}
 
-\section{Introduction}
+\begin{definition}[Evolution operator]
+    
+\end{definition}
 
-\section{Terminology}
+\begin{theorem}[Schmidt' decomposition \cite{nielsen_chuang_2019}]
+    
+\end{theorem}
 
-\section{Problem formulation}
+\begin{definition}[Schmidt's number \cite{nielsen_chuang_2019}]
+    
+\end{definition}
+
+\begin{definition}[Heisenberg picture]
+    
+\end{definition}
+
+\begin{proposition}[The relationship between annihilation operator and frequency]
+    
+\end{proposition}
+
+\begin{definition}[Time Correlation]
+    
+\end{definition}
+
+\begin{definition}[Frequency/Spectral/Energy Correlation]
+    
+\end{definition}
+
+
+\subsection{Introduction}
+SPDC is widely adopted to generate TFE photons. SFG can be used to perform TFE joint-measurement.
+
+\SZQ{2023.06.03: TFE joint-measurement is just entangled measurement. SPDC is similart to unitary evolution for state preparation, in particular, the time-frequency entangled states. Thus, the reversed process SPDC, i.e., SFG process, is the entangled measurement. This is analogy to bell state preparation and bell measurements.}
+
+\subsection{Problem formulation}
 The frequency sum and time difference of two photons could be simultaneously measured through the sum-frequency generation process.
 
-\section{Protocol}
+\subsection{Protocol}
 Given the close connection between the spontaneous parametric down-conversion (SPDC) process and time-frequency entanglement (TFE), it's natural to utilize the time-reversal of the SPDC process, i.e., sum frequency generation (SFG) to obtain a TFE joint measurement based protocol.
 
 \begin{definition}[Frequency sum (FS) operator]
@@ -271,16 +331,199 @@ Given the close connection between the spontaneous parametric down-conversion (S
     \end{align}
 \end{theorem}
 
-\section{Performance evaluation}
+\subsection{Performance evaluation}
 
 \begin{lemma}
     \begin{align}
     \end{align}
 \end{lemma}
 
+\subsection{Ideas}
 
-%\addcontentsline{toc}{section}{References}
-%\bibliographystyle{alpha}
-%\bibliography{../../references.bib}
+\section{Optimum Mixed-State Discrimination for Noisy Entanglement-Enhanced Sensing \cite{zhuang2017optimum}}
+\subsection{Mathematical preliminaries}
+
+
+\subsection{Physics preliminaries}
+
+
+\subsection{Introduction}
+
+
+\subsection{Problem formulation}
+
+
+\subsection{Protocol}
+
+
+\subsection{Protocol Details}
+
+
+\subsection{Performance evaluation}
+
+\begin{lemma}
+    \begin{align}
+    \end{align}
+\end{lemma}
+
+\subsection{Ideas}
+
+\section{Quantum Estimation Methods for Quantum Illumination \cite{sanz2017quantum}}
+\subsection{Mathematical preliminaries}
+\begin{definition}[Quantum Fisher Information (QFI)]
+    \label{dfe: qfi}
+    Define a quantum state $\rho_{\eta}$ parameterized by $\eta$. Then the QFI for $\rho_{\eta}$ is
+    \begin{align}
+        H
+        &:= 2 \sum_{mn} \frac{\vert \langle \phi_m \vert (\partial_{\eta}\rho_{\eta}\vert_{\eta=0}\vert \phi_{n}\rangle)\vert^2}{\lambda_m + \lambda_n},
+    \end{align}
+    where $\lambda_n$ is the eigenvalue of $\rho_{\eta=0}$ corresponding to the eigenstate $\vert \phi_n \rangle$, and the derivative is evaluated as $\eta=0$.
+\end{definition}
+
+\begin{definition}[Crame\'r-Rao Bound (CROB) in Eq. (2) \cite{sanz2017quantum}]
+    \label{def: crob}
+    The CROB asserts that the limits on the achievable precision of an unbiased estimator $\tilde{\eta}$ is
+    \begin{align}
+        \Delta \tilde{\eta}^2 \geq \frac{1}{MH},
+    \end{align}
+    where $H$ is the QFI (\ref{def: qfi}) of $\rho_{\eta}$ and $M$ is the number of copies. 
+\end{definition}
+
+\begin{theorem}[Cram\'er-Chernoff theorem \cite{hayashi2002two}]
+    \label{thm: cct}
+    
+\end{theorem}
+
+\subsection{Physics preliminaries}
+
+
+\subsection{Introduction}
+
+
+\subsection{Problem formulation}
+The quantum illumination problem is modeled as a \textbf{Reflectivity Estimation Problem} as the following.
+
+Let us consider a general bipartite pure state representation of sinal-ideler system written in the Schmidt decomposition form
+\begin{align}
+    \vert \psi \rangle_{SI}
+    &= \sum_{\alpha} \sqrt{p_{\alpha}} \vert w_{\alpha} \rangle_S \vert v_{\alpha} \rangle_I.
+\end{align}
+
+In the Quantum Illumimation (QI) protocol, the signal modes of $M$ copies of $\vert \psi \rangle_{SI}$ are sent to the target region embedded in a bright thermal noise, in which there could possibly be an object. We receive $M$ copies of the state
+\begin{align}
+    \rho_{\eta}
+    &= \tr\left[U_{\eta} \psi \bigotimes \rho_B U_{\eta}^{\dagger}\right],
+\end{align}
+where 
+\begin{align}
+    U_{\eta}
+    &:= \exp[\sin^{-1}(\eta) - s^\dagger b - s b^\dagger] \simeq \exp[\eta(s^\dagger b - s b^\dagger)]
+\end{align}
+is the signal-object interaction, modeled as a beamsplitter with amplitude reflectivity $\eta << 1$, and 
+\begin{align}
+    \rho_B
+    &:= \sum_n \frac{N_B^n}{(1+N_B)^{1+n}} \vert n \rangle \langle n \vert
+\end{align} 
+is the thermal state with mean photon number $N_B$.
+
+In this framework, at the receiver side, $\eta=0$ corresponds to the absence of the object in the target region. We note $\eta$ is unknown parameter. So we measurement $\rho_{\eta}$ many times and get the estimation $\tilde{\eta}$. We then use $\hat{\eta}$ to determine whether is target is absent or present. This lie in the Estimation problem and state discrimination problem!
+
+\subsection{Protocol}
+The quantum illumination protocl has beed presented the last subsection. Here, we focus on the estimation protocol.
+
+The main idea of the estimation protocol is to use QFI (\ref{def: qfi}) and CROB (\ref{def:crob}) for estimating $\eta$.
+\begin{lemma}[The QFI for the returned state $\rho_{\eta}$ in Eq. (3) \cite{sanz2017quantum}]
+    \label{lemma: qfi of returned state}
+    The QFI for $\rho_{\eta}$ is
+    \begin{align}
+        H
+        &:= \frac{4}{1+N_B} \sum_{\alpha \alpha^\prime} \frac{p_\alpha p_{\alpha^\prime}}{p_{\alpha^\prime} + p_{\alpha} \frac{N_B}{1+N_B}} \vert \langle w_{\alpha^\prime} \vert s \vert w_{\alpha} \rangle \vert^2.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    
+\end{proof}
+
+We choose the observable that optimize the QFI of the returned state (\ref{{lemma: qfi of returned state}}) and measure $\rho_{\eta}$, the outcome is $o_i$. Then by the strong law of large numbers, we perform the sample mean as
+\begin{align}
+    \label{eq: estimation of eta}
+    \tilde{\eta}
+    &= \frac{1}{M} \sum_{i=1}^{M} o_i.
+\end{align}
+
+\begin{algorithm}[H]
+    \caption{QI estimation protocol}
+    \label{ptl: quantum illumination estimation protocol}
+    \begin{algorithmic}[1]
+    \REQUIRE $\vert \psi_{SI} \rangle$: the signal-idler state, \\
+    \hskip1.4em $\eta$: the reflectivity parameter,\\
+    \hskip1.4em $\rho_B$: the thermal state \\
+    \hskip1.4em $M$: the number of copies of $\vert \psi_{SI} \rangle$ \\
+    \ENSURE Estimation of the reflectivity $\tilde{\eta}$.  
+    \FOR{$i = 1, \cdots, M$}
+    \STATE Sent the signal mode of $ \psi_{SI}^{(1)}$ to the target region,
+    \STATE Rceive the state $\rho_{\eta}^{(1)}$,
+    \STATE \textbf{Choose the observable that optimize the QFI},
+    \STATE Measure the observable and get the outcome $o_i$.
+    \ENDFOR
+    \STATE Calculate $\tilde{\eta} (\ref{eq: estimation of eta})$.
+    \STATE Output the estimated reflectivity parameter $\tilde{\eta}$.
+    \end{algorithmic}
+\end{algorithm}
+
+After that, we use the estimation $\tilde{\eta}$ for state discrimination.
+
+
+\begin{algorithm}[H]
+    \caption{QI discrimination protocol}
+    \label{ptl: quantum illumination discrimination protocol}
+    \begin{algorithmic}[1]
+    \REQUIRE $\tilde{\eta}$: the estimation reflectivity, \\
+    \hskip1.4em $\xi$: the scaling parameter.\\
+    \ENSURE Absent or present.  
+    \IF{$\tilde{\eta} > \xi \eta$}
+        \STATE Output present.
+    \ELSIF{$\tilde{\eta} \leq \xi \eta$}
+        \STATE Output absent.
+    \ELSE
+        \STATE Output 'Wrong input!'
+    \ENDIF
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Protocol Details}
+
+
+\subsection{Performance evaluation}
+\begin{theorem}[Type I-II error probabilities Theorem in \cite{sanz2017quantum}]
+    Let $\vert \psi \rangle_{SI} = \sqrt{p_\alpha}\vert n \rangle_S \vert v_n \rangle_I$ be the Schmidt decomposition of the signal-idler state, and denote $\rho_S$ the state of the signal. Then $P_{I, II} \sim \exp\left(-\frac{\eta_{I, II}^2 H M}{2}\right)$ provided that $\exists C >0$ s.t. $\langle s^k s^{\dagger k} \rangle_{\rho_S} \leq k !C^k, \forall k \in \cN$.
+\end{theorem}
+\begin{proof}
+    
+\end{proof}
+
+\subsection{Exapmles}
+\begin{example}[Gaussian states]
+ 
+\end{example}
+
+\begin{example}[Schr\"{o}dinger's cat state]
+ 
+\end{example}
+
+\subsection{Main ideas summarized}
+This subsection summarizes the main ideas in this paper.
+
+Choose the observable that optimize the QFI.
+
+
+\subsection{Ideas}
+How many copies of $\psi_{SI}$ is needed to achieve a given confidence interval? This is a problem about the quantum resources?
+
+
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{alpha}
+\bibliography{../../references}
 
 \end{document}

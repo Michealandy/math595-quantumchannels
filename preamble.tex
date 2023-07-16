@@ -30,6 +30,10 @@
 \usepackage{multicol}
 \usepackage[framemethod=TikZ]{mdframed}
 
+\usepackage{algorithm,algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\tr}{Tr}  % trace
 
@@ -95,3 +99,61 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 \usepackage{subfiles}
 \newcommand\eqnote[1]{\text{\color{blue}{\tiny\sffamily #1}}}
+
+%%%%%%%%%%%% Quantum setting
+% \newcommand{\ket}[1]{\left\vert{#1}\right\rangle}
+% \newcommand{\bra}[1]{\left\langle{#1}\right\vert}
+\newcommand{\ketbra}[2]{\vert{#1}\rangle\!\langle{#2}\vert}
+\newcommand\proj[1]{\vert{#1}\rangle\!\langle{#1}\vert}
+\newcommand{\linear}[1]{\mathscr{L}(#1)}
+\newcommand{\herm}[1]{\mathscr{L}^\dagger(#1)}
+\newcommand{\pos}[1]{\mathscr{P}(#1)}
+\newcommand{\density}[1]{\mathscr{D}(#1)}
+\newcommand{\opn}[1]{\operatorname{#1}}
+\newcommand{\sgn}[1]{\operatorname{sgn}\left({#1}\right)}
+% \DeclareMathOperator{\tr}{Tr}  % trace
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\ox}{\otimes}
+\def\ve{\varepsilon}
+\newcommand{\norm}[2]{\ensuremath{\left\lVert#1\right\rVert_{#2}}}%
+\newcommand{\Fid}{\operatorname{F}} % squared fidelity
+\newcommand{\unitary}[1]{\mathscr{U}(#1)}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\renyi}{Rényi}
+
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+\newcommand*{\cA}{\mathcal{A}}
+\newcommand*{\cB}{\mathcal{B}}
+\newcommand*{\cC}{\mathcal{C}}
+\newcommand*{\cD}{\mathcal{D}}
+\newcommand*{\cE}{\mathcal{E}}
+\newcommand*{\cF}{\mathcal{F}}
+\newcommand*{\cG}{\mathcal{G}}
+\newcommand*{\cH}{\mathcal{H}}
+\newcommand*{\cI}{\mathcal{I}}
+\newcommand*{\cJ}{\mathcal{J}}
+\newcommand*{\cK}{\mathcal{K}}
+\newcommand*{\cL}{\mathcal{L}}
+\newcommand*{\cM}{\mathcal{M}}
+\newcommand*{\cN}{\mathcal{N}}
+\newcommand*{\cO}{\mathcal{O}}
+\newcommand*{\cP}{\mathcal{P}}
+\newcommand*{\cQ}{\mathcal{Q}}
+\newcommand*{\cR}{\mathcal{R}}
+\newcommand*{\cS}{\mathcal{S}}
+\newcommand*{\cT}{\mathcal{T}}
+\newcommand*{\cU}{\mathcal{U}}
+\newcommand*{\cV}{\mathcal{V}}
+\newcommand*{\cW}{\mathcal{W}}
+\newcommand*{\cX}{\mathcal{X}}
+\newcommand*{\cY}{\mathcal{Y}}
+\newcommand{\bE}{\mathbb{E}}
+
+% \newcommand\eqnote[1]{\text{\color{blue}{\tiny\sffamily #1}}}

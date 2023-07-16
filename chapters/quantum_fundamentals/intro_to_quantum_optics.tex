@@ -2,10 +2,10 @@
 \usepackage{authblk}
 \begin{document}
 
-\title{\textbf{Note}}
-\author{Zanqiu Shen}
-\affil{University of Toronto}
-\maketitle
+% \title{\textbf{Note}}
+% \author{Zanqiu Shen}
+% \affil{University of Toronto}
+% \maketitle
 
 \chapter{Introduction to Quantum Optics}
 \section{Introduction}
@@ -1521,7 +1521,7 @@ We have nice pictures in the video.
 
 We have phase squeezed state and amplitude squeezed state.
 
-%\section{Thermal Radiation States and Planck's Black Body Radiation Formula}
+\section{Thermal Radiation States and Planck's Black Body Radiation Formula}
 
 \section{The Classical Beamsplitter}
 Assume all beams have same polarization and frequency. We input $E_1, E_2$ and output $E_3, E_4$. There is a nice picture to illustrate it. Then we have
@@ -1786,7 +1786,7 @@ We have
 \end{remark}
 
 \textbf{What about coherent states?}
-%\section{The Quantum Mach-Zehnder Interferometer}
+\section{The Quantum Mach-Zehnder Interferometer}
 
 \section{Balanced Homodyne Detection}
 Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, where $\vert \beta \rangle$ is the coherent state.
@@ -1797,6 +1797,7 @@ Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, w
         i_{34} \propto -2 \vert \beta \vert \langle \hat{X} \left(\phi + \pi/2 \right) \vert \Psi \rangle.
     \end{align}
 \end{lemma}
+\includegraphics[scale=0.30]{../figures/difference photoncurrent.png}
 \begin{proof}
     For a balanced 50/50 beamsplitter, $T = \frac{1}{\sqrt{2}}, R = \frac{1}{\sqrt{2}} i$. Recall that \ref{lemma: creation operators}, $\hat{a}_4 = T \hat{a}_1 + R \hat{a}_2$. We then have
     \begin{align}
@@ -1817,26 +1818,351 @@ Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, w
     \begin{align}
         i_{34} = i_3 -i_4 \propto \langle in \vert \hat{n}_3 - \hat{n}_4 \vert in \rangle 
         &= -2 _1\langle \Psi \vert _2\langle \beta \vert \frac{1}{2 i} \left(\hat{a}_2^\dagger \hat{a}_1 - \hat{a}_1^\dagger \hat{a}_2\right) \vert \beta \rangle_2 \vert \Psi \rangle_1 \\
+        &\qquad\eqnote{To derive the following equation, we need to know that $\hat{a}_1^\dagger, \hat{a}_1$ are applied to $\vert \Psi \rangle_1$ } \nonumber \\
+        &\qquad\eqnote{according to its subindex. Similar for subindex 2} \nonumber \\
         &= -2 _1 \langle \Psi \vert \frac{1}{2 i} \left(\beta^\ast \hat{a}_1 - \hat{a}_1^\dagger \beta \right) \vert \Psi \rangle_1 \\
         &=  -2 \vert \beta \vert _1 \langle \Psi \vert \frac{1}{2 i} \left(\hat{a}_1 \exp\left[-i \phi \right] - \hat{a}_1^\dagger \exp\left[i \phi\right] \right) \vert \Psi \rangle_1 \\
         &\qquad\eqnote{By \ref{def: Generalized  quadrature operators}} \nonumber \\
         &= -2 \vert \beta \vert _1\langle \Psi \vert \hat{X}_1(\phi + \frac{\pi}{2}) \vert \Psi \rangle_1, 
     \end{align}
     where $\vert \beta \vert$ is the amplification of quadrature signal.
+
+    \SZQ{$\hat{a}_1^\dagger \hat{a}_2$ must mean $\hat{a}_1^\dagger \otimes \hat{a}_2$. In addition, the order of $\hat{a}_1^\dagger$ and $\hat{a}_2$ needs to be changed according to subindex. These correspondences can be easily understood by the above picture showing the physical setting, where we know that the subindex must coincide.}
 \end{proof}
 
 
-%\section{Quantized Light-Atom Interaction}
+\section{Quantized Light-Atom Interaction}
+This section deals with quantized fields and quantized atom.
 
-%\section{Jaynes-Cummings Model}
+We have 
+\begin{align}
+    \hat{H}
+    &= \hat{H}_A + \hat{H}_R + \hat{H}_I.
+\end{align}
 
-%\section{Interaction of TLA with a Coherent State}
+There is a nice picture to show the quantized light field and quantized atom.
 
-%\section{Primer on Cavity Quantum Electrodynamics}
+Atomic Hamiltonian is 
+\begin{align}
+    \hat{H}_A
+    &= \hbar \omega_{21} \vert 2 \rangle \langle 2 \vert \\
+    &= \hbar \omega_{21} \hat{\sigma}^{+} \hat{\sigma}^{-},
+\end{align}
+where $\hat{\sigma}^{+} = \vert 2 \rangle \langle 1 \vert$ and $\hat{\sigma}^{-} = \vert 1 \rangle \langle 2 \vert$.
 
-%\section{Seeing a Single Photon without Destroying it}
+Light Hamiltonian is 
+\begin{align}
+    \hat{H}_R = \sum_{k} \hbar \omega_{k} (\hat{a}^{\dagger}_k \hat{a}_k + \frac{1}{2}).
+\end{align}
 
-%\section{Dressed States}
+Light-Atom Interaction Hamiltoniaan is 
+\begin{align}
+    \hat{H}_I = - \hat{d} \cdot \hat{E}(t).
+\end{align}
+
+Rewrite in atomic ladder operators 
+\begin{align}
+    \hat{d} = e \hat{r} = \hat{\id} \hat{d} \hat{\id} = \sum_{i,j} \vert i \rangle \langle i \vert \hat{d} \vert j \rangle j \vert.
+\end{align}
+Using parity argument and for the two level system, we have
+\begin{align}
+    \hat{d} = d_{12} (\hat{\sigma}^{+} + \hat{\sigma}^{-}):= d_{12} (\hat{\sigma}^{\dagger} + \hat{\sigma}).
+\end{align}
+
+E-field operator in Schrodinger picture is 
+\begin{align}
+    \hat{E}(r) = \sum_k \epsilon_k \sqrt{\frac{\hbar \omega_k}{2 \varepsilon_0 V}} \left[\hat{a}_k e^{ikr} + \hat{a}_k^{\dagger} e^{-ikr}\right].
+\end{align}
+This is a time-independent operator. Then the Interaction Hamiltonian is 
+\begin{align}
+    \hat{H}_I = \sum_{k} \hbar g_k \left(\hat{a}_k e^{ikr} + \hat{a}^{\dagger}_k e^{-ikr} \right) \left(\hat{\sigma}^{\dagger} + \hat{\sigma}\right),
+\end{align}
+where $g_k := \sqrt{\frac{\omega_k}{2 \varepsilon_0 \hbar V}} d_{12} \cdot \epsilon_k$ is the light-atom coupling constant (mode-dependent).
+
+Simplified $r = 0$, we have
+\begin{align}
+    \hat{H}_I = \sum_k \hbar g_k (\hat{a}_k + \hat{a}_k^{\dagger})(\hat{\sigma}^{\dagger} + \hat{\sigma}).
+\end{align}
+We have four terms: $\hat{a}_k^{\dagger} \hat{\sigma}^{\dagger}$ create atomic excitation and create photon; $\hat{a}_k \hat{\sigma}^{\dagger}$ create atomic excitation and absorpt photon; $\hat{a}_k^{\dagger}\hat{\sigma}$ destroy atomic excitation and emmits photon; $\hat{a}_k \hat{\sigma}$ destroy photon and destroy atomic excitation. $\hat{a}_k^{\dagger} \hat{\sigma}^{\dagger}$ and  $\hat{a}_k \hat{\sigma}$ do not obey energy conservation law, thus are dropped. So we have
+\begin{align}
+    \hat{H}_I = \sum_{k} \hbar g_k (\underbrace{\hat{a}_k^{\dagger} \hat{\sigma}}_{emission} + \underbrace{\hat{a}_k \hat{\sigma}^{\dagger}}_{absorption}).
+\end{align}
+
+Absorption and emission matrix elements. Light field in mode $k$ and atom are described by states
+\begin{align}
+    \vert n_k, i \rangle = \vert n_k \rangle \otimes \vert i \rangle,
+\end{align}
+where $\vert n_k \rangle$ is the photon state and $i\vert i \rangle$ is the atomic state. Now, we consider two-level atom. Then we have the absorption of photon from mode $k$ as 
+\begin{align}
+    \langle n_k -1, 2 \vert \hat{H}_I \vert n_k, 1 \rangle
+    &= \hbar g_k \langle n_k -1, 2 \vert {\hat{a}_k^{\dagger} \hat{\sigma}} + {\hat{a}_k \hat{\sigma}^{\dagger}} \vert n_k, 1 \rangle \\
+    &= \hbar g_k \sqrt{n_k}.
+\end{align} 
+We have the emission of photon into mode $k$ as 
+\begin{align}
+    \langle n_k +1, 1 \vert \hat{H}_I \vert n_k, 2 \rangle
+    &= \hbar g_k \langle n_k +1, 1 \vert {\hat{a}_k^{\dagger} \hat{\sigma}} + {\hat{a}_k \hat{\sigma}^{\dagger}} \vert n_k, 2 \rangle \\
+    &= \hbar g_k \sqrt{n_k + 1},
+\end{align} 
+where the $+1$ is surprisingly the \textbf{spontaneous emission}.
+
+\section{Jaynes-Cummings Model} 
+Interaction of Time-independent light-atom interaction with single mode of radiation field. Since it is single mode, we drop $k$. The Jaynes-Cummings hamiltonian is
+\begin{align}
+    \hat{H}_{JC} = \hbar \omega_{21} \hat{\sigma}^{\dagger} \hat{\sigma} + \hbar \omega \hat{a}^\dagger \hat{a} + \hbar g (\hat{a}^{\dagger}\hat{\sigma} + \hat{a}\hat{\sigma}^{\dagger}).
+\end{align}
+
+Switch to interaction picture. Interaction hamiltonian in interaction picture is 
+\begin{align}
+    \hat{H}^{in}_{I}(t) 
+    &= e^{\frac{i}{\hbar} \hat{H}_0 t}, \\
+    \vert \Psi^{in}(t) \rangle
+    &= e^{\frac{i}{\hbar} \hat{H}_0 t \vert \Psi(t) \rangle}.
+\end{align}
+
+Interaction Hamiltonian (in interaction picture) is 
+\begin{align}
+    \hat{H}^{in}_I(t) = \hbar g \left( \hat{a}^{\dagger} \hat{\sigma} e^{i \Delta t} + \hat{a}\hat{\sigma}^{\dagger} e^{- i \Delta t} \right),
+\end{align}
+where $\Delta = \omega - \omega_{21}$.
+
+Time evolution is 
+\begin{align}
+    i \hbar \frac{\partial}{\partial t} \vert \Psi^{in}(t) \rangle
+    &= \hat{H}^{in}_I(t) \vert \Psi^{in}(t) \rangle.
+\end{align}
+
+Assume Ansatz wavefunction 
+\begin{align}
+    \vert \Psi^{in}(t) \rangle
+    &= \sum_n c_{1, n} \vert n, 1 \rangle + c_{2, n} \vert n, 2 \rangle.
+\end{align}
+\SZQ{Ansatz means "an assumption about the form of an unknown function which is made in order to facilitate solution of an equation or other problem."}
+
+\paragraph*{Time evolution in JC model}
+Which states are coupled throught $\hat{H}_I^{in}(t)$?
+\begin{align}
+    \vert 1, n+1 \rangle  \rightleftarrows_{emission}^{absorption} \vert 2, n \rangle.
+\end{align}
+Plug the ansatz function into the time evolution equation and have
+\begin{align}
+    \dot{c}_{1, n+1}(t) 
+    &= -i g \sqrt{n+1} e^{+i \Delta t} c_{2, n}(t), \\
+    \dot{c}_{2, n}(t) 
+    &= -i g \sqrt{n+1} e^{-i \Delta t} c_{1, n+1}(t).
+\end{align}
+
+\paragraph*{Time evolution in JC model-solutions}
+Initial conditions ($n+1$ photons, atom in ground state) is assumed as
+\begin{align}
+    c_{1, n+1}(0) = 1.
+\end{align}
+The resonant interaction $\Delta = 0$. The solution is
+\begin{align}
+    c_{1, n+1}(t) 
+    &= \cos(g\sqrt{n+1} t) \\
+    c_{2, n}(t)
+    &= -i \sin(g \sqrt{n+1} t).
+\end{align}
+The corresponding probability is
+\begin{align}
+    P_{1, n+1}(t) 
+    &= \vert c_{1, n+1}(t) \vert^2 = \frac{1}{2} \left[1+\cos(\Omega_n t)\right],
+\end{align}
+where $\Omega_{n} = 2 g \sqrt{n+1}$ is the quantized rabi frequency. Recall that in the semiclassical case, $\Omega = {d E}/{\hbar}$ is continuous.
+
+Initial conditions (0 photons, atom in excited state) with $n = 0$, $c_{2,0}(0) = 1$ and $\Delta = 0$. The probability is 
+\begin{align}
+    P_{2, 0}(t)
+    &= \vert c_{1, n+1}(t) \vert^2 = \frac{1}{2} \left[1+\cos(\Omega_0 t)\right],
+\end{align}
+where $\Omega_0 = 2 g$ with vacuum state $n = 0$. There is nice picture showing that state $\vert 2, 0 \rangle$ and $\vert 1, 1 \rangle$ swaps continuously. This is called the Vacuum Rabi-Oscillation! This do not happen in classical case!
+
+\section{Interaction of TLA with a Coherent State}
+This section is also called the Collapse and Revival of Rabi Oscillations.
+
+\paragraph*{Time-independent light-atom interaction and coherent state}
+The light field is 
+\begin{align}
+    \vert \alpha \rangle 
+    &= e^{-\frac{1}{2}\vert \alpha \vert^2} \sum_{n} \frac{\alpha^n}{\sqrt{n!}} \vert n \rangle.
+\end{align}
+Assume that atom is initially in excited state $\vert 2 \rangle$. Then for the combined atom-field state amplitudes are 
+\begin{align}
+    c_{1,n}(0) = 0 \\
+    \vert c_{2, n}(0) \vert^2 = e^{\overline{n}} \frac{\overline{n}^n}{n !}.
+\end{align}
+
+Recall from the last lecture, we have
+\begin{align}
+    c_{2,n}(t)
+    &= \cos(g \sqrt{n+1} t) \vert c_{2, n}(0) \vert, \\
+    c_{1, n}(t)
+    &= -i \sin(g \sqrt{n} t) \vert c_{2, n-1}(0) \vert, \forall n \geq 1.
+\end{align}
+Then inversion is
+\begin{align}
+    w(t)
+    &= P_2(t) - P_1(t) \\
+    &= \sum_{n=1}^{\infty} \vert c_{2, n}(t) \vert^2 - \sum_{n=0}^{\infty} \vert c_{1, n}(t) \vert^2 \\
+    &= \sum_{n=0}^{\infty} \vert c_{2, n}(0) \vert^2\cos(2 g\sqrt{n+1} t) \\
+    &= e^{\overline{n}} \sum_{n=0}^{\infty} \frac{\overline{n}^n}{n!} \cos(2 g \sqrt{n+1} t).
+\end{align}
+There is a nice picture to plot this inversion for $\overline{n}=20$. Thi shows a Collapse and Revival of Rabi-Oscillations.
+
+\paragraph*{Estimate collapse time}
+First, what is collapse time? The collapse time $t_c$ should satisfy
+\begin{align}
+    \Omega_{\overline{n} + \Delta n} t_c -  \Omega_{\overline{n} - \Delta n} t_c = \pi.
+\end{align}
+For large $\overline{n}$, we have $\Delta n = \sqrt{\overline{n}}$. We then get
+\begin{align}
+    (2 g \sqrt{\overline{n} + \sqrt{\overline{n}}} - 2 g \sqrt{\overline{n} - \sqrt{\overline{n}}}) t_c \sim \pi \\
+    2 g \left(\sqrt{\overline{n}} \sqrt{1 + \frac{1}{\sqrt{\overline{n}}}} - \sqrt{\overline{n}} \sqrt{1 - \frac{1}{\sqrt{\overline{n}}}} \right) \\
+    2 g \left(\sqrt{\overline{n}} {1 + \frac{1}{2}\frac{1}{\sqrt{\overline{n}}}} - \sqrt{\overline{n}} {1 - \frac{1}{2}\frac{1}{\sqrt{\overline{n}}}} \right) \sim \pi.
+\end{align}
+We have
+\begin{align}
+    2 g t_c \sim \pi,
+\end{align}
+so
+\begin{align}
+    t_c \simeq \frac{\pi}{2 g} = \frac{\pi}{\Omega_0}.
+\end{align}
+\SZQ{"$\sim$" means asymptotically equal.}
+
+\paragraph{Estimate revival time}
+What is revival time? 
+\begin{align}
+    \Omega_{\overline{n}+1 - \Omega_{\overline{n}}} = 2 \pi.
+\end{align}
+Revival when 'neighbouring' Rabi Oscillations become in phase! Plug the Rabi frequency, we have
+\begin{align}
+    &(2 g \sqrt{\overline{n}+1} - 2 g \sqrt{\overline{n}}) t_R \sim 2 \pi \\
+    &(2 g \sqrt{\overline{n}} \sqrt{1+\frac{1}{\overline{n}}} - 2 g \sqrt{\overline{n}}) t_R \sim 2 \pi  \\
+    &\qquad\eqnote{Using taylor approximation} \\
+    &(2 g \sqrt{\overline{n}} (1
+    +\frac{1}{2}\frac{1}{\overline{n}})) - 2 g \sqrt{\overline{n}}) t_R \sim 2 \pi  \\
+    &(2 g \sqrt{\overline{n}} \frac{1}{2 \sqrt{\overline{n}}}) t_R \sim 2 \pi \\
+    &t_R \sim \frac{2 \pi \sqrt{\overline{n}}}{g} = \frac{4 \pi \sqrt{\overline{n}}}{\Omega_0}.
+\end{align}
+
+\paragraph*{Classical limit}
+Quantized box $V \rightarrow \infty$, then $g \rightarrow 0$.
+
+Keep Rabi frequency constant by $g \rightarrow 0, \overline{n} \rightarrow \infty$, which means 
+\begin{align}
+    2 g \sqrt{\overline{n}} = \Omega = constant \\
+    t_c \sim \frac{\pi}{2 g} \rightarrow \infty, for~g \rightarrow 0.
+\end{align}
+This means collapse becomes absent.
+
+There is a nice experiment of the test of quantized Rabi Oscillations.
+
+\section{Primer on Cavity Quantum Electrodynamics}
+This section provides the experimental setup and results for the quantized light-atom interaction. There are many pictures reffering to the video.
+
+How can we experimentally observe quantized light-atom interaction?
+\begin{align}
+    \hat{H}_I = \hbar g(\hat{a}^{\dagger} \hat{\sigma} + \hat{a} \hat{\sigma}^{\dagger}), \\
+    g = \sqrt{\frac{\hbar \omega}{2 \varepsilon_0 V}} d_{12} \cdot \epsilon.
+\end{align}
+$V$ small! Use cavity!! 
+
+\paragraph*{Light field cavity}
+finite reflectivity.
+
+$k$: transmission losses of cavity (finite reflectivity mirrors).
+
+$\gamma$: spontaneous emission of atom into free space.
+
+$g$: coherent coupling.
+
+$k, \gamma$: incoherent dynamics.
+
+$g$: coherent dynamics.
+
+Define $C := \frac{g^2}{k \gamma}$ cooperativity.
+
+\paragraph*{Experimentally used CQED Setups}
+1) Superconducting mirrors for photons in microwave regime (Haroche, Walter)
+
+3) On-chip mitrowaave resonators with superconducting qubits (Schoelkopf, Matinis, Wallraff) 
+
+Details ref to the video.
+
+\paragraph*{Rydberg atoms}
+$d_{12}$ large.
+
+Energy spectrum
+\begin{align}
+    E_{n,l} = - \frac{R}{(n-\delta_{l})^2} = \simeq - \frac{R}{n^2}.
+\end{align}
+
+Huge dipole moment
+\begin{align}
+    \langle \phi_{n, l^{\prime}} \vert q \hat{r} \vert \phi_{n, l} \rangle \simeq q a_0 n^2.
+\end{align}
+
+\section{Seeing a Single Photon without Destroying it}
+\paragraph*{Detecting a photon with photondetector}
+Usually through absorption: single photon $\rightarrow$ photodetector.
+
+Can we detect a photon without destroying it ???
+
+Yes! interferometrically. Experimental setup: ref to video.
+
+Step 1: $\pi/2$ pulse in Ramsey Zone 1 (on i-g transition)
+
+Step 2: a) if 1 photon in cavity $\vert g, 1 \rangle \rightarrow e^{i \pi} \vert g, 1 \rangle = - \vert g, 1\rangle$. $2 g t_{int} = 2 \pi$. b) if 0 photons in cavity $\vert g, 0 \rangle \rightarrow \vert g, 0 \rangle$.
+
+Step 3: $\pi/2$ pulse in Ramsey Zone 2 (on i-g transition)
+
+There are nice pictures about the experimental results.
+
+\section{Dressed States}
+\paragraph*{Atom-light field without interaction}
+Atom: $\hat{H}_A = \hbar \omega_{21} \hat{\sigma}^{\dagger} \hat{\sigma}$.
+
+Fight field: $\hat{H}_L = \hbar \omega \hat{a}^{\dagger} \hat{a}$.
+
+\paragraph{Atom-light field}
+Group the eigenstates: $\vert 1, n+2 \rangle, \vert 2, n+1 \rangle$, $\vert 1, n+1 \rangle, \vert 2, n \rangle$, $\vert 1, n \rangle, \vert 2, n-1 \rangle$.
+
+\paragraph*{Dressed states}
+$\hat{H}_A + \hat{H}_R$ eigenstates of uncoupled hamiltonian $\vert 1, n+1 \rangle, \vert 2, n \rangle$ $\rightleftarrows$ $\vert 1(n) \rangle, \vert 2(n) \rangle$ $\hat{H}_A + \hat{H}_R + \hat{H}_I$ eigenstates of coupled hamiltonian.
+
+Dressed state eigenstates
+\begin{align}
+    \vert 1(n) \rangle = \sin(\theta/2) \vert 1, n+1 \rangle + \cos(\theta/2) \vert 2, n \rangle \\
+    \vert 2(n) \rangle = \cos(\theta/2) \vert 1, n+1 \rangle - \sin(\theta/2) \vert 2, n \rangle,
+\end{align}
+where $\tan \theta = -\Omega_n/\Delta$, $\sin(\theta/2) = \sqrt{\frac{\Omega_n^{\Delta} - \Delta}{2 \Omega_n^{\Delta}}}$, $\cos(\theta/2) = \sqrt{\frac{\Omega_n^{\Delta} + \Delta}{2 \Omega_n^{\Delta}}}$ and the generalized Rabi frequency is $\Omega_{n}^{\Delta} = \sqrt{\Omega_n^2 + \Delta^2}$, $\Omega_n = 2g \sqrt{n+1}$.
+
+There is a nice picture.
+
+\paragraph*{Avoided corssing of energy levels}
+There is a nice picture.
+
+Dressed state for $\Delta = 0 \rightarrow \theta = \pi/2$, we have
+\begin{align}
+    \vert 1(n) \rangle =  \frac{1}{\sqrt{2}}(\vert 1, n+1 \rangle + \vert 2, n \rangle)\\
+    \vert 2(n) \rangle =  \frac{1}{\sqrt{2}}(\vert 1, n+1 \rangle - \vert 2, n \rangle).
+\end{align}
+
+\paragraph*{Re-interpreting Rabi Oscillations}
+Initial state
+\begin{align}
+    \vert \Psi(0) \rangle = \vert 1, n+1 \rangle 
+    &= \frac{1}{\sqrt{2}} (\vert 1(n) \rangle + \vert 2(n) \rangle) \\
+    \vert \psi(t) \rangle = \frac{1}{\sqrt{2}} (e^{i \Omega_n t} \vert 1(n) \rangle + \vert 2(n) \rangle). \\
+    P_1(t) 
+    &= \vert \langle 1, n+1 \vert \psi(t) \rangle\vert^2 \\
+    &= \frac{1}{2}\vert \frac{1}{\sqrt{2}} e^{-i \Omega_n t} + \frac{1}{\sqrt{2}} \vert^2 \\
+    &= \frac{1}{4} \vert e^{-i \Omega_n t} + 1 \vert^2 \\
+    &= \frac{1}{4} \vert e^{-i \Omega_n t/2} + e^{i \Omega_n t/2} \vert^2 \\
+    &= \cos^2(\Omega_n t/2).
+\end{align}
 
 
 
