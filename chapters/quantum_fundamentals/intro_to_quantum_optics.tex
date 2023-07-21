@@ -1522,6 +1522,79 @@ We have nice pictures in the video.
 We have phase squeezed state and amplitude squeezed state.
 
 \section{Thermal Radiation States and Planck's Black Body Radiation Formula}
+\begin{definition}[Incoherent superposition]
+    
+\end{definition}
+
+\paragraph*{Thermal radiation}
+Thermal radiation states of a single field mode is
+\begin{align}
+    \hat{\rho} = \sum_n P_n \vert n \rangle \langle n \vert,
+\end{align}
+where $P_n = e^{-E_n/(k_B T)}/Z$, $Z$ is the normalization factor, $E_n = \hbar \omega n$ and $k_B$ is Boltzmann factor. We should note that $\hat{\rho}$ is incoherent superposition!
+
+\paragraph*{Average thermal mode occupation}
+\begin{align}
+    \overline{n}_{\omega} 
+    &= \sum_n P_n = \sum n \left(e^{-\hbar \omega /(k_B T)}\right)^n /Z \\
+    &=\sum n q^n /Z \\
+    &= \sum q \left(\frac{\partial}{\partial q} q^n \right) / Z \\
+    &= q \frac{\partial}{\partial q} \left(\sum q^n \right) / Z \\
+    &= \frac{1}{\frac{1}{q} - 1} \\
+    &= \frac{1}{e^{\hbar \omega /(k_B T)} - 1}.
+\end{align}
+where $q = e^{-\hbar \omega /(k_B T)}$ and $Z = \sum_n e^{-n \hbar \omega/(k_B T)} = \sum_{n=0}^{\infty} q^n = 1/(1-q)$ since $q$ is real and $q < 1$.
+So photons,
+\begin{align}
+    \overline{n}_{\omega} = = \frac{1}{e^{\hbar \omega /(k_B T)} - 1}
+\end{align}
+is \textbf{Bose-Einstein distribution}.
+
+\paragraph*{Average energy in mode}
+The thermal energy in single radiation  mode is
+\begin{align}
+    \overline{E_{\omega}} = \overline{n}_{\omega} \hbar \omega,
+\end{align}
+where $\overline{n}_{\omega}$ is the average number of photons and $\hbar \omega$ is the single photon energy. 
+
+\paragraph*{Plank radiation formula}
+\begin{align}
+    u(\omega) d \omega = \overline{n}_{\omega} \hbar \omega \frac{d N}{d \omega} d \omega \frac{1}{V}
+\end{align}
+is the energy density in frequency interval $[\omega, \omega + d \omega]$, where $\overline{n}_{\omega} \hbar \omega$ is average energy stored in single mode, $\frac{d N }{d \omega} d \omega$ is the number of modes in $[\omega, \omega + d \omega]$ and $V$ is the volume of box.
+
+\paragraph*{Density of states in a box}
+Quantized (discrete) radiation modes is 
+\begin{align}
+    k_x = \frac{2 \pi}{L} n_x, k_y = \frac{2 \pi}{L} n_y, k_z = \frac{2 \pi}{L} n_z,
+\end{align}
+where $n_x, n_y, n_z$ are intergers and $\frac{d N}{d \omega} = \frac{d N}{c d k}$ due to $\omega = ck$. Now we can calculate 
+\begin{align}
+    N(k)
+    &= \frac{4}{3} \pi k^3/(2 \pi/L)^3 =\frac{1}{6} \frac{1}{ \pi^2} k^3 L^3.
+\end{align}
+Then we have
+\begin{align}
+    \frac{dN}{dk} 
+    &= \frac{1}{2} \frac{k^2}{\pi^2} V.
+\end{align} 
+Using that $\omega = ck$ so $k = \omega/c$, we have
+\begin{align}
+    \frac{dN}{d \omega} = \frac{dN}{c dk} 
+    &= \frac{1}{2} \cdot 2 \frac{\omega^2}{\pi^2 c^3} V \\
+    &= \frac{\omega^2}{\pi^2 c^3} V.
+\end{align}
+Then we have
+\begin{align}
+    \frac{dN}{d \omega} d \omega = \frac{\omega^2}{\pi^2 c^3} V d \omega.
+\end{align}
+We finally arrive at the Plank Radiation Formula as
+\begin{align}
+    u(\omega) = \frac{1}{e^{\hbar \omega / (k_B T)} - 1} \hbar \omega \frac{\omega^2}{\pi^2 c^3} = \frac{\hbar \omega^3}{\pi^2 c^3} \frac{1}{e^{\hbar \omega / (k_B T)} - 1}.
+\end{align}
+
+
+
 
 \section{The Classical Beamsplitter}
 Assume all beams have same polarization and frequency. We input $E_1, E_2$ and output $E_3, E_4$. There is a nice picture to illustrate it. Then we have
@@ -1787,6 +1860,55 @@ We have
 
 \textbf{What about coherent states?}
 \section{The Quantum Mach-Zehnder Interferometer}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../figures/MZ.jpg}
+	\caption{Mach-Zehnder Interferometer}
+	\label{fig: mz}
+\end{figure}
+
+The generalised transmission-reflection coefficients are 
+\begin{align}
+    R_{MZ} 
+    &= R^2 e^{i k z_1} + T^2 e^{i k z_2} \\
+    T_{MZ} 
+    &= RT(e^{i k z_1} + e^{i k z_2}) \\
+    R^{\prime}_{MZ} 
+    &= T^2 e^{i k z_1} + R^2 e^{i k z_2}.
+\end{align}
+Assuming that there is no input at part $E_2$, then the output light intensities are 
+\begin{align}
+    &\vert E_3 \vert^2 = \vert R_{MZ} \vert^2 \vert E_1 \vert^2 \\
+    &\vert E_4 \vert^2 = \vert T_{MZ} \vert^2 \vert E_1 \vert^2.
+\end{align}
+Plug the transmission-reflection coefficients into the $\vert E_4 \vert^2$, we have
+\begin{align}
+    \vert E_4 \vert^2 = \vert R\vert^2 \vert T \vert^2 \vert e^{i k z_1} + e^{i k z_2} \vert^2 \vert E_1 \vert^2 = 4 \vert R\vert^2 \vert T \vert^2 \cos^2(k(z_1 - z_2)/2)\vert E_1 \vert^2.
+\end{align}
+
+\paragraph{The quantum MZ interferometer}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.80\textwidth]{../figures/qmz.jpg}
+	\caption{Quantum Mach-Zehnder Interferometer}
+	\label{fig: mz}
+\end{figure}
+For the quantum Mach-Zehnder Interferomter, the output creation operators are
+\begin{align}
+    \hat{a}_3 = R_{MZ} \hat{a}_1 + T_{MZ} \hat{a}_2 \\
+    \hat{a}_4 = T_{MZ} \hat{a}_1 + R_{MZ}^{\prime} \hat{a}_2.
+\end{align}
+Then for the single photon input state $\vert 1 \rangle_1 \vert 0 \rangle_2$, the expectation value of the $\hat{n}_4$ is 
+\begin{align}
+    \langle \hat{n}_4 \rangle = _2 \langle 0 \vert _1\langle 1 \vert \hat{n}_4 \vert 1 \rangle_1 \vert 0 \rangle_2 
+    &= _2 \langle 0 \vert _1\langle 1 \vert \hat{a}_4^\dagger \hat{a}_4 \vert 1 \rangle_1 \vert 0 \rangle_2 \\
+    &= _2 \langle 0 \vert _1\langle 1 \vert (T_{MZ}^\ast \hat{a}_1^\dagger + R_{MZ}^{\prime \ast} \hat{a}_2)(T_{MZ} \hat{a}_1 + R_{MZ}^{\prime} \hat{a}_2) \vert 1 \rangle_1 \vert 0 \rangle_2 \\
+    &= \vert T_{MZ} \vert^2 _2\langle 0 \vert _1\langle 0 \vert \hat{a}_1^\dagger \hat{a}_1 \vert 1 \rangle_1 \vert 0 \rangle_2 \\
+    &= \vert T_{MZ} \vert^2  \\
+    &= 4 \vert T \vert^2 \vert R \vert^2 \cos^2(k(z_1 - z_2)/2).
+\end{align}
+We see that the results are the same as the classical one.
+
 
 \section{Balanced Homodyne Detection}
 Input states: $\vert in \rangle = \vert \Psi \rangle_1 \vert \beta \rangle_2$, where $\vert \beta \rangle$ is the coherent state.
