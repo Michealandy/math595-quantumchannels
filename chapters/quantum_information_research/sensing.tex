@@ -11,7 +11,76 @@ This PhD thesis is written by Sihui Tan, who is the one that first propose Quant
     
 \end{definition}
 
+
+
 \subsection{Physics preliminaries}
+\begin{lemma}[Eq. 2.23 in \cite{tan2010quantum}]
+    \label{lemma: communtation relations}
+    A system made of multiple harmonic oscillators is described by their annihilation operators,
+    \begin{align}
+        \hat{a}_{k},~k=1,\cdots,n.
+    \end{align}
+    They satisfy the canonical commutation relation
+    \begin{align}
+        [\hat{a}_k, \hat{a}_l^\dagger] = \delta_{kl}.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}[Eq. 2.27 in \cite{tan2010quantum}]
+    The corresponding quadrature operators of a system made of multiple harmonic oscillators satisfy the canonical commutation relation
+    \begin{align}
+        [\hat{q}_k, \hat{p}_l] = \frac{i}{2} \delta_{kl}.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}
+    We describe the phase space of the single bosonic modes with the vector
+    \begin{align}
+        \cR = (\hat{q}, \hat{p})^T,
+    \end{align}
+    so $\cR_1 = \hat{q}$ and $\cR_2 = \hat{p}$. Then we have
+    \begin{align}
+        [\cR_k, \cR_l]
+        &= \frac{i}{2} \omega_{kl},
+    \end{align}
+    where 
+    \begin{align}
+        \omega
+       &= \left[ \begin{matrix}
+            0 & 1 \\
+            -1 & 0
+        \end{matrix}
+        \right]
+    \end{align}
+    is the sympletic form of the phase space of single bosonic mode.
+\end{lemma}
+
+\begin{lemma}
+    We describe the phase space of the $n$ bosonic modes with the vector
+    \begin{align}
+        \cR = (\hat{q}^1, \hat{p}^1, \cdots, \hat{q}^n, \hat{p}^n)^T.
+    \end{align}
+    We denote $\cR_1^i = \hat{q}^i$, $\cR_2^i = \hat{p}^i$, where $i$ denotes $i_{th}$ mode. Then we have
+    \begin{align}
+        [\cR_k^m, \cR_l^n]
+        &= \frac{i}{2} \omega_{kl} \delta_{mn},
+    \end{align}
+    where 
+    \begin{align}
+        \omega
+       &= \left[ \begin{matrix}
+            0 & 1 \\
+            -1 & 0
+        \end{matrix}
+        \right]
+    \end{align}
+    is the sympletic form of the phase space of single bosonic mode. Then the sympletic of $n$ bosonic modes is
+    \begin{align}
+        \Omega
+        &= \bigoplus_{k=1}^n \omega,
+    \end{align}
+    where $\bigoplus$ denotes the direct sum.
+\end{lemma}
 
 
 \subsection{Introduction}
@@ -394,6 +463,52 @@ Given the close connection between the spontaneous parametric down-conversion (S
     
 \end{theorem}
 
+\begin{definition}[Matrix exponential from wiki]
+    \label{def: matrix exponential}
+    Let $X$ be an $n \otimes n$ real or complex matrix. The exponential of $X$, denoted by $e^X$ or $\exp[X]$, is the $n \times n$ matrix given by the power series
+    \begin{align}
+        e^X = \sum_{k=0}^{\infty} \frac{1}{k!} X^k,
+    \end{align}
+    where $X^0$ is defined to be the identity matrix $\id$ with the same dimensions as $X$. The series always converges, so the exponential of $X$ is well-defined.
+\end{definition}
+
+\begin{lemma}[Properties of matrix exponential]
+    \label{lemma: properties of matrix exponential}
+    Let $X$ and $Y$ be $n \times n$ complex matrices and let $a$ and $b$ be arbitrary complex numbers. We denote the $n \times n$ identity matrix by $\id$ and zero matrix by $0$. The matrix exponential satisfies the following properties:
+
+    \textbf{Elementary properties:}
+    \begin{itemize}
+        \item $\exp[0] = \id$ \\
+        \item $\exp[X^\dagger] = \exp[X]^\dagger$ \\
+        \item If $[X, Y] = 0$, then $\exp[X] \exp[Y] = \exp[X + Y]$.
+    \end{itemize}
+
+    \textbf{The exponential map:}
+    Define the map 
+    \begin{align}
+        t \mapsto \exp[t X],~ t \in \mathbb{R}.
+    \end{align}
+
+    We have
+    \begin{itemize}
+        \item \begin{align}
+            \frac{d}{d t} e^{t X} = X e^{t X} = e^{t X} X.
+        \end{align}
+    \end{itemize}
+\end{lemma}
+
+\begin{lemma}[Geometric series]
+    For $\vert x \vert < 1$, we have
+    \begin{align}
+        \sum_{n=0}^{\infty} x^n = \frac{1}{1 - x}.
+    \end{align}
+\end{lemma}
+
+\begin{lemma}[Generalized geometric series]
+    
+\end{lemma}
+
+
 \subsection{Physics preliminaries}
 
 
@@ -412,7 +527,7 @@ Let us consider a general bipartite pure state representation of sinal-ideler sy
 In the Quantum Illumimation (QI) protocol, the signal modes of $M$ copies of $\vert \psi \rangle_{SI}$ are sent to the target region embedded in a bright thermal noise, in which there could possibly be an object. We receive $M$ copies of the state
 \begin{align}
     \rho_{\eta}
-    &= \tr\left[U_{\eta} \psi \bigotimes \rho_B U_{\eta}^{\dagger}\right],
+    &= \tr_S\left[U_{\eta} \psi \bigotimes \rho_B U_{\eta}^{\dagger}\right],
 \end{align}
 where 
 \begin{align}
@@ -432,6 +547,75 @@ In this framework, at the receiver side, $\eta=0$ corresponds to the absence of 
 The quantum illumination protocl has beed presented the last subsection. Here, we focus on the estimation protocol.
 
 The main idea of the estimation protocol is to use QFI (\ref{def: qfi}) and CROB (\ref{def:crob}) for estimating $\eta$.
+
+\begin{lemma}
+    If a mode $s$ sent into a beamsplitter that has a thermal state input $b$ in the other port, then $U_{\eta} = \exp[\eta(s^\dagger b - s b^\dagger)]$ is indeed the unitary transformation.
+\end{lemma}
+\begin{proof}
+    By the properties of matrix exponential \ref{def: matrix exponential}, we have
+    \begin{align}
+        U_{\eta}^{\dagger}
+        &= \exp[\eta(s^\dagger b - s b^\dagger)]^\dagger \\
+        &= \exp[\eta(b^\dagger s - b s^\dagger)].
+    \end{align}
+    Then we have
+    \begin{align}
+        U_{\eta} U_{\eta}^\dagger
+        &= \exp\left[\eta(s^\dagger b - s b^\dagger + b^\dagger s - b s^\dagger)\right] \\
+        &= \exp[\eta([s^\dagger, b] + [b^\dagger, s])] \\
+        &\qquad\eqnote{By lemma \ref{lemma: communtation relations}} \nonumber \\
+        &= \exp[\eta 0] \\
+        &= \id.
+    \end{align}
+\end{proof}
+
+\begin{lemma}
+    The state $\rho_{\eta} = \tr_S \left[U_{\eta} \vert \psi\rangle \langle \psi \vert \otimes \rho_B U_{\eta}^{\dagger}\right]$, where $U_{\eta} \simeq \exp[\eta(s^\dagger b - s b^\dagger)]$. We have that the derivative computed at $\eta = 0$ is:
+    \begin{align}
+        \partial_{\eta} \rho_{\eta} = \tr_S[s^\dagger b - s b^\dagger, \vert \psi \rangle \langle \psi \vert \otimes \rho_B] = \sum_{\alpha \alpha^\prime} \sqrt{p_{\alpha} p_{\alpha'}} \vert v_{\alpha} \rangle \langle v_{\alpha} \vert \otimes \left[\langle w_{\alpha'} \vert s^\dagger \vert w_{\alpha} \rangle b - \langle w_{\alpha'} \vert s \vert w_{\alpha} \rangle b^\dagger, \rho_B \right].
+    \end{align}
+\end{lemma}
+\begin{proof}
+    \begin{align}
+        \partial_{\eta} \rho_{\eta} \vert_{\eta=0}
+        &= \tr_S\left[\partial_{\eta} U_{\eta} \vert \psi\rangle \langle \psi \vert \otimes \rho_B U_{\eta}^{\dagger}\right] \vert_{\eta=0} \\
+        &= \tr_S\left[\partial_{\eta} \exp[\eta(s^\dagger b - s b^\dagger)] \vert \psi\rangle \langle \psi \vert \otimes \rho_B \exp[\eta(b^\dagger s - b s^\dagger)] \right] \vert_{\eta=0} \\
+        &= \tr_S[ (s^\dagger b - s b^\dagger)\exp[\eta(s^\dagger b - s b^\dagger)] \vert \psi\rangle \langle \psi \vert \otimes \rho_B \exp[\eta(b^\dagger s - b s^\dagger)] +  \\
+        &\exp[\eta(s^\dagger b - s b^\dagger)] \vert \psi\rangle \langle \psi \vert \otimes \rho_B \exp[\eta(b^\dagger s - b s^\dagger)](b^\dagger s - b s^\dagger) ]  \vert_{\eta=0}\\
+        &= \tr_S[ (s^\dagger b - s b^\dagger) \vert \psi\rangle \langle \psi \vert \otimes \rho_B + \vert \psi\rangle \langle \psi \vert \otimes \rho_B (b^\dagger s - b s^\dagger) ]\\ 
+        &= \tr_S[ (s^\dagger b - s b^\dagger) \vert \psi\rangle \langle \psi \vert \otimes \rho_B - \vert \psi\rangle \langle \psi \vert \otimes \rho_B (b s^\dagger - b^\dagger s) ]\\
+        &\qquad\eqnote{By lemma \ref{lemma: communtation relations}} \nonumber \\
+        &= \tr_S[ (s^\dagger b - s b^\dagger) \vert \psi\rangle \langle \psi \vert \otimes \rho_B - \vert \psi\rangle \langle \psi \vert \otimes \rho_B (s^\dagger b - s b^\dagger) ]\\
+        &= \tr_S[s^\dagger b -s b^\dagger, \vert \psi \rangle \langle \psi \vert \otimes \rho_B].
+    \end{align}
+    Then we continue the derivation as
+    \begin{align}
+        &\tr_S\left[\vert \psi \rangle \langle \psi \vert \otimes \rho_B (s^\dagger b - s b^\dagger)\right]\\
+        &= \tr\left[\vert \psi \rangle \langle \psi \rangle s^\dagger \otimes \rho_B b - \vert \psi \rangle \langle \psi \vert s \otimes \rho_B b^\dagger \right] \\
+        &= \sum_k \langle w_k \vert \psi \rangle \langle \psi \vert s^\dagger \otimes \rho_B b \vert w_k \rangle - \sum_k \langle w_k \vert \psi \rangle \langle \psi \vert s \otimes \rho_B b \vert w_k \rangle \\
+        &= \sum_{kij} \sqrt{p_i p_j} \langle w_k \vert \otimes I \vert w_i \rangle \langle w_j \vert \otimes \vert v_i \rangle \langle v_j \vert s^\dagger \otimes \id \vert w_k \rangle \otimes \id \otimes \rho_B b - \\
+        &\sum_{kij} \sqrt{p_i p_j} \langle w_k \vert \otimes \id \vert w_i \rangle \langle w_j \vert \otimes \vert v_i \rangle \langle v_j \vert s \otimes \id \vert w_k \rangle \otimes \id \otimes \rho_B b^\dagger \\
+        &= \sum_{kij} \sqrt{p_i p_j} \langle w_k \vert w_i \rangle \langle w_j \vert s^\dagger \vert w_k \rangle \otimes \vert v_i \rangle \langle v_j \vert \otimes \rho_B b - \\
+        &\sum_{kij} \sqrt{p_i p_j} \langle w_k \vert w_i \rangle \langle w_j \vert s \vert w_k \rangle \otimes \vert v_i \rangle \langle v_j \vert \otimes  \rho_B b^\dagger \\
+        &= \sum_{ij} \sqrt{p_i p_j} \langle w_j \vert s^\dagger \vert w_i \rangle \vert v_i \rangle \langle v_j \vert \otimes \rho_B b -
+        \sum_{ij} \sqrt{p_i p_j} \langle w_j \vert s \vert w_i \rangle \vert v_i \rangle \langle v_j \vert \otimes  \rho_B b^\dagger \\
+        &= \sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \rho_B \langle w_j \vert s^\dagger \vert w_i \rangle b -
+        \sum_{ij} \sqrt{p_i p_j}  \vert v_i \rangle \langle v_j \vert \otimes  \rho_B \langle w_j \vert s \vert w_i \rangle b^\dagger \\
+        &= \sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \rho_B \left[\langle w_j \vert s \vert w_i \rangle b^\dagger - \langle w_j \vert s^\dagger \vert w_i \rangle b \right].
+    \end{align}
+    Similarly, we can find that 
+    \begin{align}
+        &\tr_S\left[(s^\dagger b - s b^\dagger)\vert \psi \rangle \langle \psi \vert \otimes \rho_B\right]\\ 
+        &= \sum_{ij} \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger \right] \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \rho_B \\
+        &= \sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger\right]\rho_B.
+    \end{align}
+    In summary, we have
+    \begin{align}
+        &\sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\left(\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger\right) \rho_B -  \left(\langle w_j \vert s \vert w_i \rangle b^\dagger - \langle w_j \vert s^\dagger \vert w_i \rangle b \right) \rho_B \right] \\
+        &= \sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\left(\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger\right), \rho_B \right].
+    \end{align}
+\end{proof}
+
 \begin{lemma}[The QFI for the returned state $\rho_{\eta}$ in Eq. (3) \cite{sanz2017quantum}]
     \label{lemma: qfi of returned state}
     The QFI for $\rho_{\eta}$ is
