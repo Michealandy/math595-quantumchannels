@@ -1,6 +1,7 @@
 \documentclass[../../note.tex]{subfiles}
 
 \begin{document}
+This note is written by Zanqiu Shen from University of Toronto.
 
 \chapter{Sensing}
 \section{Quantum state distrimination with Bosonic channels aand Gaussian states}
@@ -533,9 +534,11 @@ where
 \begin{align}
     U_{\eta}
     &:= \exp[\sin^{-1}(\eta) - s^\dagger b - s b^\dagger] \simeq \exp[\eta(s^\dagger b - s b^\dagger)]
+    \label{def:U_eta}
 \end{align}
 is the signal-object interaction, modeled as a beamsplitter with amplitude reflectivity $\eta << 1$, and 
 \begin{align}
+\label{def: rho_B}
     \rho_B
     &:= \sum_n \frac{N_B^n}{(1+N_B)^{1+n}} \vert n \rangle \langle n \vert
 \end{align} 
@@ -550,6 +553,7 @@ The main idea of the estimation protocol is to use QFI (\ref{def: qfi}) and CROB
 
 \begin{lemma}
     If a mode $s$ sent into a beamsplitter that has a thermal state input $b$ in the other port, then $U_{\eta} = \exp[\eta(s^\dagger b - s b^\dagger)]$ is indeed the unitary transformation.
+    \label{lemma: unitary transformation}
 \end{lemma}
 \begin{proof}
     By the properties of matrix exponential \ref{def: matrix exponential}, we have
@@ -613,6 +617,118 @@ The main idea of the estimation protocol is to use QFI (\ref{def: qfi}) and CROB
     \begin{align}
         &\sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\left(\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger\right) \rho_B -  \left(\langle w_j \vert s \vert w_i \rangle b^\dagger - \langle w_j \vert s^\dagger \vert w_i \rangle b \right) \rho_B \right] \\
         &= \sum_{ij} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\left(\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger\right), \rho_B \right].
+    \end{align}
+\end{proof}
+
+\begin{lemma}[$\rho_{\eta = 0}$]
+    The family of states $\rho_{\eta}$ is derieved as
+    \begin{align}
+        \rho_{\eta = 0}
+        &= \sum_{\alpha} p_{\alpha} \vert v_{\alpha} \rangle \langle v_{\alpha} \vert \otimes \sum_n \frac{N_B^n}{(1 + N_B)^{1 + n}} \vert n \rangle \langle n \vert = \sum_{\alpha n} p_{\alpha} \frac{N_B^n}{(1+N_B)^{1+n}} \vert v_{\alpha} n \rangle \langle v_{\alpha } n \vert.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Recall the definition of $\rho_B$ in \ref{def: rho_B}, and that 
+    \begin{align}
+        \rho_{\eta}
+        &= \tr_S\left[U_{\eta} \psi \otimes \rho_B U_{\eta}^\dagger \right] \\
+        &\qquad\eqnote{Use lemma \ref{lemma: unitary transformation}} \nonumber \\
+        &= \tr_S\left[\exp[\eta (s^\dagger b -s b^{\dagger}) \psi \otimes \rho_B \exp[\eta(b^\dagger s - b s^\dagger)]] \right].
+    \end{align}
+    Then we have
+    \begin{align}
+        \rho_{\eta = 0}
+        &= \tr_S\left[\psi \otimes \rho_B \right]  \\
+        &= \tr_S\left[\psi_{SI} \rangle \langle \psi_{SI} \vert \otimes \rho_B \right] \\
+        &= \tr_S\left[\sum_{\alpha \beta} \sqrt{p_{\alpha} p_{\beta}} \vert w_{\alpha} \rangle \langle w_{\beta} \vert \otimes \vert v_{\alpha} \rangle \langle v_{\beta} \vert \otimes \rho_B \right] \\
+        &= \sum_{\alpha \beta} \sqrt{p_{\alpha} p_{\beta}} \langle w_{\beta} \vert w_{\alpha} \rangle \vert v_{\alpha}\rangle \langle v_{\beta} \vert \otimes \rho_B \\
+        &= \sum_{\alpha} p_{\alpha} \vert v_{\alpha} \rangle \langle v_{\alpha} \vert \otimes \rho_B.
+    \end{align}
+    Substitute $\rho_B$ into $\rho_{\eta=0}$, we arrive at the final result.
+\end{proof}
+
+\begin{definition}
+    The quantum fisher information for the family of states $\rho_{\eta}$ is defined as
+    \begin{align}
+        H
+        &= 2 \sum_{mn} \frac{\vert \langle \phi_m \vert (\partial \rho_{\eta})\vert_{\eta = 0} \vert \phi_n \rangle \vert^2}{\lambda_m \lambda_n},
+    \end{align}
+    where $\lambda_n$ is the eigenvalue of $\rho_{\eta = 0}$ corresponding to the eigenstate $\vert \phi_n \rangle$, and the derivativeis evaluated at $\eta = 0$.
+\end{definition}
+
+\begin{lemma}
+    Given the definition of $\rho_B$ \ref{def: rho_B}, we can compute the following four results:
+    \begin{align}
+        \langle n \vert b \rho_B \vert n^\prime \rangle 
+        &= \rho_{n+1} \sqrt{n+1} \delta_{n+1, n^\prime} \\
+        \langle n \vert b^\dagger \rho_B \vert n^\prime \rangle 
+        &= \rho_{n^\prime} \sqrt{n^\prime + 1} \delta_{n, n^\prime + 1} \\
+        \langle n \vert \rho_B b \vert n^\prime \rangle 
+        &= \rho_n \sqrt{n+1} \delta_{n+1, n^\prime} \\
+        \langle n \vert \rho_B b^\dagger \vert n \rangle 
+        &= \rho_{n^\prime + 1} \sqrt{n^\prime + 1} \delta_{n, n^\prime + 1},
+    \end{align}
+    where $\rho_n = \frac{N_B^n}{(1 + N_B)^{1+n}}$.
+\end{lemma}
+\begin{proof}
+    The first one:
+    \begin{align}
+        \langle n \vert b \rho_B \vert n^\prime \rangle 
+        &= \langle n \vert b \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \vert i \rangle \langle i \vert n^\prime \rangle \\
+        &= \langle n \vert \sum_i \frac{N_B^i}{(1+N_B)^{1+i}} \sqrt{i} \vert i-1 \rangle \langle i \vert n^\prime \rangle \\
+        &= \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \sqrt{i} \langle n \vert i-1 \rangle \langle i \vert n^\prime \rangle \\
+        &= \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \sqrt{i} \delta_{n, i-1} \delta_{i, n^\prime} \\
+        &= \frac{N_B^{n+1}}{(1 + N_B)^{1 + n+1}} \sqrt{n+1} \delta_{n+1, n^\prime} \\
+        &= \rho_{n+1} \sqrt{n+1} \delta_{n+1, n^\prime}.
+    \end{align}
+    The second one:
+    \begin{align}
+        \langle n \vert b^\dagger \rho_B \vert n^\prime \rangle 
+        &= \langle n \vert b^\dagger \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \vert i \rangle \langle i \vert n^\prime \rangle \\
+        &= \langle n \vert \sum_i \frac{N_B^i}{(1+N_B)^{1+i}} \sqrt{i+1} \vert i+1 \rangle \langle i \vert n^\prime \rangle \\
+        &= \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \sqrt{i+1} \langle n \vert i+1 \rangle \langle i \vert n^\prime \rangle \\
+        &= \sum_i \frac{N_B^i}{(1 + N_B)^{1+i}} \sqrt{i+1} \delta_{n, i+1} \delta_{i, n^\prime} \\
+        &= \sum_i \rho_i \sqrt{i+1} \delta_{n, i+1} \delta_{i, n^\prime} \\
+        &= \rho_{n^\prime} \sqrt{n^\prime + 1} \delta_{n, n^\prime + 1}
+    \end{align}
+    The third one:
+    \begin{align}
+        \langle n \vert \rho_B b \vert n^\prime \rangle 
+        &= \langle n \vert \sum_i \rho_i \vert i \rangle \langle i \vert b \vert n^\prime \rangle \\
+        &= \langle n \vert \sum_i \rho_i \vert i \rangle (b^\dagger \vert i \rangle)^\dagger \vert n^\prime \rangle \\
+        &= \langle n \vert \sum_i \rho_i \vert i \rangle (\sqrt{i+1} \vert i + 1\rangle)^\dagger \vert n^\prime \rangle \\
+        &= \langle n \vert \sum_i \rho_i \vert i \rangle \langle i+1 \vert n^\prime \rangle \sqrt{i+1} \\
+        &= \sum_i \rho_i \sqrt{i+1} \langle n \vert i \rangle \langle i+1 \vert n^\prime \rangle \\
+        &= \sum_i \rho_i \sqrt{i+1} \delta_{n, i} \delta_{i+1, n^\prime}\\ 
+        &= \rho_n \sqrt{n+1} \delta_{n+1, n^\prime}.
+    \end{align}
+    The fourth one:
+    \begin{align}
+        \langle n \vert \rho_B b^\dagger \vert n^\prime \rangle 
+        &= \langle n \vert \sum_i \rho_i \vert i \rangle \langle i \vert b^\dagger \vert n^\prime \rangle \\
+        &= \sum_i \rho_i \langle n \vert i \rangle \langle i \vert \sqrt{n^\prime + 1} \vert n^\prime + 1 \rangle \\
+        &= \sum_i \rho_i \sqrt{n^\prime+1} \delta_{n, i} \delta_{i, n^\prime + 1} \\
+        &= \rho_{n^\prime + 1} \sqrt{n^\prime + 1}\delta_{n, n^\prime + 1}.
+    \end{align}
+\end{proof}
+\SZQ{Note that the resulting form can be different by apply $b$ or $b^\dagger$ in different direction.}
+
+\begin{lemma}[Eq. (9) to Eq. (10)]
+    We derive Eq. (10) from Eq. (9).
+\end{lemma}
+\begin{proof}
+    We only need to focus on the numerator of the fraction 
+    \begin{align}
+        &\langle v_{\alpha}, n \vert \sum_{i j} \sqrt{p_i p_j} \vert v_i \rangle \langle v_j \vert \otimes \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle  b^\dagger, \rho_B \right] \vert v_{\alpha^\prime}, n^\prime \rangle \\
+        &= \sum_{ij} \sqrt{p_i p_j} \langle v_{\alpha}, n \vert v_i \rangle \langle v_j \vert \otimes \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger, \rho_B \right] \vert v_{\alpha^\prime},n^\prime \rangle \\
+        &= \sum_{ij} \sqrt{p_i p_j} \langle v_{\alpha} \vert v_i \rangle \langle v_j \vert v_{\alpha^\prime} \rangle \otimes \langle n \vert \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger, \rho_B \right] \vert n^\prime \rangle \\
+        &= \sqrt{p_{\alpha} p_{\alpha^{\prime}}} \langle n \vert \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger, \rho_B \right] \vert n^\prime \rangle \\
+        &=  \sqrt{p_{\alpha} p_{\alpha^{\prime}}} \langle n \vert \left[\langle w_j \vert s^\dagger \vert w_i \rangle b - \langle w_j \vert s \vert w_i \rangle b^\dagger, \rho_B \right] \vert n^\prime \rangle \\
+        &= \sqrt{p_{\alpha} p_{\alpha^\prime}} \langle n \vert \left[ \langle w_j \vert s^\dagger \vert w_i \rangle b \rho_B - \langle w_j \vert s\vert w_i \rangle b^\dagger \rho_B - \langle w_j \vert s^\dagger \vert w_i \rangle \rho_B b + \langle w_j \vert s\vert w_i \rangle \rho_B b^\dagger  \right] \vert n^\prime \rangle \\
+        &= \sqrt{p_{\alpha} p_{\alpha^\prime}} [\langle w_j \vert s^\dagger \vert w_i \rangle \langle n \vert b \rho_B \vert n^\prime \rangle - \langle w_j \vert s\vert w_i \rangle \langle n \vert b^\dagger \rho_B \vert n^\prime \rangle - \langle w_j \vert s^\dagger \vert w_i \rangle \langle n \vert \rho_B b \vert n^\prime \rangle \nonumber \\
+        &+ \langle w_j \vert s\vert w_i \rangle \langle n \vert \rho_B b^\dagger \vert n^\prime \rangle ] \\
+        &\qquad\eqnote{Use lemma } \nonumber \\
+        &= 
     \end{align}
 \end{proof}
 
